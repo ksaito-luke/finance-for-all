@@ -636,28 +636,23 @@ body{padding:24px;font-family:var(--font-sans)}
 
 <div id="screen-result" class="screen">
   <div class="result-container">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem" id="res-title">確認問題の結果</div>
     <div class="result-ring">
       <svg width="140" height="140" viewBox="0 0 140 140">
         <circle cx="70" cy="70" r="60" fill="none" stroke="var(--color-border-tertiary)" stroke-width="9"/>
-        <circle cx="70" cy="70" r="60" fill="none" stroke="#0F6E56" stroke-width="9" stroke-dasharray="376.8" stroke-dashoffset="105.5" stroke-linecap="round" transform="rotate(-90 70 70)"/>
+        <circle id="res-ring-fill" cx="70" cy="70" r="60" fill="none" stroke="#0F6E56" stroke-width="9" stroke-dasharray="376.99" stroke-dashoffset="105.5" stroke-linecap="round" transform="rotate(-90 70 70)"/>
       </svg>
-      <div class="score"><div class="n">72</div><div class="u">/ 100点</div></div>
+      <div class="score"><div class="n" id="res-score">0</div><div class="u">点 / 100</div></div>
     </div>
-    <div class="pass-badge"><i class="ti ti-circle-check" aria-hidden="true"></i>合格ライン達成（基準70点）</div>
+    <div class="pass-badge" id="res-badge"><i class="ti ti-circle-check" aria-hidden="true"></i>合格ライン達成（基準70点）</div>
     <div class="result-grid">
-      <div class="r-cell"><div class="v">72<small>/100</small></div><div class="l">正解数</div></div>
-      <div class="r-cell"><div class="v">92<small>分</small></div><div class="l">所要時間</div></div>
-      <div class="r-cell"><div class="v">72<small>%</small></div><div class="l">正解率</div></div>
-    </div>
-    <div class="field-card">
-      <h4>分野別スコア</h4>
-      <div class="field-row"><div class="field-head"><span>仕訳・転記</span><span class="pct">85%</span></div><div class="field-track"><div class="field-fill" style="width:85%;background:#0F6E56"></div></div></div>
-      <div class="field-row"><div class="field-head"><span>試算表</span><span class="pct">70%</span></div><div class="field-track"><div class="field-fill" style="width:70%;background:#185FA5"></div></div></div>
-      <div class="field-row"><div class="field-head"><span>財務諸表</span><span class="pct" style="color:#A32D2D">60%</span></div><div class="field-track"><div class="field-fill" style="width:60%;background:#A32D2D"></div></div></div>
+      <div class="r-cell"><div class="v" id="res-correct">0<small>/0</small></div><div class="l">正解数</div></div>
+      <div class="r-cell"><div class="v" id="res-time">0<small>秒</small></div><div class="l">所要時間</div></div>
+      <div class="r-cell"><div class="v" id="res-rate">0<small>%</small></div><div class="l">正答率</div></div>
     </div>
     <div style="display:flex;gap:10px;justify-content:center">
       <button class="btn-outline" onclick="showScreen('course')">コースに戻る</button>
-      <button class="btn-primary" onclick="startQuiz('boki3_ch1','第1章 確認問題')">弱点を復習する<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      <button class="btn-primary" id="res-retry">もう一度挑戦<i class="ti ti-refresh" aria-hidden="true"></i></button>
     </div>
   </div>
 </div>
@@ -813,6 +808,7 @@ body{padding:24px;font-family:var(--font-sans)}
 
 <script src="content/courses.js"></script>
 <script src="content/questions.js"></script>
+<script src="content/generate.js"></script>
 <script>
 function showScreen(name){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -901,18 +897,24 @@ function renderQuizList(key,c){
   el.innerHTML=(c.quizzes||[]).map(qz=>{
     const bank=(window.QUESTION_BANKS&&window.QUESTION_BANKS[qz.bank])||[];
     const cnt=bank.length;
-    const meta=cnt?(cnt+'問'+(qz.status==='done'?' ・ 正解率 '+qz.score+'% ・ 完了':qz.status==='active'?' ・ 挑戦中':'')):'準備中';
+    let meta;
+    if(!cnt)meta='準備中';
+    else if(qz.pick)meta='全'+cnt.toLocaleString()+'問からランダム'+qz.pick+'問';
+    else meta=cnt+'問'+(qz.status==='done'?' ・ 正解率 '+qz.score+'% ・ 完了':qz.status==='active'?' ・ 挑戦中':'');
     const clickable=qz.status!=='locked'&&cnt>0;
-    return '<div class="unit-item"'+(clickable?' onclick="startQuiz(\''+qz.bank+'\',\''+qz.title+'\')"':'')+'>'+statusIcon(qz.status)+
+    const call='startQuiz(\''+qz.bank+'\',\''+qz.title+'\''+(qz.pick?(','+qz.pick):'')+')';
+    return '<div class="unit-item"'+(clickable?' onclick="'+call+'"':'')+'>'+statusIcon(qz.status)+
       '<div class="unit-info"><h4>'+qz.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
   }).join('');
 }
 function renderMockList(c){
   const el=document.getElementById('mock-list');if(!el)return;
   el.innerHTML=(c.mocks||[]).map(mk=>{
-    const meta='100問 ・ '+mk.min+'分'+(mk.status==='done'?' ・ スコア'+mk.score+'点 ・ 完了':'');
-    const clickable=mk.status!=='locked';
-    return '<div class="unit-item"'+(clickable?' onclick="showScreen(\'mock\')"':'')+'>'+statusIcon(mk.status)+
+    const bank=(window.QUESTION_BANKS&&window.QUESTION_BANKS[mk.bank])||[];
+    const cnt=bank.length;
+    const meta=cnt?(cnt+'問 ・ '+mk.min+'分'+(mk.status==='done'?' ・ スコア'+mk.score+'点 ・ 完了':'')):'準備中';
+    const clickable=mk.status!=='locked'&&cnt>0;
+    return '<div class="unit-item"'+(clickable?' onclick="startQuiz(\''+mk.bank+'\',\''+mk.title+'\')"':'')+'>'+statusIcon(mk.status)+
       '<div class="unit-info"><h4>'+mk.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
   }).join('');
 }
@@ -1011,11 +1013,17 @@ function upItem(d,title,sub,bg,col,ic){
 
 /* ===== QUIZ ENGINE (問題は content/questions.js から読み込み) ===== */
 let answered=false,qNum=1,quizItems=[];
-function startQuiz(bankId,title){
-  quizItems=((window.QUESTION_BANKS&&window.QUESTION_BANKS[bankId])||[]).slice();
-  if(!quizItems.length){quizItems=[{q:'この章の問題は近日公開予定です。',choices:['コースに戻る'],ans:0,exp:'content/questions.js の「'+bankId+'」に問題を追加すると、ここに表示されます。'}];}
-  qNum=1;answered=false;
-  const chip=document.getElementById('q-chip-title');if(chip)chip.textContent=title||'確認問題';
+let quizCorrect=0,quizStart=0,quizTitle='確認問題',quizRetry=null;
+function shuffleArr(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function startQuiz(bankId,title,pick){
+  let pool=((window.QUESTION_BANKS&&window.QUESTION_BANKS[bankId])||[]).slice();
+  if(!pool.length){pool=[{q:'この章の問題は近日公開予定です。',choices:['コースに戻る'],ans:0,exp:'content/questions.js の「'+bankId+'」に問題を追加すると、ここに表示されます。'}];}
+  if(pick&&pool.length>pick){pool=shuffleArr(pool).slice(0,pick);}
+  quizItems=pool;
+  qNum=1;answered=false;quizCorrect=0;quizStart=Date.now();
+  quizTitle=title||'確認問題';
+  quizRetry=function(){startQuiz(bankId,title,pick);};
+  const chip=document.getElementById('q-chip-title');if(chip)chip.textContent=quizTitle;
   renderQuizQuestion();
   showScreen('quiz');
 }
@@ -1035,14 +1043,44 @@ function renderQuizQuestion(){
 }
 function selectChoice(el,correct){
   if(answered)return;answered=true;
+  if(correct)quizCorrect++;
   const choices=document.querySelectorAll('#choices .choice');
   choices.forEach((c,i)=>{c.onclick=null;if(c===el){c.classList.add(correct?'correct':'wrong');}else if(quizItems[qNum-1].ans===i){c.classList.add('correct');}});
   document.getElementById('explanation').classList.add('show');
   document.getElementById('next-btn').style.display='inline-flex';
 }
 function nextQuestion(){
-  if(qNum>=quizItems.length){showScreen('result');return;}
+  if(qNum>=quizItems.length){finishQuiz();return;}
   qNum++;renderQuizQuestion();
+}
+function finishQuiz(){
+  const total=quizItems.length;
+  const correct=quizCorrect;
+  const rate=total?Math.round(correct/total*100):0;
+  const elapsed=Math.max(1,Math.round((Date.now()-quizStart)/1000));
+  const pass=rate>=70;
+  /* ring */
+  const C=2*Math.PI*60;
+  const ring=document.getElementById('res-ring-fill');
+  ring.setAttribute('stroke-dasharray',C.toFixed(2));
+  ring.setAttribute('stroke-dashoffset',(C*(1-rate/100)).toFixed(2));
+  ring.setAttribute('stroke',pass?'#0F6E56':'#BA7517');
+  document.getElementById('res-title').textContent=quizTitle+' の結果';
+  document.getElementById('res-score').textContent=rate;
+  document.getElementById('res-correct').innerHTML=correct+'<small>/'+total+'</small>';
+  document.getElementById('res-time').innerHTML=fmtElapsed(elapsed);
+  document.getElementById('res-rate').innerHTML=rate+'<small>%</small>';
+  const badge=document.getElementById('res-badge');
+  if(pass){badge.style.background='#E1F5EE';badge.style.color='#0F6E56';badge.innerHTML='<i class="ti ti-circle-check" aria-hidden="true"></i>合格ライン達成（正答率70%以上）';}
+  else{badge.style.background='#FAEEDA';badge.style.color='#854F0B';badge.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true"></i>もう一歩（合格ライン70%）';}
+  const retry=document.getElementById('res-retry');
+  retry.onclick=function(){if(quizRetry)quizRetry();};
+  showScreen('result');
+}
+function fmtElapsed(sec){
+  if(sec<60)return sec+'<small>秒</small>';
+  const m=Math.floor(sec/60),s=sec%60;
+  return m+'<small>分</small>'+(s?(' '+s+'<small>秒</small>'):'');
 }
 let sec=7123;
 setInterval(()=>{sec--;if(sec<0)sec=0;const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;const el=document.getElementById('mock-timer');if(el)el.textContent=h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000);
