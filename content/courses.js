@@ -50,7 +50,7 @@ window.COURSES = {
     quizzes: [
       { title: '第1章 確認問題', bank: 'boki3_ch1', status: 'done', score: 80 },
       { title: '第2章 確認問題', bank: 'boki3_ch2', status: 'active' },
-      { title: '第3章 確認問題', bank: 'boki3_ch3', status: 'locked' }
+      { title: '第3章 確認問題', bank: 'boki3_ch3', status: 'active' }
     ],
     mocks: [
       { title: '第1回 模擬テスト', bank: 'boki3_mock1', min: 120, status: 'done', score: 72 },
