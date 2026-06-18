@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance for All — 誰もが学べるファイナンス e-learning</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
+  --font-serif:Georgia,"Times New Roman",serif;
+  --font-mono:"SFMono-Regular",Consolas,monospace;
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f4f3ee;
+  --color-background-tertiary:#faf9f5;
+  --color-text-primary:#1a1a18;
+  --color-text-secondary:#6b6a64;
+  --color-text-tertiary:#9b9a92;
+  --color-border-tertiary:rgba(0,0,0,0.10);
+  --color-border-secondary:rgba(0,0,0,0.20);
+  --color-border-primary:rgba(0,0,0,0.30);
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+  --border-radius-xl:16px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --color-background-primary:#26261f;
+    --color-background-secondary:#30302a;
+    --color-background-tertiary:#1d1d18;
+    --color-text-primary:#f5f4ee;
+    --color-text-secondary:#a8a79e;
+    --color-text-tertiary:#76756c;
+    --color-border-tertiary:rgba(255,255,255,0.12);
+    --color-border-secondary:rgba(255,255,255,0.22);
+    --color-border-primary:rgba(255,255,255,0.32);
+  }
+}
+html,body{margin:0;padding:0;background:var(--color-background-tertiary)}
+body{padding:24px;font-family:var(--font-sans)}
+.app-wrap{max-width:900px;margin:0 auto}
+
+*{box-sizing:border-box;margin:0;padding:0}
+.app{font-family:var(--font-sans);background:var(--color-background-tertiary);color:var(--color-text-primary);border-radius:var(--border-radius-lg);overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.screen{display:none}
+.screen.active{display:block}
+
+.nav{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:20}
+.nav-logo{font-size:16px;font-weight:500;display:flex;align-items:center;gap:9px;letter-spacing:-0.01em}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:#04342C;display:flex;align-items:center;justify-content:center}
+.logo-mark i{font-size:16px;color:#5DCAA5}
+.nav-tabs{display:flex;gap:2px;background:var(--color-background-secondary);padding:3px;border-radius:10px}
+.nav-tab{padding:6px 14px;border-radius:7px;font-size:13px;color:var(--color-text-secondary);cursor:pointer;border:none;background:none;transition:all 0.18s;font-family:var(--font-sans)}
+.nav-tab:hover{color:var(--color-text-primary)}
+.nav-tab.active{background:var(--color-background-primary);color:var(--color-text-primary);box-shadow:0 1px 2px rgba(0,0,0,0.06)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.streak{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:#854F0B;background:#FAEEDA;padding:5px 10px;border-radius:8px}
+.streak i{font-size:15px}
+.avatar{width:32px;height:32px;border-radius:50%;background:#04342C;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#5DCAA5}
+
+.btn-primary{background:#04342C;color:#E1F5EE;border:none;padding:9px 18px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);transition:transform 0.12s,opacity 0.15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{opacity:0.92}
+.btn-primary:active{transform:scale(0.98)}
+.btn-outline{background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);padding:9px 18px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;color:var(--color-text-primary);font-family:var(--font-sans);display:inline-flex;align-items:center;gap:6px;transition:background 0.15s}
+.btn-outline:hover{background:var(--color-background-secondary)}
+
+.hero{padding:3.5rem 1.75rem 5rem;position:relative;overflow:hidden;background-color:#04342C;background-image:linear-gradient(120deg,rgba(4,52,44,0.86) 0%,rgba(4,52,44,0.66) 55%,rgba(4,52,44,0.78) 100%),url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80");background-size:cover;background-position:center}
+.hero::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;border:40px solid rgba(93,202,165,0.10)}
+.hero::before{content:"";position:absolute;right:60px;bottom:-120px;width:200px;height:200px;border-radius:50%;border:30px solid rgba(93,202,165,0.07)}
+.hero-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#5DCAA5;background:rgba(93,202,165,0.12);padding:5px 12px;border-radius:20px;margin-bottom:1.25rem;letter-spacing:0.02em}
+.hero h1{font-size:30px;font-weight:500;color:#fff;line-height:1.25;letter-spacing:-0.02em;margin-bottom:0.85rem}
+.hero h1 .accent{color:#5DCAA5}
+.hero p{font-size:14px;color:#9FE1CB;line-height:1.75;margin-bottom:1.75rem;max-width:480px}
+.hero-cta{display:flex;gap:10px}
+.btn-hero{background:#5DCAA5;color:#04342C;border:none;padding:11px 22px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:inline-flex;align-items:center;gap:7px;transition:transform 0.12s}
+.btn-hero:hover{transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.08);color:#E1F5EE;border:0.5px solid rgba(255,255,255,0.18);padding:11px 22px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans)}
+
+.stats-float{max-width:640px;margin:-3rem auto 0;position:relative;z-index:5;padding:0 1.75rem}
+.stats-row{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.25rem;display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.stat-cell{text-align:center;position:relative}
+.stat-cell:not(:last-child)::after{content:"";position:absolute;right:0;top:15%;height:70%;width:0.5px;background:var(--color-border-tertiary)}
+.stat-cell .num{font-size:26px;font-weight:500;letter-spacing:-0.02em}
+.stat-cell .num small{font-size:14px;font-weight:400;color:var(--color-text-secondary)}
+.stat-cell .lbl{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+
+.section{padding:2.25rem 1.75rem;max-width:680px;margin:0 auto}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.25rem}
+.section-head h2{font-size:18px;font-weight:500;letter-spacing:-0.01em}
+.section-head .link{font-size:13px;color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:3px}
+
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.course-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:0;cursor:pointer;transition:transform 0.18s,border-color 0.18s,box-shadow 0.18s;overflow:hidden}
+.course-card:hover{transform:translateY(-3px);border-color:var(--color-border-secondary);box-shadow:0 8px 28px rgba(0,0,0,0.07)}
+.card-top{padding:1.25rem 1.25rem 0;display:flex;align-items:flex-start;justify-content:space-between}
+.card-glyph{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.g-blue{background:#E6F1FB;color:#185FA5}
+.g-teal{background:#E1F5EE;color:#0F6E56}
+.g-purple{background:#EEEDFE;color:#534AB7}
+.g-amber{background:#FAEEDA;color:#854F0B}
+.lvl-tag{font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.card-body{padding:1rem 1.25rem 1.25rem}
+.card-body h3{font-size:16px;font-weight:500;margin-bottom:0.4rem;letter-spacing:-0.01em}
+.card-body .desc{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:1rem;min-height:42px}
+.card-meta{display:flex;gap:14px;font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem}
+.card-meta span{display:flex;align-items:center;gap:4px}
+.prog-wrap{display:flex;align-items:center;gap:10px}
+.prog-bar{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.prog-pct{font-size:12px;font-weight:500;color:var(--color-text-secondary);white-space:nowrap}
+
+.subnav{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:1.5rem 1.75rem 0}
+.subnav-inner{max-width:680px;margin:0 auto}
+.breadcrumb{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem;cursor:pointer;transition:color 0.15s}
+.breadcrumb:hover{color:var(--color-text-primary)}
+.course-hero-row{display:flex;align-items:center;gap:14px;margin-bottom:1rem}
+.course-hero-row .card-glyph{width:52px;height:52px;border-radius:14px;font-size:26px}
+.subnav h2{font-size:20px;font-weight:500;letter-spacing:-0.01em;margin-bottom:3px}
+.subnav .sub{font-size:13px;color:var(--color-text-secondary)}
+.tab-bar{display:flex;gap:4px;margin-top:0.5rem}
+.tab-item{padding:0.7rem 2px;margin-right:1.5rem;font-size:13px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:var(--color-text-secondary);transition:color 0.15s}
+.tab-item.active{color:#0F6E56;border-bottom-color:#0F6E56}
+
+.content-area{padding:1.75rem;max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr 260px;gap:1.5rem;align-items:start}
+@media(max-width:640px){.content-area{grid-template-columns:1fr;padding:1.5rem}.side-panel{display:none}}
+.chapter-label{font-size:11px;color:var(--color-text-secondary);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin:0 0 0.65rem 2px}
+.unit-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem}
+.unit-item{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:0.9rem 1.1rem;display:flex;align-items:center;gap:13px;cursor:pointer;transition:border-color 0.15s,transform 0.12s}
+.unit-item:hover{border-color:var(--color-border-secondary);transform:translateX(2px)}
+.unit-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.unit-icon.done{background:#E1F5EE;color:#0F6E56}
+.unit-icon.active{background:#04342C;color:#5DCAA5}
+.unit-icon.locked{background:var(--color-background-secondary);color:var(--color-text-tertiary)}
+.unit-info{flex:1}
+.unit-info h4{font-size:13.5px;font-weight:500;margin-bottom:2px}
+.unit-info p{font-size:12px;color:var(--color-text-secondary)}
+.unit-arrow{color:var(--color-text-tertiary);font-size:16px}
+
+.side-panel{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.5rem;position:sticky;top:72px}
+.side-panel h4{font-size:13px;font-weight:500;margin-bottom:1.25rem}
+.ring-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:1.25rem}
+.ring-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini-stat{background:var(--color-background-secondary);border-radius:10px;padding:0.7rem;text-align:center}
+.mini-stat .v{font-size:16px;font-weight:500}
+.mini-stat .l{font-size:11px;color:var(--color-text-secondary);margin-top:1px}
+
+.learn-layout{display:grid;grid-template-columns:248px 1fr;align-items:start}
+@media(max-width:640px){.learn-layout{grid-template-columns:1fr}.learn-side{display:none}}
+.learn-side{background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);padding:1.25rem;position:sticky;top:56px;height:560px;overflow-y:auto}
+.learn-side h4{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em}
+.s-unit{padding:0.55rem 0.7rem;border-radius:9px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:9px;margin-bottom:2px;color:var(--color-text-secondary);transition:background 0.15s}
+.s-unit:hover{background:var(--color-background-secondary)}
+.s-unit.active{background:#E1F5EE;color:#0F6E56;font-weight:500}
+.s-unit i{font-size:14px;flex-shrink:0}
+.learn-main{padding:2rem 1.75rem;max-width:600px}
+.lesson-kicker{font-size:12px;font-weight:500;color:#0F6E56;letter-spacing:0.02em;margin-bottom:0.4rem}
+.lesson-title{font-size:22px;font-weight:500;margin-bottom:0.4rem;letter-spacing:-0.01em}
+.lesson-meta{font-size:12px;color:var(--color-text-secondary);margin-bottom:1.5rem;display:flex;gap:14px}
+.lesson-meta span{display:flex;align-items:center;gap:4px}
+.video{background:#04342C;border-radius:var(--border-radius-lg);height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;cursor:pointer;position:relative;overflow:hidden}
+.video::after{content:"";position:absolute;left:-40px;bottom:-60px;width:160px;height:160px;border-radius:50%;border:24px solid rgba(93,202,165,0.06)}
+.play-btn{width:56px;height:56px;background:#5DCAA5;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1}
+.play-btn i{color:#04342C;font-size:24px}
+.video-cap{position:absolute;bottom:14px;left:16px;font-size:12px;color:#9FE1CB;z-index:1}
+.lesson-content h3{font-size:16px;font-weight:500;margin-bottom:0.65rem;margin-top:1.5rem}
+.lesson-content h3:first-child{margin-top:0}
+.lesson-content p{font-size:14px;line-height:1.85;color:var(--color-text-secondary);margin-bottom:0.65rem}
+.def-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem 1.15rem;margin:1.15rem 0;font-size:13.5px;line-height:1.75;border-left:3px solid #0F6E56}
+.ex-box{background:#E1F5EE;border-radius:var(--border-radius-lg);padding:1.15rem;margin:1.15rem 0}
+.ex-box .ex-lbl{font-size:11px;font-weight:500;color:#0F6E56;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:5px}
+.ex-box p{font-size:13.5px;color:#04342C;line-height:1.8}
+.lesson-nav{display:flex;justify-content:space-between;margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid var(--color-border-tertiary)}
+
+.quiz-container{padding:2rem 1.75rem;max-width:600px;margin:0 auto}
+.q-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem}
+.q-chip{font-size:12px;font-weight:500;color:#0F6E56;background:#E1F5EE;padding:5px 12px;border-radius:8px}
+.q-num{font-size:13px;color:var(--color-text-secondary);font-weight:500}
+.q-progress{height:6px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden;margin-bottom:1.75rem}
+.q-progress-fill{height:100%;background:#0F6E56;border-radius:3px;transition:width 0.35s}
+.question-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.75rem;margin-bottom:1.25rem}
+.question-card h3{font-size:16px;font-weight:500;line-height:1.65;margin-bottom:1.5rem}
+.choice-list{display:flex;flex-direction:column;gap:9px}
+.choice{padding:0.9rem 1.1rem;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);font-size:14px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all 0.15s}
+.choice:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary)}
+.choice.selected{border-color:#0F6E56;background:#E1F5EE;color:#0F6E56}
+.choice.correct{border-color:#0F6E56;background:#E1F5EE;color:#0F6E56}
+.choice.wrong{border-color:#A32D2D;background:#FCEBEB;color:#A32D2D}
+.choice-label{width:26px;height:26px;border-radius:8px;border:0.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
+.explanation{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.15rem;margin-top:1.25rem;font-size:13.5px;line-height:1.8;display:none;border-left:3px solid #0F6E56}
+.explanation.show{display:block;animation:fade 0.3s}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.quiz-actions{display:flex;justify-content:flex-end}
+
+.mock-bar{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.25rem 1.5rem;margin-bottom:1.25rem}
+.mock-bar-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.timer-pill{display:flex;align-items:center;gap:7px;font-size:17px;font-weight:500;color:#04342C;background:#E1F5EE;padding:7px 15px;border-radius:10px;letter-spacing:-0.01em}
+.timer-pill i{font-size:16px}
+
+.result-container{padding:2.5rem 1.75rem;max-width:520px;margin:0 auto;text-align:center}
+.result-ring{position:relative;width:140px;height:140px;margin:0 auto 1.5rem}
+.result-ring .score{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.result-ring .score .n{font-size:38px;font-weight:500;letter-spacing:-0.02em}
+.result-ring .score .u{font-size:12px;color:var(--color-text-secondary)}
+.pass-badge{display:inline-flex;align-items:center;gap:6px;background:#E1F5EE;color:#0F6E56;font-size:13px;font-weight:500;padding:6px 16px;border-radius:9px;margin-bottom:1.75rem}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.r-cell{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1rem 0.75rem}
+.r-cell .v{font-size:20px;font-weight:500}
+.r-cell .v small{font-size:12px;color:var(--color-text-secondary);font-weight:400}
+.r-cell .l{font-size:11px;color:var(--color-text-secondary);margin-top:3px}
+.field-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.4rem;text-align:left;margin-bottom:1.25rem}
+.field-card h4{font-size:13px;font-weight:500;margin-bottom:1rem}
+.field-row{margin-bottom:0.85rem}
+.field-row:last-child{margin-bottom:0}
+.field-head{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.field-head .pct{font-weight:500}
+.field-track{height:6px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.field-fill{height:100%;border-radius:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* ===== COURSE OVERVIEW ===== */
+.ov-wrap{padding:1.75rem;max-width:680px;margin:0 auto}
+.ov-lead{font-size:14.5px;line-height:1.85;color:var(--color-text-secondary);margin-bottom:1.5rem}
+.ov-lead strong{color:var(--color-text-primary);font-weight:500}
+.ov-section-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin:2rem 0 1rem;display:flex;align-items:center;gap:7px}
+.ov-section-title i{font-size:16px;color:#0F6E56}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.skill-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.1rem;display:flex;gap:11px;align-items:flex-start}
+.skill-card .sk-ic{width:32px;height:32px;border-radius:9px;background:#E1F5EE;color:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.skill-card h4{font-size:13.5px;font-weight:500;margin-bottom:3px}
+.skill-card p{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
+.target-list{display:flex;flex-direction:column;gap:8px}
+.target-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--color-text-secondary)}
+.target-item i{color:#0F6E56;font-size:18px;flex-shrink:0}
+.ov-cta{background:#04342C;border-radius:var(--border-radius-xl);padding:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.ov-cta .txt{color:#9FE1CB;font-size:13px}
+.ov-cta .txt strong{display:block;color:#fff;font-size:16px;font-weight:500;margin-bottom:3px}
+
+/* ===== ROADMAP ===== */
+.roadmap{position:relative;padding-left:2px;margin-top:0.5rem}
+.rm-track{position:relative;padding-left:40px}
+.rm-track::before{content:"";position:absolute;left:15px;top:8px;bottom:8px;width:2px;background:var(--color-border-tertiary)}
+.rm-phase{position:relative;margin-bottom:1.5rem}
+.rm-phase:last-child{margin-bottom:0}
+.rm-dot{position:absolute;left:-40px;top:0;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;z-index:1;border:3px solid var(--color-background-tertiary)}
+.rm-dot.done{background:#0F6E56;color:#fff}
+.rm-dot.active{background:#04342C;color:#5DCAA5}
+.rm-dot.todo{background:var(--color-background-secondary);color:var(--color-text-tertiary)}
+.rm-dot.exam{background:#FAEEDA;color:#854F0B}
+.rm-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.2rem}
+.rm-card.active{border-color:#0F6E56;border-width:1px}
+.rm-card.exam{background:#FAEEDA;border-color:transparent}
+.rm-period{font-size:11px;font-weight:500;color:#0F6E56;letter-spacing:0.03em;margin-bottom:3px}
+.rm-card.exam .rm-period{color:#854F0B}
+.rm-card h4{font-size:15px;font-weight:500;margin-bottom:5px}
+.rm-card.exam h4{color:#633806}
+.rm-card p{font-size:12.5px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:0.6rem}
+.rm-card.exam p{color:#854F0B}
+.rm-tags{display:flex;flex-wrap:wrap;gap:6px}
+.rm-tag{font-size:11px;padding:3px 9px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.rm-tag.check{background:#E1F5EE;color:#0F6E56}
+.rm-state{font-size:11px;font-weight:500;padding:2px 8px;border-radius:6px;float:right}
+.rm-state.done{background:#E1F5EE;color:#0F6E56}
+.rm-state.active{background:#04342C;color:#5DCAA5}
+
+/* ===== LOGIN ===== */
+.login-wrap{min-height:520px;display:flex;align-items:center;justify-content:center;background:#04342C;position:relative;overflow:hidden;padding:2rem}
+.login-wrap::after{content:"";position:absolute;right:-100px;top:-100px;width:340px;height:340px;border-radius:50%;border:48px solid rgba(93,202,165,0.06)}
+.login-wrap::before{content:"";position:absolute;left:-80px;bottom:-100px;width:260px;height:260px;border-radius:50%;border:36px solid rgba(93,202,165,0.05)}
+.login-card{background:var(--color-background-primary);border-radius:var(--border-radius-xl);padding:2.25rem;width:100%;max-width:380px;position:relative;z-index:1;box-shadow:0 12px 48px rgba(0,0,0,0.18)}
+.login-logo{display:flex;align-items:center;gap:9px;justify-content:center;font-size:18px;font-weight:500;margin-bottom:0.4rem}
+.login-card .sub{text-align:center;font-size:13px;color:var(--color-text-secondary);margin-bottom:1.75rem}
+.free-pill{display:inline-flex;align-items:center;gap:5px;background:#E1F5EE;color:#0F6E56;font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;margin:0 auto 1.5rem;width:fit-content}
+.field-label{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;display:block}
+.inp{width:100%;height:42px;border:0.5px solid var(--color-border-secondary);border-radius:10px;padding:0 13px;font-size:14px;font-family:var(--font-sans);background:var(--color-background-primary);color:var(--color-text-primary);margin-bottom:1rem;transition:border-color 0.15s}
+.inp:focus{outline:none;border-color:#0F6E56;box-shadow:0 0 0 3px rgba(15,110,86,0.12)}
+.login-divider{display:flex;align-items:center;gap:10px;margin:1.25rem 0;color:var(--color-text-tertiary);font-size:12px}
+.login-divider::before,.login-divider::after{content:"";flex:1;height:0.5px;background:var(--color-border-tertiary)}
+.sso-btn{width:100%;height:42px;border:0.5px solid var(--color-border-secondary);border-radius:10px;background:var(--color-background-primary);color:var(--color-text-primary);font-size:13.5px;font-family:var(--font-sans);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:9px;transition:background 0.15s}
+.sso-btn:hover{background:var(--color-background-secondary)}
+
+/* ===== MYPAGE ===== */
+.mp-head{background:#04342C;padding:2rem 1.75rem 3.5rem;position:relative;overflow:hidden}
+.mp-head::after{content:"";position:absolute;right:-60px;top:-80px;width:240px;height:240px;border-radius:50%;border:36px solid rgba(93,202,165,0.06)}
+.mp-head-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;display:flex;align-items:center;gap:14px}
+.mp-avatar{width:52px;height:52px;border-radius:50%;background:#5DCAA5;color:#04342C;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:500}
+.mp-head h2{color:#fff;font-size:20px;font-weight:500;margin-bottom:2px}
+.mp-head .greet{color:#9FE1CB;font-size:13px}
+.mp-body{max-width:680px;margin:-2rem auto 0;padding:0 1.75rem 2rem;position:relative;z-index:5}
+.mp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+@media(max-width:560px){.mp-stats{grid-template-columns:repeat(2,1fr)}}
+.mp-stat{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.mp-stat .ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin:0 auto 8px}
+.mp-stat .v{font-size:20px;font-weight:500}
+.mp-stat .l{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.mp-block-title{font-size:14px;font-weight:500;margin:1.75rem 0 1rem;display:flex;align-items:center;justify-content:space-between}
+.mp-block-title .link{font-size:12px;color:var(--color-text-secondary);cursor:pointer;font-weight:400}
+.continue-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.25rem;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border-color 0.15s}
+.continue-card:hover{border-color:var(--color-border-secondary)}
+.continue-card .cc-glyph{width:48px;height:48px;border-radius:13px;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.continue-card .cc-body{flex:1}
+.continue-card .cc-kick{font-size:11px;color:#0F6E56;font-weight:500;margin-bottom:2px}
+.continue-card .cc-body h4{font-size:14.5px;font-weight:500;margin-bottom:6px}
+.cc-prog{display:flex;align-items:center;gap:9px}
+.cc-prog .bar{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.cc-prog .bar .fill{height:100%;background:#185FA5;border-radius:3px}
+.cc-prog .pct{font-size:11px;color:var(--color-text-secondary);font-weight:500}
+.enrolled-list{display:flex;flex-direction:column;gap:8px}
+
+/* ===== CALENDAR ===== */
+.cal-wrap{max-width:680px;margin:0 auto;padding:1.75rem}
+.cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.cal-top h2{font-size:18px;font-weight:500}
+.cal-nav{display:flex;align-items:center;gap:4px}
+.cal-nav button{width:32px;height:32px;border-radius:9px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cal-nav button:hover{background:var(--color-background-secondary)}
+.cal-month{font-size:14px;font-weight:500;min-width:96px;text-align:center}
+.streak-banner{background:#FAEEDA;border-radius:var(--border-radius-lg);padding:0.9rem 1.2rem;display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.streak-banner .sb-ic{width:38px;height:38px;border-radius:11px;background:#EF9F27;color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px}
+.streak-banner h4{font-size:14px;font-weight:500;color:#633806}
+.streak-banner p{font-size:12px;color:#854F0B}
+.cal-grid{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.25rem}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px}
+.cal-dow span{text-align:center;font-size:11px;color:var(--color-text-secondary);font-weight:500}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-cell{aspect-ratio:1;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;position:relative;color:var(--color-text-secondary)}
+.cal-cell.muted{color:var(--color-text-tertiary);opacity:0.4}
+.cal-cell.studied{background:#E1F5EE;color:#0F6E56;font-weight:500}
+.cal-cell.intense{background:#0F6E56;color:#fff;font-weight:500}
+.cal-cell.today{border:1.5px solid #0F6E56;color:#0F6E56;font-weight:500}
+.cal-cell.exam{background:#FAEEDA;color:#854F0B;font-weight:500}
+.cal-cell .dotmark{position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:currentColor}
+.cal-legend{display:flex;gap:16px;margin-top:1rem;flex-wrap:wrap}
+.cal-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary)}
+.cal-legend .sw{width:13px;height:13px;border-radius:4px}
+.upcoming{margin-top:1.5rem}
+.up-item{display:flex;align-items:center;gap:12px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:0.85rem 1rem;margin-bottom:8px}
+.up-date{text-align:center;flex-shrink:0;width:44px}
+.up-date .d{font-size:18px;font-weight:500;line-height:1}
+.up-date .m{font-size:10px;color:var(--color-text-secondary)}
+.up-item .up-body{flex:1}
+.up-item .up-body h4{font-size:13.5px;font-weight:500}
+.up-item .up-body p{font-size:12px;color:var(--color-text-secondary)}
+.up-item .up-ic{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.brand-mark{flex-shrink:0;display:block}
+
+/* ===== RICH COURSE CARDS ===== */
+.course-card .card-banner{position:relative;height:84px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-banner.b-blue{background:#E6F1FB}
+.card-banner.b-teal{background:#E1F5EE}
+.card-banner.b-purple{background:#EEEDFE}
+.card-banner.b-amber{background:#FAEEDA}
+.card-banner::after{content:"";position:absolute;right:-30px;top:-30px;width:96px;height:96px;border-radius:50%;border:14px solid rgba(255,255,255,0.35)}
+.card-banner::before{content:"";position:absolute;left:-24px;bottom:-40px;width:80px;height:80px;border-radius:50%;border:11px solid rgba(255,255,255,0.25)}
+.banner-glyph{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:27px;background:var(--color-background-primary);position:relative;z-index:1}
+.bg-blue{color:#185FA5}.bg-teal{color:#0F6E56}.bg-purple{color:#534AB7}.bg-amber{color:#854F0B}
+.card-lvl{position:absolute;top:10px;right:10px;z-index:2;font-size:11px;font-weight:500;padding:3px 9px;border-radius:7px;background:var(--color-background-primary)}
+.cl-blue{color:#185FA5}.cl-teal{color:#0F6E56}.cl-purple{color:#534AB7}.cl-amber{color:#854F0B}
+.card-rating{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--color-text-secondary);margin-bottom:0.6rem}
+.card-rating .stars{color:#EF9F27;letter-spacing:-1px}
+.card-rating .stars i{font-size:13px}
+.goal-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:3px 9px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary);margin-bottom:0.75rem}
+
+/* ===== CALENDAR PLANNER ===== */
+.planner{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-xl);padding:1.4rem;margin-bottom:1.25rem}
+.planner h3{font-size:15px;font-weight:500;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.planner h3 i{color:#0F6E56}
+.planner .pl-sub{font-size:12.5px;color:var(--color-text-secondary);margin-bottom:1.1rem}
+.pl-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:1.1rem}
+.pl-field{flex:1;min-width:150px}
+.pl-field label{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;display:block}
+.pl-field select,.pl-field input{width:100%;height:40px;border:0.5px solid var(--color-border-secondary);border-radius:10px;padding:0 12px;font-size:13.5px;font-family:var(--font-sans);background:var(--color-background-primary);color:var(--color-text-primary)}
+.pl-field input:focus,.pl-field select:focus{outline:none;border-color:#0F6E56;box-shadow:0 0 0 3px rgba(15,110,86,0.12)}
+.plan-types{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:1.1rem}
+@media(max-width:560px){.plan-types{grid-template-columns:1fr}}
+.plan-type{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:0.9rem;cursor:pointer;transition:all 0.15s;text-align:left}
+.plan-type:hover{border-color:var(--color-border-secondary)}
+.plan-type.sel{border-color:#0F6E56;border-width:1px;background:#E1F5EE}
+.plan-type .pt-ic{width:30px;height:30px;border-radius:9px;background:var(--color-background-secondary);color:#0F6E56;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:8px}
+.plan-type.sel .pt-ic{background:#0F6E56;color:#fff}
+.plan-type h4{font-size:13px;font-weight:500;margin-bottom:3px}
+.plan-type p{font-size:11.5px;color:var(--color-text-secondary);line-height:1.5}
+.plan-result{background:#04342C;border-radius:var(--border-radius-lg);padding:1.3rem;margin-top:0.25rem;display:none}
+.plan-result.show{display:block;animation:fade 0.3s}
+.plan-result .pr-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:6px}
+.plan-result .pr-head h4{color:#fff;font-size:15px;font-weight:500}
+.plan-result .pr-tag{font-size:11px;font-weight:500;color:#04342C;background:#5DCAA5;padding:3px 10px;border-radius:7px}
+.pr-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.1rem}
+.pr-metric{background:rgba(255,255,255,0.06);border-radius:10px;padding:0.8rem;text-align:center}
+.pr-metric .v{font-size:19px;font-weight:500;color:#fff}
+.pr-metric .v small{font-size:11px;font-weight:400;color:#9FE1CB}
+.pr-metric .l{font-size:10.5px;color:#9FE1CB;margin-top:2px}
+.pr-phases{display:flex;flex-direction:column;gap:7px}
+.pr-phase{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border-radius:9px;padding:0.6rem 0.85rem}
+.pr-phase .pp-wk{font-size:11px;color:#5DCAA5;font-weight:500;white-space:nowrap;min-width:62px}
+.pr-phase .pp-txt{font-size:12.5px;color:#E1F5EE;flex:1}
+.pr-phase .pp-load{font-size:11px;color:#9FE1CB;white-space:nowrap}
+.pr-note{font-size:11.5px;color:#9FE1CB;margin-top:0.9rem;display:flex;align-items:flex-start;gap:6px;line-height:1.55}
+.pr-note i{color:#5DCAA5;font-size:14px;margin-top:1px;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="app-wrap">
+<div class="app">
+<h2 class="sr-only">Finance for All — 誰もが学べるファイナンス e-learningプラットフォーム</h2>
+
+<nav class="nav">
+  <div class="nav-logo" onclick="showScreen('home')" style="cursor:pointer">
+    <svg class="brand-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="17" fill="#04342C"/><rect x="15" y="38" width="8" height="12" rx="4" fill="#5DCAA5"/><rect x="28" y="30" width="8" height="20" rx="4" fill="#9FE1CB"/><rect x="41" y="20" width="8" height="30" rx="4" fill="#fff"/><circle cx="19" cy="26" r="5" fill="#5DCAA5"/><circle cx="32" cy="20" r="5" fill="#9FE1CB"/><circle cx="45" cy="13" r="5" fill="#fff"/></svg>
+    <span>Finance <b style="font-weight:500;color:#0F6E56">for All</b></span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showScreen('home')">ホーム</button>
+    <button class="nav-tab" onclick="openCourse(currentCourse)">学習</button>
+    <button class="nav-tab" onclick="showScreen('mypage')">マイページ</button>
+    <button class="nav-tab" onclick="showScreen('calendar')">カレンダー</button>
+  </div>
+  <div class="nav-right">
+    <div class="streak"><i class="ti ti-flame" aria-hidden="true"></i>12</div>
+    <div class="avatar" onclick="showScreen('login')" style="cursor:pointer">田中</div>
+  </div>
+</nav>
+
+<div id="screen-home" class="screen active">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><i class="ti ti-sparkles" aria-hidden="true"></i>誰もが、ファイナンスを学べる場所</div>
+      <h1>ファイナンスを、<br><span class="accent">すべての人</span>に。</h1>
+      <p>簿記・USCMA・TOEICまで。実務に直結するカリキュラムと、合格から逆算した学習設計を、すべて無料で。職種を問わず、数字で価値を生む力を。</p>
+      <div class="hero-cta">
+        <button class="btn-hero" onclick="openCourse('boki3')">学習を始める<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <button class="btn-ghost" onclick="showScreen('calendar')">学習計画を作る</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-float">
+    <div class="stats-row">
+      <div class="stat-cell"><div class="num">2,400<small> 人</small></div><div class="lbl">受講者数</div></div>
+      <div class="stat-cell"><div class="num">84<small> %</small></div><div class="lbl">合格率</div></div>
+      <div class="stat-cell"><div class="num">3,200<small> 問</small></div><div class="lbl">収録問題数</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-head">
+      <h2>コースを選ぶ</h2>
+      <span class="link">すべて見る <i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card" onclick="openCourse('boki3')">
+        <div class="card-banner b-blue"><span class="card-lvl cl-blue">入門</span><div class="banner-glyph bg-blue"><i class="ti ti-book" aria-hidden="true"></i></div></div>
+        <div class="card-body">
+          <h3>簿記3級 合格コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.8 ・ 受講 1,240人</div>
+          <p class="desc">仕訳の基礎から試算表まで。3か月で日商簿記3級の合格へ。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>3か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>32単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:35%;background:#185FA5"></div></div><span class="prog-pct">35%</span></div>
+        </div>
+      </div>
+      <div class="course-card" onclick="openCourse('boki2')">
+        <div class="card-banner b-teal"><span class="card-lvl cl-teal">中級</span><div class="banner-glyph bg-teal"><i class="ti ti-books" aria-hidden="true"></i></div></div>
+        <div class="card-body">
+          <h3>簿記2級 合格コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i></span>4.9 ・ 受講 680人</div>
+          <p class="desc">工業簿記・原価計算まで網羅。半年で2級範囲を完全攻略。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>6か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>64単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#0F6E56"></div></div><span class="prog-pct">未開始</span></div>
+        </div>
+      </div>
+      <div class="course-card" onclick="openCourse('uscma')">
+        <div class="card-banner b-purple"><span class="card-lvl cl-purple">上級</span><div class="banner-glyph bg-purple"><i class="ti ti-world-bolt" aria-hidden="true"></i></div></div>
+        <div class="card-body">
+          <h3>USCMA 合格コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.7 ・ 受講 320人</div>
+          <p class="desc">財務計画から戦略的財務管理まで。1年3か月でPart1・2を攻略。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>15か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>96単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7"></div></div><span class="prog-pct">未開始</span></div>
+        </div>
+      </div>
+      <div class="course-card" onclick="openCourse('toeic')">
+        <div class="card-banner b-amber"><span class="card-lvl cl-amber">中級</span><div class="banner-glyph bg-amber"><i class="ti ti-language-hiragana" aria-hidden="true"></i></div></div>
+        <div class="card-body">
+          <h3>TOEIC 800点 突破コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.6 ・ 受講 540人</div>
+          <p class="desc">ビジネス英語特化。半年でスコア800点を狙う実戦カリキュラム。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>6か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>48単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#854F0B"></div></div><span class="prog-pct">未開始</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-course" class="screen">
+  <div class="subnav">
+    <div class="subnav-inner">
+      <div class="breadcrumb" onclick="showScreen('home')"><i class="ti ti-arrow-left" aria-hidden="true"></i>コース一覧に戻る</div>
+      <div class="course-hero-row">
+        <div class="card-glyph g-blue" id="ch-glyph"><i class="ti ti-book" aria-hidden="true"></i></div>
+        <div><h2 id="ch-name">簿記3級 合格コース</h2><div class="sub" id="ch-sub">3か月 ・ 全32単元 ・ 模擬テスト3回</div></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab(this,'overview-tab')">概要</div>
+        <div class="tab-item" onclick="switchTab(this,'learn-tab')">学習編</div>
+        <div class="tab-item" onclick="switchTab(this,'quiz-tab')">問題編</div>
+        <div class="tab-item" onclick="switchTab(this,'mock-tab')">模擬テスト</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="overview-tab">
+    <div class="ov-wrap" id="ov-content"></div>
+  </div>
+
+  <div id="learn-tab" style="display:none">
+    <div class="content-area">
+      <div id="learn-list"></div>
+      <div class="side-panel">
+        <h4>学習進捗</h4>
+        <div class="ring-wrap">
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="var(--color-border-tertiary)" stroke-width="7"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#0F6E56" stroke-width="7" stroke-dasharray="251.3" stroke-dashoffset="163.3" stroke-linecap="round" transform="rotate(-90 48 48)"/>
+            <text x="48" y="46" text-anchor="middle" font-size="22" font-weight="500" fill="var(--color-text-primary)">35%</text>
+            <text x="48" y="62" text-anchor="middle" font-size="10" fill="var(--color-text-secondary)">完了</text>
+          </svg>
+          <div class="ring-sub" style="margin-top:8px">11 / 32 単元</div>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="v">14.2h</div><div class="l">学習時間</div></div>
+          <div class="mini-stat"><div class="v">78%</div><div class="l">正解率</div></div>
+          <div class="mini-stat"><div class="v">12日</div><div class="l">連続学習</div></div>
+          <div class="mini-stat"><div class="v">64日</div><div class="l">残り目安</div></div>
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:1.25rem;justify-content:center" onclick="showScreen('learn')">学習を続ける</button>
+      </div>
+    </div>
+  </div>
+  <div id="quiz-tab" style="display:none">
+    <div class="content-area" style="grid-template-columns:1fr">
+      <div class="unit-list" id="quiz-list"></div>
+    </div>
+  </div>
+  <div id="mock-tab" style="display:none">
+    <div class="content-area" style="grid-template-columns:1fr">
+      <div class="unit-list" id="mock-list"></div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-learn" class="screen">
+  <div class="learn-layout">
+    <div class="learn-side">
+      <h4>第1章 簿記の基本</h4>
+      <div class="s-unit"><i class="ti ti-circle-check" aria-hidden="true"></i>1-1 簿記とは何か</div>
+      <div class="s-unit"><i class="ti ti-circle-check" aria-hidden="true"></i>1-2 資産・負債・純資産</div>
+      <div class="s-unit active"><i class="ti ti-player-play" aria-hidden="true"></i>1-3 仕訳の基礎</div>
+      <div class="s-unit"><i class="ti ti-lock" aria-hidden="true"></i>1-4 勘定科目と転記</div>
+      <h4 style="margin-top:1.25rem">第2章 決算と財務諸表</h4>
+      <div class="s-unit"><i class="ti ti-lock" aria-hidden="true"></i>2-1 試算表の作成</div>
+      <div class="s-unit"><i class="ti ti-lock" aria-hidden="true"></i>2-2 損益計算書</div>
+    </div>
+    <div class="learn-main">
+      <div class="breadcrumb" onclick="showScreen('course')" style="margin-bottom:1rem"><i class="ti ti-arrow-left" aria-hidden="true"></i>コースに戻る</div>
+      <div class="lesson-kicker">第1章 ・ 単元 1-3</div>
+      <div class="lesson-title">仕訳の基礎</div>
+      <div class="lesson-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>約22分</span><span><i class="ti ti-video" aria-hidden="true"></i>動画 + テキスト</span></div>
+      <div class="video">
+        <div class="play-btn"><i class="ti ti-player-play" aria-hidden="true"></i></div>
+        <div class="video-cap">仕訳の基礎 — 22:14</div>
+      </div>
+      <div class="lesson-content">
+        <h3>仕訳とは</h3>
+        <p>取引が発生したとき、その内容を「借方（左）」と「貸方（右）」に分けて記録する作業を<strong style="font-weight:500;color:var(--color-text-primary)">仕訳</strong>といいます。すべての簿記の出発点となる、最も重要な技術です。</p>
+        <div class="def-box"><strong style="font-weight:500;color:var(--color-text-primary)">仕訳の大原則：</strong>借方合計 ＝ 貸方合計 が常に成立します。どちらか一方だけに記録することはできません。</div>
+        <h3>勘定科目の5分類</h3>
+        <p>仕訳に使う「勘定科目」は大きく5つに分類されます：資産・負債・純資産・収益・費用。それぞれ借方・貸方への記入ルールが異なります。</p>
+        <div class="ex-box">
+          <div class="ex-lbl"><i class="ti ti-bulb" aria-hidden="true"></i>例題</div>
+          <p>商品 ¥50,000 を現金で仕入れた。<br>→ 借方：仕入 50,000 ／ 貸方：現金 50,000</p>
+        </div>
+      </div>
+      <div class="lesson-nav">
+        <button class="btn-outline" onclick="showScreen('course')"><i class="ti ti-arrow-left" aria-hidden="true"></i>前の単元</button>
+        <button class="btn-primary" onclick="startQuiz('boki3_ch1','第1章 確認問題')">問題を解く<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-quiz" class="screen">
+  <div class="quiz-container">
+    <div class="breadcrumb" onclick="showScreen('course')" style="margin-bottom:1.25rem"><i class="ti ti-arrow-left" aria-hidden="true"></i>コースに戻る</div>
+    <div class="q-top"><span class="q-chip" id="q-chip-title">第1章 確認問題</span><span class="q-num" id="qcount">1 / 5</span></div>
+    <div class="q-progress"><div class="q-progress-fill" id="qprogress" style="width:20%"></div></div>
+    <div class="question-card">
+      <h3 id="qtext">次の取引の仕訳として正しいものを選びなさい。<br>「商品 ¥30,000 を掛けで仕入れた。」</h3>
+      <div class="choice-list" id="choices">
+        <div class="choice" onclick="selectChoice(this,false)"><span class="choice-label">A</span>借方：仕入 30,000 ／ 貸方：現金 30,000</div>
+        <div class="choice" onclick="selectChoice(this,true)"><span class="choice-label">B</span>借方：仕入 30,000 ／ 貸方：買掛金 30,000</div>
+        <div class="choice" onclick="selectChoice(this,false)"><span class="choice-label">C</span>借方：買掛金 30,000 ／ 貸方：仕入 30,000</div>
+        <div class="choice" onclick="selectChoice(this,false)"><span class="choice-label">D</span>借方：現金 30,000 ／ 貸方：仕入 30,000</div>
+      </div>
+      <div class="explanation" id="explanation"><strong style="font-weight:500;color:var(--color-text-primary)">解説：</strong>「掛けで仕入れた」とは代金未払いの仕入です。費用（仕入）が発生したので借方に「仕入」、後払いの義務（負債）が生じたので貸方に「買掛金」を記入します。</div>
+    </div>
+    <div class="quiz-actions"><button class="btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none">次の問題<i class="ti ti-arrow-right" aria-hidden="true"></i></button></div>
+  </div>
+</div>
+
+<div id="screen-mock" class="screen">
+  <div class="quiz-container">
+    <div class="breadcrumb" onclick="showScreen('course')" style="margin-bottom:1.25rem"><i class="ti ti-arrow-left" aria-hidden="true"></i>コースに戻る</div>
+    <div class="mock-bar">
+      <div class="mock-bar-top">
+        <div><div style="font-size:15px;font-weight:500">第1回 模擬テスト</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">100問 ・ 制限時間 120分</div></div>
+        <div class="timer-pill"><i class="ti ti-clock" aria-hidden="true"></i><span id="mock-timer">1:58:43</span></div>
+      </div>
+      <div class="q-progress" style="margin-bottom:0"><div class="q-progress-fill" style="width:3%"></div></div>
+    </div>
+    <div class="question-card">
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:0.75rem;font-weight:500">第3問 ・ 配点2点</div>
+      <h3>次の取引について、適切な勘定科目の組み合わせはどれか。<br>「得意先から売掛金 ¥80,000 を現金で回収した。」</h3>
+      <div class="choice-list">
+        <div class="choice" onclick="this.classList.toggle('selected')"><span class="choice-label">A</span>借方：現金 ／ 貸方：売上</div>
+        <div class="choice" onclick="this.classList.toggle('selected')"><span class="choice-label">B</span>借方：現金 ／ 貸方：売掛金</div>
+        <div class="choice" onclick="this.classList.toggle('selected')"><span class="choice-label">C</span>借方：売掛金 ／ 貸方：現金</div>
+        <div class="choice" onclick="this.classList.toggle('selected')"><span class="choice-label">D</span>借方：売上 ／ 貸方：現金</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <button class="btn-outline" onclick="showScreen('result')"><i class="ti ti-flag" aria-hidden="true"></i>テストを終了</button>
+      <button class="btn-primary">次の問題<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-result" class="screen">
+  <div class="result-container">
+    <div class="result-ring">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--color-border-tertiary)" stroke-width="9"/>
+        <circle cx="70" cy="70" r="60" fill="none" stroke="#0F6E56" stroke-width="9" stroke-dasharray="376.8" stroke-dashoffset="105.5" stroke-linecap="round" transform="rotate(-90 70 70)"/>
+      </svg>
+      <div class="score"><div class="n">72</div><div class="u">/ 100点</div></div>
+    </div>
+    <div class="pass-badge"><i class="ti ti-circle-check" aria-hidden="true"></i>合格ライン達成（基準70点）</div>
+    <div class="result-grid">
+      <div class="r-cell"><div class="v">72<small>/100</small></div><div class="l">正解数</div></div>
+      <div class="r-cell"><div class="v">92<small>分</small></div><div class="l">所要時間</div></div>
+      <div class="r-cell"><div class="v">72<small>%</small></div><div class="l">正解率</div></div>
+    </div>
+    <div class="field-card">
+      <h4>分野別スコア</h4>
+      <div class="field-row"><div class="field-head"><span>仕訳・転記</span><span class="pct">85%</span></div><div class="field-track"><div class="field-fill" style="width:85%;background:#0F6E56"></div></div></div>
+      <div class="field-row"><div class="field-head"><span>試算表</span><span class="pct">70%</span></div><div class="field-track"><div class="field-fill" style="width:70%;background:#185FA5"></div></div></div>
+      <div class="field-row"><div class="field-head"><span>財務諸表</span><span class="pct" style="color:#A32D2D">60%</span></div><div class="field-track"><div class="field-fill" style="width:60%;background:#A32D2D"></div></div></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="btn-outline" onclick="showScreen('course')">コースに戻る</button>
+      <button class="btn-primary" onclick="startQuiz('boki3_ch1','第1章 確認問題')">弱点を復習する<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
+
+<div id="screen-mypage" class="screen">
+  <div class="mp-head">
+    <div class="mp-head-inner">
+      <div class="mp-avatar">田中</div>
+      <div>
+        <h2>田中 さん</h2>
+        <div class="greet">こんにちは。今日も学習を続けましょう。</div>
+      </div>
+    </div>
+  </div>
+  <div class="mp-body">
+    <div class="mp-stats">
+      <div class="mp-stat"><div class="ic" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-flame" aria-hidden="true"></i></div><div class="v">12<small style="font-size:12px;font-weight:400">日</small></div><div class="l">連続学習</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-clock-hour-4" aria-hidden="true"></i></div><div class="v">14.2<small style="font-size:12px;font-weight:400">h</small></div><div class="l">総学習時間</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-checkbox" aria-hidden="true"></i></div><div class="v">11</div><div class="l">完了単元</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-target-arrow" aria-hidden="true"></i></div><div class="v">78<small style="font-size:12px;font-weight:400">%</small></div><div class="l">平均正解率</div></div>
+    </div>
+
+    <div class="mp-block-title">学習を再開</div>
+    <div class="continue-card" onclick="showScreen('learn')">
+      <div class="cc-glyph"><i class="ti ti-book" aria-hidden="true"></i></div>
+      <div class="cc-body">
+        <div class="cc-kick">簿記3級 合格コース ・ 1-3</div>
+        <h4>仕訳の基礎</h4>
+        <div class="cc-prog"><div class="bar"><div class="fill" style="width:35%"></div></div><span class="pct">35%</span></div>
+      </div>
+      <i class="ti ti-player-play" style="font-size:22px;color:#185FA5" aria-hidden="true"></i>
+    </div>
+
+    <div class="mp-block-title">受講中のコース <span class="link" onclick="showScreen('home')">コースを追加</span></div>
+    <div class="enrolled-list">
+      <div class="unit-item" onclick="openCourse('boki3')"><div class="unit-icon" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-book" aria-hidden="true"></i></div><div class="unit-info"><h4>簿記3級 合格コース</h4><p>進捗 35% ・ 残り 64日</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>
+      <div class="unit-item" onclick="openCourse('toeic')"><div class="unit-icon" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-language-hiragana" aria-hidden="true"></i></div><div class="unit-info"><h4>TOEIC 800点 突破コース</h4><p>進捗 8% ・ 残り 168日</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>
+    </div>
+
+    <div class="mp-block-title">獲得バッジ</div>
+    <div class="skill-grid">
+      <div class="skill-card"><div class="sk-ic" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-flame" aria-hidden="true"></i></div><div><h4>7日連続学習</h4><p>1週間継続を達成</p></div></div>
+      <div class="skill-card"><div class="sk-ic" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-rosette-discount-check" aria-hidden="true"></i></div><div><h4>第1章マスター</h4><p>全単元を完了</p></div></div>
+      <div class="skill-card"><div class="sk-ic" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-bolt" aria-hidden="true"></i></div><div><h4>100問達成</h4><p>累計100問を演習</p></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-calendar" class="screen">
+  <div class="cal-wrap">
+    <div class="streak-banner">
+      <div class="sb-ic"><i class="ti ti-flame" aria-hidden="true"></i></div>
+      <div><h4>12日連続で学習中です</h4><p>この調子！合格まであと64日です。</p></div>
+    </div>
+
+    <div class="planner">
+      <h3><i class="ti ti-calendar-event" aria-hidden="true"></i>受験日から学習計画を作る</h3>
+      <p class="pl-sub">受験予定日とスタイルを選ぶと、合格までの学習プランを自動で組み立てます。</p>
+      <div class="pl-row">
+        <div class="pl-field">
+          <label>対象コース</label>
+          <select id="pl-course">
+            <option value="boki3">簿記3級 合格コース</option>
+            <option value="boki2">簿記2級 合格コース</option>
+            <option value="uscma">USCMA 合格コース</option>
+            <option value="toeic">TOEIC 800点 突破コース</option>
+          </select>
+        </div>
+        <div class="pl-field">
+          <label>受験予定日</label>
+          <input type="date" id="pl-date" value="2026-08-09">
+        </div>
+      </div>
+      <div class="plan-types" id="plan-types">
+        <div class="plan-type" data-plan="cram" onclick="selectPlan(this)">
+          <div class="pt-ic"><i class="ti ti-bolt" aria-hidden="true"></i></div>
+          <h4>直前集中型</h4>
+          <p>序盤は軽め。試験直前にギアを上げて一気に仕上げる。</p>
+        </div>
+        <div class="plan-type sel" data-plan="steady" onclick="selectPlan(this)">
+          <div class="pt-ic"><i class="ti ti-walk" aria-hidden="true"></i></div>
+          <h4>マイペースじっくり型</h4>
+          <p>毎日同じ分量を淡々と。無理なく習慣化したい人向け。</p>
+        </div>
+        <div class="plan-type" data-plan="early" onclick="selectPlan(this)">
+          <div class="pt-ic"><i class="ti ti-rocket" aria-hidden="true"></i></div>
+          <h4>余裕をもって準備型</h4>
+          <p>前半に集中して早めに完走。直前は復習に充てる。</p>
+        </div>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;height:44px" onclick="generatePlan()"><i class="ti ti-wand" aria-hidden="true"></i>学習計画を作成する</button>
+      <div class="plan-result" id="plan-result"></div>
+    </div>
+
+    <div class="cal-top">
+      <h2>学習カレンダー</h2>
+      <div class="cal-nav">
+        <button aria-label="前の月" onclick="changeMonth(-1)"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+        <span class="cal-month" id="cal-month-label">2026年 6月</span>
+        <button aria-label="次の月" onclick="changeMonth(1)"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-dow"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+      <div class="cal-days" id="cal-days"></div>
+      <div class="cal-legend">
+        <span><span class="sw" style="background:#E1F5EE"></span>学習した日</span>
+        <span><span class="sw" style="background:#0F6E56"></span>集中学習</span>
+        <span><span class="sw" style="background:#FAEEDA"></span>模試・受験日</span>
+      </div>
+    </div>
+
+    <div class="mp-block-title" style="max-width:none">今後の予定</div>
+    <div class="upcoming" id="upcoming">
+      <div class="up-item">
+        <div class="up-date"><div class="d">22</div><div class="m">6月</div></div>
+        <div class="up-body"><h4>第1回 模擬テスト</h4><p>簿記3級 ・ 100問 / 120分</p></div>
+        <div class="up-ic" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-flag" aria-hidden="true"></i></div>
+      </div>
+      <div class="up-item">
+        <div class="up-date"><div class="d">9</div><div class="m">8月</div></div>
+        <div class="up-body"><h4>日商簿記3級 受験日</h4><p>合格基準 70点 ・ あと52日</p></div>
+        <div class="up-ic" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-award" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-login" class="screen">
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo">
+        <svg class="brand-mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="17" fill="#04342C"/><rect x="15" y="38" width="8" height="12" rx="4" fill="#5DCAA5"/><rect x="28" y="30" width="8" height="20" rx="4" fill="#9FE1CB"/><rect x="41" y="20" width="8" height="30" rx="4" fill="#fff"/><circle cx="19" cy="26" r="5" fill="#5DCAA5"/><circle cx="32" cy="20" r="5" fill="#9FE1CB"/><circle cx="45" cy="13" r="5" fill="#fff"/></svg>
+        <span>Finance <b style="font-weight:500;color:#0F6E56">for All</b></span>
+      </div>
+      <div class="sub">誰もが、ファイナンスを学べる場所。</div>
+      <div class="free-pill"><i class="ti ti-gift" aria-hidden="true"></i>すべてのコースが無料</div>
+      <label class="field-label">メールアドレス</label>
+      <input class="inp" type="email" placeholder="you@example.com">
+      <label class="field-label">パスワード</label>
+      <input class="inp" type="password" placeholder="••••••••">
+      <button class="btn-primary" style="width:100%;justify-content:center;height:44px" onclick="showScreen('mypage')">ログイン</button>
+      <div class="login-divider">または</div>
+      <button class="sso-btn"><i class="ti ti-brand-google" aria-hidden="true"></i>Googleで続ける</button>
+      <button class="sso-btn"><i class="ti ti-mail" aria-hidden="true"></i>メールで新規登録</button>
+      <p style="text-align:center;font-size:12px;color:var(--color-text-secondary);margin-top:1.25rem">アカウントをお持ちでない方も<br>無料ですぐに始められます。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script src="content/courses.js"></script>
+<script src="content/questions.js"></script>
+<script>
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  const map={home:0,course:1,learn:1,quiz:1,mock:1,result:1,mypage:2,calendar:3};
+  const tabs=document.querySelectorAll('.nav-tab');
+  if(map[name]!==undefined&&tabs[map[name]])tabs[map[name]].classList.add('active');
+  window.scrollTo(0,0);
+}
+function switchTab(el,tabId){
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  ['overview-tab','learn-tab','quiz-tab','mock-tab'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display='none';});
+  const t=document.getElementById(tabId);if(t)t.style.display='block';
+}
+function switchToLearn(){
+  const tabs=document.querySelectorAll('.tab-item');
+  tabs.forEach(t=>t.classList.remove('active'));
+  if(tabs[1])tabs[1].classList.add('active');
+  ['overview-tab','learn-tab','quiz-tab','mock-tab'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display='none';});
+  document.getElementById('learn-tab').style.display='block';
+  window.scrollTo(0,0);
+}
+
+/* ===== COURSE DATA ===== コンテンツは content/courses.js が単一の真実 */
+const COURSES=(window.COURSES||{});
+let currentCourse='boki3';
+function openCourse(key){
+  currentCourse=key;
+  renderCourse(key);
+  showScreen('course');
+  const tabs=document.querySelectorAll('.tab-item');
+  tabs.forEach(t=>t.classList.remove('active'));
+  if(tabs[0])tabs[0].classList.add('active');
+  ['learn-tab','quiz-tab','mock-tab'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.display='none';});
+  document.getElementById('overview-tab').style.display='block';
+}
+function renderCourse(key){
+  const c=COURSES[key];
+  document.getElementById('ch-name').textContent=c.name;
+  document.getElementById('ch-sub').textContent=c.sub;
+  const gl=document.getElementById('ch-glyph');
+  gl.className='card-glyph g-'+c.color;
+  gl.innerHTML='<i class="ti '+c.glyph+'" aria-hidden="true"></i>';
+  const skills=c.skills.map(s=>'<div class="skill-card"><div class="sk-ic"><i class="ti '+s[0]+'" aria-hidden="true"></i></div><div><h4>'+s[1]+'</h4><p>'+s[2]+'</p></div></div>').join('');
+  const targets=c.targets.map(t=>'<div class="target-item"><i class="ti ti-circle-check" aria-hidden="true"></i>'+t+'</div>').join('');
+  let n=0;
+  const phases=c.roadmap.map(p=>{
+    n++;
+    const tags=p[4].map(t=>t.startsWith('check:')?'<span class="rm-tag check"><i class="ti ti-flag" aria-hidden="true"></i> '+t.slice(6)+'</span>':'<span class="rm-tag">'+t+'</span>').join('');
+    const dotInner=p[0]==='done'?'<i class="ti ti-check" aria-hidden="true"></i>':p[0]==='active'?'<i class="ti ti-player-play" aria-hidden="true"></i>':n;
+    const state=p[5]?'<span class="rm-state '+p[0]+'">'+p[5]+'</span>':'';
+    return '<div class="rm-phase"><div class="rm-dot '+p[0]+'">'+dotInner+'</div><div class="rm-card '+(p[0]==='active'?'active':'')+'">'+state+'<div class="rm-period">'+p[1]+'</div><h4>'+p[2]+'</h4><p>'+p[3]+'</p><div class="rm-tags">'+tags+'</div></div></div>';
+  }).join('');
+  const examPhase='<div class="rm-phase"><div class="rm-dot exam"><i class="ti ti-award" aria-hidden="true"></i></div><div class="rm-card exam"><div class="rm-period">受験日</div><h4>'+c.examTitle+'</h4><p>'+c.pass+'</p></div></div>';
+  document.getElementById('ov-content').innerHTML=
+    '<p class="ov-lead">'+c.lead+'</p>'+
+    '<div class="ov-section-title"><i class="ti ti-target" aria-hidden="true"></i>このコースで身につくスキル</div><div class="skill-grid">'+skills+'</div>'+
+    '<div class="ov-section-title"><i class="ti ti-users" aria-hidden="true"></i>こんな方におすすめ</div><div class="target-list">'+targets+'</div>'+
+    '<div class="ov-section-title"><i class="ti ti-route" aria-hidden="true"></i>合格までのロードマップ</div><div class="roadmap"><div class="rm-track">'+phases+examPhase+'</div></div>'+
+    '<div class="ov-cta"><div class="txt"><strong>すべて無料で受講できます</strong>今日から始めて、合格を目指しましょう。</div><button class="btn-hero" onclick="switchToLearn()">学習を始める<i class="ti ti-arrow-right" aria-hidden="true"></i></button></div>';
+  renderLearnList(c);
+  renderQuizList(key,c);
+  renderMockList(c);
+}
+function statusIcon(s){
+  if(s==='done')return '<div class="unit-icon done"><i class="ti ti-check" aria-hidden="true"></i></div>';
+  if(s==='active')return '<div class="unit-icon active"><i class="ti ti-player-play" aria-hidden="true"></i></div>';
+  return '<div class="unit-icon locked"><i class="ti ti-lock" aria-hidden="true"></i></div>';
+}
+function renderLearnList(c){
+  const el=document.getElementById('learn-list');if(!el)return;
+  el.innerHTML=(c.curriculum||[]).map(ch=>{
+    const units=ch.units.map(u=>{
+      const meta='動画 '+u.min+'分'+(u.status==='done'?' ・ 完了':u.status==='active'?' ・ 学習中':'');
+      const clickable=u.status!=='locked';
+      return '<div class="unit-item"'+(clickable?' onclick="showScreen(\'learn\')"':'')+'>'+statusIcon(u.status)+
+        '<div class="unit-info"><h4>'+u.id+' '+u.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
+    }).join('');
+    return '<div class="chapter-label">'+ch.chapter+'</div><div class="unit-list">'+units+'</div>';
+  }).join('');
+}
+function renderQuizList(key,c){
+  const el=document.getElementById('quiz-list');if(!el)return;
+  el.innerHTML=(c.quizzes||[]).map(qz=>{
+    const bank=(window.QUESTION_BANKS&&window.QUESTION_BANKS[qz.bank])||[];
+    const cnt=bank.length;
+    const meta=cnt?(cnt+'問'+(qz.status==='done'?' ・ 正解率 '+qz.score+'% ・ 完了':qz.status==='active'?' ・ 挑戦中':'')):'準備中';
+    const clickable=qz.status!=='locked'&&cnt>0;
+    return '<div class="unit-item"'+(clickable?' onclick="startQuiz(\''+qz.bank+'\',\''+qz.title+'\')"':'')+'>'+statusIcon(qz.status)+
+      '<div class="unit-info"><h4>'+qz.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
+  }).join('');
+}
+function renderMockList(c){
+  const el=document.getElementById('mock-list');if(!el)return;
+  el.innerHTML=(c.mocks||[]).map(mk=>{
+    const meta='100問 ・ '+mk.min+'分'+(mk.status==='done'?' ・ スコア'+mk.score+'点 ・ 完了':'');
+    const clickable=mk.status!=='locked';
+    return '<div class="unit-item"'+(clickable?' onclick="showScreen(\'mock\')"':'')+'>'+statusIcon(mk.status)+
+      '<div class="unit-info"><h4>'+mk.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
+  }).join('');
+}
+
+/* ===== STUDY PLANNER ===== */
+let selectedPlan='steady';
+function selectPlan(el){
+  document.querySelectorAll('.plan-type').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+  selectedPlan=el.dataset.plan;
+}
+function generatePlan(){
+  const key=document.getElementById('pl-course').value;
+  const c=COURSES[key];
+  const dateVal=document.getElementById('pl-date').value;
+  const today=new Date('2026-06-18');
+  const exam=new Date(dateVal);
+  const days=Math.max(1,Math.round((exam-today)/86400000));
+  const weeks=Math.max(1,Math.round(days/7));
+  const totalMin=c.totalHours*60;
+  const plans={
+    cram:{label:'直前集中型',tag:'ラストスパート重視',ph:[[0.4,'前半：基礎をゆるやかにインプット','軽め'],[0.6,'直前：問題演習と模試で一気に仕上げ','高負荷']],mult:1.15,note:'忙しい時期は最低限に抑え、直前2〜3週間で集中的に得点を伸ばす計画です。試験前の追い込みが得意な方に。'},
+    steady:{label:'マイペースじっくり型',tag:'毎日コツコツ',ph:[[0.34,'第1フェーズ：基礎を固める','一定'],[0.33,'第2フェーズ：応用と演習','一定'],[0.33,'第3フェーズ：総仕上げ・模試','一定']],mult:1.0,note:'毎日ほぼ同じ分量を続ける、最も挫折しにくい王道プランです。学習を習慣化したい方に。'},
+    early:{label:'余裕をもって準備型',tag:'前半集中・直前は復習',ph:[[0.6,'前半：集中して一気に完走','高め'],[0.4,'後半：復習と模試でゆとり仕上げ','軽め']],mult:0.9,note:'前半に学習を前倒しし、直前期は復習と模試に充てる安心プラン。早めに仕上げたい方に。'}
+  };
+  const p=plans[selectedPlan];
+  const dailyMin=Math.round(totalMin/days*p.mult/5)*5;
+  const perWeekH=Math.round(dailyMin*7/60*10)/10;
+  let acc=0;
+  const phaseRows=p.ph.map(ph=>{
+    const wkStart=acc+1;
+    acc+=Math.round(weeks*ph[0]);
+    const wkEnd=Math.min(weeks,acc);
+    return '<div class="pr-phase"><span class="pp-wk">第'+wkStart+'〜'+wkEnd+'週</span><span class="pp-txt">'+ph[1]+'</span><span class="pp-load">'+ph[2]+'</span></div>';
+  }).join('');
+  const examStr=(exam.getMonth()+1)+'月'+exam.getDate()+'日';
+  document.getElementById('plan-result').innerHTML=
+    '<div class="pr-head"><h4>'+p.label+' プラン</h4><span class="pr-tag">'+p.tag+'</span></div>'+
+    '<div class="pr-metrics">'+
+    '<div class="pr-metric"><div class="v">'+days+'<small>日</small></div><div class="l">'+examStr+'まで</div></div>'+
+    '<div class="pr-metric"><div class="v">'+dailyMin+'<small>分</small></div><div class="l">1日の目安</div></div>'+
+    '<div class="pr-metric"><div class="v">'+perWeekH+'<small>h</small></div><div class="l">週あたり</div></div>'+
+    '</div>'+
+    '<div class="pr-phases">'+phaseRows+'</div>'+
+    '<div class="pr-note"><i class="ti ti-bulb" aria-hidden="true"></i>'+p.note+'</div>';
+  document.getElementById('plan-result').classList.add('show');
+
+  placeStudyDays(today,exam,selectedPlan,dailyMin,c,key);
+}
+
+/* ===== AUTO-PLACE STUDY DAYS ON CALENDAR ===== */
+function dkey(d){return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();}
+function placeStudyDays(today,exam,plan,baseMin,c,key){
+  for(const k in studyData){if(studyData[k]&&studyData[k].planned)delete studyData[k];}
+  const total=Math.max(1,Math.round((exam-today)/86400000));
+  const cur=new Date(today);cur.setDate(cur.getDate()+1);
+  let idx=0;
+  while(cur<exam){
+    const r=idx/total;
+    const dow=cur.getDay();
+    let mark=null;
+    if(plan==='steady'){
+      if(dow!==0){mark=(dow===2||dow===5)?'intense':'studied';}
+    }else if(plan==='cram'){
+      if(r<0.6){if(dow===2||dow===4||dow===6)mark='studied';}
+      else{if(dow!==0)mark='intense';else mark='studied';}
+    }else if(plan==='early'){
+      if(r<0.5){if(dow!==0)mark=(dow%2===1)?'intense':'studied';}
+      else{if(dow===1||dow===3||dow===5)mark='studied';}
+    }
+    if(mark)studyData[dkey(cur)]={type:mark,planned:true};
+    cur.setDate(cur.getDate()+1);idx++;
+  }
+  /* milestone mock checkpoints at ~50% and ~80% */
+  const m1=new Date(today);m1.setDate(m1.getDate()+Math.round(total*0.5));
+  const m2=new Date(today);m2.setDate(m2.getDate()+Math.round(total*0.8));
+  studyData[dkey(m1)]={type:'mock',planned:true,label:'第1回模試'};
+  studyData[dkey(m2)]={type:'mock',planned:true,label:'第2回模試'};
+  studyData[dkey(exam)]={type:'exam',planned:true,label:'受験日'};
+
+  calYear=exam.getFullYear();calMonth=exam.getMonth();
+  renderCalendar();
+  /* update upcoming list */
+  const fmt=d=>(d.getMonth()+1);
+  const left=Math.max(0,Math.round((exam-today)/86400000));
+  document.getElementById('upcoming').innerHTML=
+    upItem(m1,'第1回 模擬テスト',c.name+' ・ 本番形式','#E1F5EE','#0F6E56','ti-flag')+
+    upItem(m2,'第2回 模擬テスト',c.name+' ・ 弱点の最終チェック','#E6F1FB','#185FA5','ti-flag')+
+    upItem(exam,c.examTitle.replace(' 合格','').replace(' 達成',''),'受験日 ・ あと'+left+'日','#FAEEDA','#854F0B','ti-award');
+}
+function upItem(d,title,sub,bg,col,ic){
+  return '<div class="up-item"><div class="up-date"><div class="d">'+d.getDate()+'</div><div class="m">'+(d.getMonth()+1)+'月</div></div>'+
+    '<div class="up-body"><h4>'+title+'</h4><p>'+sub+'</p></div>'+
+    '<div class="up-ic" style="background:'+bg+';color:'+col+'"><i class="ti '+ic+'" aria-hidden="true"></i></div></div>';
+}
+
+/* ===== QUIZ ENGINE (問題は content/questions.js から読み込み) ===== */
+let answered=false,qNum=1,quizItems=[];
+function startQuiz(bankId,title){
+  quizItems=((window.QUESTION_BANKS&&window.QUESTION_BANKS[bankId])||[]).slice();
+  if(!quizItems.length){quizItems=[{q:'この章の問題は近日公開予定です。',choices:['コースに戻る'],ans:0,exp:'content/questions.js の「'+bankId+'」に問題を追加すると、ここに表示されます。'}];}
+  qNum=1;answered=false;
+  const chip=document.getElementById('q-chip-title');if(chip)chip.textContent=title||'確認問題';
+  renderQuizQuestion();
+  showScreen('quiz');
+}
+function renderQuizQuestion(){
+  answered=false;
+  const q=quizItems[qNum-1];
+  const labels=['A','B','C','D','E','F'];
+  document.getElementById('qtext').innerHTML=q.q;
+  document.getElementById('explanation').innerHTML='<strong style="font-weight:500;color:var(--color-text-primary)">解説：</strong>'+q.exp;
+  document.getElementById('explanation').classList.remove('show');
+  document.getElementById('qprogress').style.width=(qNum/quizItems.length*100)+'%';
+  document.getElementById('qcount').textContent=qNum+' / '+quizItems.length;
+  document.getElementById('next-btn').style.display='none';
+  document.getElementById('next-btn').textContent=(qNum>=quizItems.length?'結果を見る':'次の問題');
+  const cl=document.getElementById('choices');cl.innerHTML='';
+  q.choices.forEach((c,i)=>{const div=document.createElement('div');div.className='choice';div.innerHTML='<span class="choice-label">'+labels[i]+'</span>'+c;div.onclick=function(){selectChoice(this,i===q.ans);};cl.appendChild(div);});
+}
+function selectChoice(el,correct){
+  if(answered)return;answered=true;
+  const choices=document.querySelectorAll('#choices .choice');
+  choices.forEach((c,i)=>{c.onclick=null;if(c===el){c.classList.add(correct?'correct':'wrong');}else if(quizItems[qNum-1].ans===i){c.classList.add('correct');}});
+  document.getElementById('explanation').classList.add('show');
+  document.getElementById('next-btn').style.display='inline-flex';
+}
+function nextQuestion(){
+  if(qNum>=quizItems.length){showScreen('result');return;}
+  qNum++;renderQuizQuestion();
+}
+let sec=7123;
+setInterval(()=>{sec--;if(sec<0)sec=0;const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;const el=document.getElementById('mock-timer');if(el)el.textContent=h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000);
+
+renderCourse('boki3');
+
+/* ===== CALENDAR ENGINE ===== */
+const TODAY=new Date('2026-06-18');
+let calYear=2026,calMonth=5;
+const studyData={};
+/* seed June history before today */
+(function seedHistory(){
+  const hist={2:'studied',3:'intense',5:'studied',6:'studied',8:'intense',9:'studied',11:'studied',12:'intense',13:'studied',15:'studied',16:'intense',17:'studied'};
+  for(const d in hist){studyData['2026-5-'+d]={type:hist[d]};}
+})();
+function changeMonth(delta){
+  calMonth+=delta;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCalendar();
+}
+function renderCalendar(){
+  const grid=document.getElementById('cal-days');
+  if(!grid)return;
+  grid.innerHTML='';
+  const label=document.getElementById('cal-month-label');
+  if(label)label.textContent=calYear+'年 '+(calMonth+1)+'月';
+  const firstDow=new Date(calYear,calMonth,1).getDay();
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  for(let i=0;i<firstDow;i++){const c=document.createElement('div');c.className='cal-cell muted';grid.appendChild(c);}
+  for(let d=1;d<=daysInMonth;d++){
+    const c=document.createElement('div');c.className='cal-cell';c.textContent=d;
+    const rec=studyData[calYear+'-'+calMonth+'-'+d];
+    const isToday=(calYear===TODAY.getFullYear()&&calMonth===TODAY.getMonth()&&d===TODAY.getDate());
+    if(rec&&rec.type==='exam'){c.className='cal-cell exam';c.innerHTML=d+'<span class="dotmark"></span>';c.title='受験日';}
+    else if(rec&&rec.type==='mock'){c.className='cal-cell exam';c.innerHTML=d+'<span class="dotmark"></span>';c.title=rec.label||'模試';}
+    else if(isToday){c.className='cal-cell today';}
+    else if(rec&&rec.type==='intense'){c.className='cal-cell intense';}
+    else if(rec&&rec.type==='studied'){c.className='cal-cell studied';}
+    grid.appendChild(c);
+  }
+}
+renderCalendar();
+</script>
+</body>
+</html>
