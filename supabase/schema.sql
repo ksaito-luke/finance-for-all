@@ -1,6 +1,6 @@
--- Finance for All — データベーススキーマ
+-- Finance for All — データベーススキーマ（再実行しても安全な版）
 -- Supabase の SQL Editor に貼り付けて実行してください。
--- 各テーブルは行レベルセキュリティ(RLS)で「本人のデータのみ」アクセス可能にしています。
+-- 各 create policy は「あれば削除してから作成」するので、何度実行してもエラーになりません。
 
 -- ============================================================
 -- 1. プロフィール（auth.users と 1:1）
@@ -13,10 +13,13 @@ create table if not exists public.profiles (
 
 alter table public.profiles enable row level security;
 
+drop policy if exists "本人のプロフィールを参照" on public.profiles;
 create policy "本人のプロフィールを参照" on public.profiles
   for select using (auth.uid() = id);
+drop policy if exists "本人のプロフィールを更新" on public.profiles;
 create policy "本人のプロフィールを更新" on public.profiles
   for update using (auth.uid() = id);
+drop policy if exists "本人のプロフィールを作成" on public.profiles;
 create policy "本人のプロフィールを作成" on public.profiles
   for insert with check (auth.uid() = id);
 
@@ -47,6 +50,7 @@ create table if not exists public.enrollments (
 );
 
 alter table public.enrollments enable row level security;
+drop policy if exists "本人の受講登録のみ" on public.enrollments;
 create policy "本人の受講登録のみ" on public.enrollments
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -64,6 +68,7 @@ create table if not exists public.unit_progress (
 );
 
 alter table public.unit_progress enable row level security;
+drop policy if exists "本人の単元進捗のみ" on public.unit_progress;
 create policy "本人の単元進捗のみ" on public.unit_progress
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -83,6 +88,7 @@ create table if not exists public.quiz_attempts (
 );
 
 alter table public.quiz_attempts enable row level security;
+drop policy if exists "本人の解答結果のみ" on public.quiz_attempts;
 create policy "本人の解答結果のみ" on public.quiz_attempts
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -99,6 +105,7 @@ create table if not exists public.study_log (
 );
 
 alter table public.study_log enable row level security;
+drop policy if exists "本人の学習ログのみ" on public.study_log;
 create policy "本人の学習ログのみ" on public.study_log
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -116,5 +123,6 @@ create table if not exists public.study_plans (
 );
 
 alter table public.study_plans enable row level security;
+drop policy if exists "本人の学習計画のみ" on public.study_plans;
 create policy "本人の学習計画のみ" on public.study_plans
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
