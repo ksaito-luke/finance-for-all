@@ -49,6 +49,16 @@ window.AUTH = (function () {
     return await sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
   };
   api.signOut = async function () { if (sb) { await sb.auth.signOut(); } };
+  api.resetPassword = async function (email) {
+    if (!need()) return { error: { message: 'Supabaseが未設定です' } };
+    return await sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin });
+  };
+  api.updatePassword = async function (pw) {
+    if (!need()) return { error: { message: 'Supabaseが未設定です' } };
+    return await sb.auth.updateUser({ password: pw });
+  };
+  var recoveryListeners = [];
+  api.onRecovery = function (fn) { recoveryListeners.push(fn); };
 
   api.saveQuizAttempt = async function (p) {
     if (!need() || !api.user) return;
@@ -116,8 +126,9 @@ window.AUTH = (function () {
       var res = await sb.auth.getSession();
       api.user = res.data.session ? res.data.session.user : null;
       emit();
-      sb.auth.onAuthStateChange(function (_evt, session) {
+      sb.auth.onAuthStateChange(function (evt, session) {
         api.user = session ? session.user : null;
+        if (evt === 'PASSWORD_RECOVERY') { recoveryListeners.forEach(function (fn) { try { fn(); } catch (e) {} }); }
         emit();
       });
     } catch (e) {
