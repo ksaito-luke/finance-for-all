@@ -110,6 +110,7 @@ body{padding:24px;font-family:var(--font-sans)}
 .g-teal{background:#E1F5EE;color:#0F6E56}
 .g-purple{background:#EEEDFE;color:#534AB7}
 .g-amber{background:#FAEEDA;color:#854F0B}
+.g-coral{background:#FAECE7;color:#993C1D}
 .lvl-tag{font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
 .card-body{padding:1rem 1.25rem 1.25rem}
 .card-body h3{font-size:16px;font-weight:500;margin-bottom:0.4rem;letter-spacing:-0.01em}
@@ -382,12 +383,13 @@ body{padding:24px;font-family:var(--font-sans)}
 .card-banner.b-teal{background:#E1F5EE}
 .card-banner.b-purple{background:#EEEDFE}
 .card-banner.b-amber{background:#FAEEDA}
+.card-banner.b-coral{background:#FAECE7}
 .card-banner::after{content:"";position:absolute;right:-30px;top:-30px;width:96px;height:96px;border-radius:50%;border:14px solid rgba(255,255,255,0.35)}
 .card-banner::before{content:"";position:absolute;left:-24px;bottom:-40px;width:80px;height:80px;border-radius:50%;border:11px solid rgba(255,255,255,0.25)}
 .banner-glyph{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:27px;background:var(--color-background-primary);position:relative;z-index:1}
-.bg-blue{color:#185FA5}.bg-teal{color:#0F6E56}.bg-purple{color:#534AB7}.bg-amber{color:#854F0B}
+.bg-blue{color:#185FA5}.bg-teal{color:#0F6E56}.bg-purple{color:#534AB7}.bg-amber{color:#854F0B}.bg-coral{color:#993C1D}
 .card-lvl{position:absolute;top:10px;right:10px;z-index:2;font-size:11px;font-weight:500;padding:3px 9px;border-radius:7px;background:var(--color-background-primary)}
-.cl-blue{color:#185FA5}.cl-teal{color:#0F6E56}.cl-purple{color:#534AB7}.cl-amber{color:#854F0B}
+.cl-blue{color:#185FA5}.cl-teal{color:#0F6E56}.cl-purple{color:#534AB7}.cl-amber{color:#854F0B}.cl-coral{color:#993C1D}
 .card-rating{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--color-text-secondary);margin-bottom:0.6rem}
 .card-rating .stars{color:#EF9F27;letter-spacing:-1px}
 .card-rating .stars i{font-size:13px}
@@ -477,7 +479,7 @@ body{padding:24px;font-family:var(--font-sans)}
     <div class="hero-inner">
       <div class="hero-eyebrow"><i class="ti ti-sparkles" aria-hidden="true"></i>誰もが、ファイナンスを学べる場所</div>
       <h1>ファイナンスを、<br><span class="accent">すべての人</span>に。</h1>
-      <p>簿記・USCMA・TOEICまで。実務に直結するカリキュラムと、合格から逆算した学習設計を、すべて無料で。職種を問わず、数字で価値を生む力を。</p>
+      <p>簿記・FP&amp;A・TOEIC・USCMAまで。基礎から実務、国際資格までを一本のロードマップで。合格から逆算した学習設計を、すべて無料で。</p>
       <div class="hero-cta">
         <button class="btn-hero" onclick="openCourse('boki3')">学習を始める<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
         <button class="btn-ghost" onclick="showScreen('calendar')">学習計画を作る</button>
@@ -493,12 +495,12 @@ body{padding:24px;font-family:var(--font-sans)}
   </div>
   <div class="section">
     <div class="section-head">
-      <h2>コースを選ぶ</h2>
-      <span class="link">すべて見る <i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+      <h2>おすすめの学習ロードマップ</h2>
     </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin:-0.4rem 0 1.25rem">日本語で財務の基礎固め（<b style="font-weight:500;color:var(--color-text-primary)">簿記3級 → 簿記2級 → FP&amp;A検定</b>）→ 英語力（<b style="font-weight:500;color:var(--color-text-primary)">TOEIC 800点</b>）→ 仕上げの国際資格（<b style="font-weight:500;color:var(--color-text-primary)">USCMA</b>）。</p>
     <div class="courses-grid">
       <div class="course-card" onclick="openCourse('boki3')">
-        <div class="card-banner b-blue"><span class="card-lvl cl-blue">入門</span><div class="banner-glyph bg-blue"><i class="ti ti-book" aria-hidden="true"></i></div></div>
+        <div class="card-banner b-blue"><span class="card-lvl cl-blue">STEP 1 ・ 入門</span><div class="banner-glyph bg-blue"><i class="ti ti-book" aria-hidden="true"></i></div></div>
         <div class="card-body">
           <h3>簿記3級 合格コース</h3>
           <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.8 ・ 受講 1,240人</div>
@@ -508,7 +510,7 @@ body{padding:24px;font-family:var(--font-sans)}
         </div>
       </div>
       <div class="course-card" onclick="openCourse('boki2')">
-        <div class="card-banner b-teal"><span class="card-lvl cl-teal">中級</span><div class="banner-glyph bg-teal"><i class="ti ti-books" aria-hidden="true"></i></div></div>
+        <div class="card-banner b-teal"><span class="card-lvl cl-teal">STEP 2 ・ 中級</span><div class="banner-glyph bg-teal"><i class="ti ti-books" aria-hidden="true"></i></div></div>
         <div class="card-body">
           <h3>簿記2級 合格コース</h3>
           <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i></span>4.9 ・ 受講 680人</div>
@@ -517,24 +519,34 @@ body{padding:24px;font-family:var(--font-sans)}
           <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#0F6E56"></div></div><span class="prog-pct">未開始</span></div>
         </div>
       </div>
-      <div class="course-card" onclick="openCourse('uscma')">
-        <div class="card-banner b-purple"><span class="card-lvl cl-purple">上級</span><div class="banner-glyph bg-purple"><i class="ti ti-world-bolt" aria-hidden="true"></i></div></div>
+      <div class="course-card" onclick="openCourse('fpa')">
+        <div class="card-banner b-coral"><span class="card-lvl cl-coral">STEP 3 ・ 実務</span><div class="banner-glyph bg-coral"><i class="ti ti-chart-arrows-vertical" aria-hidden="true"></i></div></div>
         <div class="card-body">
-          <h3>USCMA 合格コース</h3>
-          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.7 ・ 受講 320人</div>
-          <p class="desc">財務計画から戦略的財務管理まで。1年3か月でPart1・2を攻略。</p>
-          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>15か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>96単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
-          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7"></div></div><span class="prog-pct">未開始</span></div>
+          <h3>FP&amp;A検定 合格コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.7 ・ 受講 210人</div>
+          <p class="desc">管理会計・企業財務・事業戦略を統合。数字で経営を導く力を。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>4か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>40単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#D85A30"></div></div><span class="prog-pct">未開始</span></div>
         </div>
       </div>
       <div class="course-card" onclick="openCourse('toeic')">
-        <div class="card-banner b-amber"><span class="card-lvl cl-amber">中級</span><div class="banner-glyph bg-amber"><i class="ti ti-language-hiragana" aria-hidden="true"></i></div></div>
+        <div class="card-banner b-amber"><span class="card-lvl cl-amber">STEP 4 ・ 英語</span><div class="banner-glyph bg-amber"><i class="ti ti-language-hiragana" aria-hidden="true"></i></div></div>
         <div class="card-body">
           <h3>TOEIC 800点 突破コース</h3>
           <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.6 ・ 受講 540人</div>
           <p class="desc">ビジネス英語特化。半年でスコア800点を狙う実戦カリキュラム。</p>
           <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>6か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>48単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
           <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#854F0B"></div></div><span class="prog-pct">未開始</span></div>
+        </div>
+      </div>
+      <div class="course-card" onclick="openCourse('uscma')">
+        <div class="card-banner b-purple"><span class="card-lvl cl-purple">STEP 5 ・ 仕上げ</span><div class="banner-glyph bg-purple"><i class="ti ti-world-bolt" aria-hidden="true"></i></div></div>
+        <div class="card-body">
+          <h3>USCMA 合格コース</h3>
+          <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.7 ・ 受講 320人</div>
+          <p class="desc">財務計画から戦略的財務管理まで。1年3か月でPart1・2を攻略。</p>
+          <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>15か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>96単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7"></div></div><span class="prog-pct">未開始</span></div>
         </div>
       </div>
     </div>
@@ -778,8 +790,9 @@ body{padding:24px;font-family:var(--font-sans)}
           <select id="pl-course">
             <option value="boki3">簿記3級 合格コース</option>
             <option value="boki2">簿記2級 合格コース</option>
-            <option value="uscma">USCMA 合格コース</option>
+            <option value="fpa">FP&A検定 合格コース</option>
             <option value="toeic">TOEIC 800点 突破コース</option>
+            <option value="uscma">USCMA 合格コース</option>
           </select>
         </div>
         <div class="pl-field">

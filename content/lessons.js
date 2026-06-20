@@ -390,6 +390,28 @@
 <rect x="214" y="34" width="96" height="48" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="262" y="56" text-anchor="middle" font-size="12" fill="#185FA5" font-weight="500">振替伝票</text><text x="262" y="72" text-anchor="middle" font-size="9.5" fill="#185FA5">現金が動かない</text></svg>',
         body: '取引を現金の動きで3種類に分けます。<ul><li><b>入金伝票</b>… 現金が増える取引</li><li><b>出金伝票</b>… 現金が減る取引</li><li><b>振替伝票</b>… 現金が動かない取引</li></ul>' },
       { h: 'まとめ', body: '<ul><li>伝票は仕訳の代わりの記録用紙</li><li>3伝票制＝<b>入金・出金・振替</b>の3種類</li><li>現金が増える/減る/動かない で使い分ける</li></ul>' }
+    ],
+
+    /* ============ FP&A 1-1 FP&Aとは何か ============ */
+    'fpa/1-1': [
+      { h: 'FP&A＝数字で経営を導く役割',
+        svg: '<svg viewBox="0 0 330 120" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="6" y="44" width="62" height="34" rx="8" fill="#FAECE7" stroke="#D85A30"/><text x="37" y="65" text-anchor="middle" font-size="10.5" fill="#993C1D">分析</text>\
+<rect x="76" y="44" width="62" height="34" rx="8" fill="#FAECE7" stroke="#D85A30"/><text x="107" y="65" text-anchor="middle" font-size="10.5" fill="#993C1D">予測</text>\
+<rect x="146" y="44" width="62" height="34" rx="8" fill="#FAECE7" stroke="#D85A30"/><text x="177" y="65" text-anchor="middle" font-size="10.5" fill="#993C1D">計画</text>\
+<rect x="216" y="44" width="62" height="34" rx="8" fill="#FAECE7" stroke="#D85A30"/><text x="247" y="65" text-anchor="middle" font-size="10.5" fill="#993C1D">業績報告</text>\
+<text x="300" y="65" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="252" y="14" width="74" height="24" rx="7" fill="#E1F5EE" stroke="#0F6E56"/><text x="289" y="30" text-anchor="middle" font-size="10" fill="#0F6E56">意思決定</text>\
+<g stroke="#d3d1c7" stroke-width="2"><line x1="68" y1="61" x2="76" y2="61"/><line x1="138" y1="61" x2="146" y2="61"/><line x1="208" y1="61" x2="216" y2="61"/></g></svg>',
+        body: 'FP&A（Financial Planning & Analysis）は、<b>分析・予測・計画・業績報告</b>を通じて、経営や事業の<span class="hl">意思決定を支える</span>役割です。<ul><li>「記録する簿記」から「活かす財務」への一歩</li></ul>' },
+      { h: '必要な3つの知識',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="14" y="40" width="92" height="44" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="60" y="66" text-anchor="middle" font-size="12" fill="#185FA5" font-weight="500">管理会計</text>\
+<rect x="114" y="40" width="92" height="44" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="160" y="66" text-anchor="middle" font-size="12" fill="#0F6E56" font-weight="500">企業財務</text>\
+<rect x="214" y="40" width="92" height="44" rx="9" fill="#EEEDFE" stroke="#534AB7"/><text x="260" y="66" text-anchor="middle" font-size="12" fill="#534AB7" font-weight="500">事業戦略</text>\
+<text x="160" y="26" text-anchor="middle" font-size="11" fill="#5f5e5a">3つを統合して使う</text></svg>',
+        body: 'FP&A人材には、<b>管理会計・企業財務・事業戦略</b>を統合的に扱う力が求められます。<ul><li>本コースはこの3領域を順に学びます</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>FP&Aは数字で意思決定を支える役割</li><li>分析・予測・計画・業績報告が中核業務</li><li>管理会計・企業財務・事業戦略の統合が鍵</li></ul>' }
     ]
 
   };

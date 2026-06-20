@@ -121,6 +121,54 @@ window.COURSES = {
     ]
   },
 
+  fpa: {
+    name: 'FP&A検定 合格コース',
+    glyph: 'ti-chart-arrows-vertical',
+    color: 'coral',
+    sub: '4か月 ・ 全40単元 ・ 模擬テスト3回',
+    pass: 'FP&A（経営企画スキル検定）は、FPAC取得を見据えた入門資格です。',
+    examTitle: 'FP&A検定 合格',
+    totalHours: 130,
+    lead: 'FP&A検定（経営企画スキル検定）は、<strong>管理会計・企業財務・事業戦略を統合し、分析・予測・計画・業績報告で経営の意思決定を支える</strong>スキルを問う資格です（日本CFO協会／米国AFPのFPACへの入門）。簿記で固めた基礎を、実務の「使える数字」へと一段引き上げます。',
+    skills: [
+      ['ti-chart-histogram', '予測と計画', '予算・見通しを立て計画に落とす'],
+      ['ti-report-analytics', '業績分析', '予実差異を分析し改善につなげる'],
+      ['ti-coin', '企業財務', '投資判断・資本コストを理解する'],
+      ['ti-bulb', '事業戦略との接続', '数字で戦略を語り意思決定を支える']
+    ],
+    targets: [
+      '経営企画・経営管理・事業企画の実務家',
+      '簿記2級まで終え、実務に活かしたい方',
+      '将来USCMAやFPACを目指す方'
+    ],
+    roadmap: [
+      ['active', '1か月目 ・ 管理会計', '意思決定に効く管理会計', '原価・CVP・予算管理など、FP&Aの土台となる管理会計を学びます。', ['スライド16枚', '確認問題 60問'], '学習中'],
+      ['todo', '2か月目 ・ 企業財務', 'ファイナンスの基礎', '時間価値・投資評価（NPV/IRR）・資本コストを習得します。', ['スライド18枚', '確認問題 70問', 'check:第1回模試'], ''],
+      ['todo', '3か月目 ・ 計画と分析', '予測・計画・業績報告', '予算編成、ローリング予測、KPI設計と予実分析を学びます。', ['スライド16枚', '確認問題 60問', 'check:第2回模試'], ''],
+      ['todo', '4か月目 ・ 総仕上げ', '戦略との統合と演習', 'ケースで戦略と数字を結びつけ、模試で得点を固めます。', ['総合演習 120問', 'check:第3回模試'], '']
+    ],
+    curriculum: [
+      { chapter: '第1章 — FP&Aと管理会計', units: [
+        { id: '1-1', title: 'FP&Aとは何か', min: 16, status: 'active' },
+        { id: '1-2', title: '原価とCVP分析', min: 22, status: 'locked' },
+        { id: '1-3', title: '予算管理の基礎', min: 20, status: 'locked' }
+      ]},
+      { chapter: '第2章 — 企業財務の基礎', units: [
+        { id: '2-1', title: 'お金の時間価値', min: 21, status: 'locked' },
+        { id: '2-2', title: '投資評価（NPV・IRR）', min: 24, status: 'locked' }
+      ]}
+    ],
+    quizzes: [
+      { title: '第1章 確認問題', bank: 'fpa_ch1', status: 'active' },
+      { title: '第2章 確認問題', bank: 'fpa_ch2', status: 'locked' }
+    ],
+    mocks: [
+      { title: '第1回 模擬テスト', bank: 'fpa_mock1', min: 120, status: 'locked' },
+      { title: '第2回 模擬テスト', bank: 'fpa_mock2', min: 120, status: 'locked' },
+      { title: '第3回 模擬テスト', bank: 'fpa_mock3', min: 120, status: 'locked' }
+    ]
+  },
+
   uscma: {
     name: 'USCMA 合格コース',
     glyph: 'ti-world-bolt',
