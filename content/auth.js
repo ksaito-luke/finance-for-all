@@ -81,6 +81,11 @@ window.AUTH = (function () {
     var r = await sb.from('study_log').select('*');
     return r.data || [];
   };
+  api.getUnitProgress = async function () {
+    if (!need() || !api.user) return [];
+    var r = await sb.from('unit_progress').select('*');
+    return r.data || [];
+  };
   api.getProfile = async function () {
     if (!need() || !api.user) return null;
     var r = await sb.from('profiles').select('*').eq('id', api.user.id).maybeSingle();

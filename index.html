@@ -472,7 +472,7 @@ body{padding:24px;font-family:var(--font-sans)}
           <div class="card-rating"><span class="stars"><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star" aria-hidden="true"></i><i class="ti ti-star-half" aria-hidden="true"></i></span>4.8 ・ 受講 1,240人</div>
           <p class="desc">仕訳の基礎から試算表まで。3か月で日商簿記3級の合格へ。</p>
           <div class="card-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>3か月</span><span><i class="ti ti-stack-2" aria-hidden="true"></i>32単元</span><span><i class="ti ti-test-pipe" aria-hidden="true"></i>模擬3回</span></div>
-          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:35%;background:#185FA5"></div></div><span class="prog-pct">35%</span></div>
+          <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" id="home-boki3-fill" style="width:0%;background:#185FA5"></div></div><span class="prog-pct" id="home-boki3-pct">未開始</span></div>
         </div>
       </div>
       <div class="course-card" onclick="openCourse('boki2')">
@@ -538,11 +538,11 @@ body{padding:24px;font-family:var(--font-sans)}
         <div class="ring-wrap">
           <svg width="96" height="96" viewBox="0 0 96 96">
             <circle cx="48" cy="48" r="40" fill="none" stroke="var(--color-border-tertiary)" stroke-width="7"/>
-            <circle cx="48" cy="48" r="40" fill="none" stroke="#0F6E56" stroke-width="7" stroke-dasharray="251.3" stroke-dashoffset="163.3" stroke-linecap="round" transform="rotate(-90 48 48)"/>
-            <text x="48" y="46" text-anchor="middle" font-size="22" font-weight="500" fill="var(--color-text-primary)">35%</text>
+            <circle id="ring-fill" cx="48" cy="48" r="40" fill="none" stroke="#0F6E56" stroke-width="7" stroke-dasharray="251.3" stroke-dashoffset="251.3" stroke-linecap="round" transform="rotate(-90 48 48)"/>
+            <text id="ring-pct" x="48" y="46" text-anchor="middle" font-size="22" font-weight="500" fill="var(--color-text-primary)">0%</text>
             <text x="48" y="62" text-anchor="middle" font-size="10" fill="var(--color-text-secondary)">完了</text>
           </svg>
-          <div class="ring-sub" style="margin-top:8px">11 / 32 単元</div>
+          <div class="ring-sub" style="margin-top:8px" id="ring-sub">0 / 0 単元</div>
         </div>
         <div class="mini-stats">
           <div class="mini-stat"><div class="v">14.2h</div><div class="l">学習時間</div></div>
@@ -550,7 +550,7 @@ body{padding:24px;font-family:var(--font-sans)}
           <div class="mini-stat"><div class="v">12日</div><div class="l">連続学習</div></div>
           <div class="mini-stat"><div class="v">64日</div><div class="l">残り目安</div></div>
         </div>
-        <button class="btn-primary" style="width:100%;margin-top:1.25rem;justify-content:center" onclick="showScreen('learn')">学習を続ける</button>
+        <button class="btn-primary" style="width:100%;margin-top:1.25rem;justify-content:center" onclick="continueLearning()">学習を続ける</button>
       </div>
     </div>
   </div>
@@ -580,8 +580,8 @@ body{padding:24px;font-family:var(--font-sans)}
     </div>
     <div class="learn-main">
       <div class="breadcrumb" onclick="showScreen('course')" style="margin-bottom:1rem"><i class="ti ti-arrow-left" aria-hidden="true"></i>コースに戻る</div>
-      <div class="lesson-kicker">第1章 ・ 単元 1-3</div>
-      <div class="lesson-title">仕訳の基礎</div>
+      <div class="lesson-kicker" id="lesson-kicker">第1章 ・ 単元 1-3</div>
+      <div class="lesson-title" id="lesson-title">仕訳の基礎</div>
       <div class="lesson-meta"><span><i class="ti ti-clock" aria-hidden="true"></i>約22分</span><span><i class="ti ti-presentation" aria-hidden="true"></i>スライド + テキスト</span></div>
       <div class="slides">
         <div class="slide-stage">
@@ -608,7 +608,7 @@ body{padding:24px;font-family:var(--font-sans)}
         </div>
       </div>
       <div class="lesson-nav">
-        <button class="btn-outline" onclick="showScreen('course')"><i class="ti ti-arrow-left" aria-hidden="true"></i>前の単元</button>
+        <button class="btn-outline" id="lesson-complete" onclick="completeUnit()"><i class="ti ti-circle-check" aria-hidden="true"></i>この単元を完了にする</button>
         <button class="btn-primary" onclick="startQuiz('boki3_ch1','第1章 確認問題')">問題を解く<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -704,12 +704,12 @@ body{padding:24px;font-family:var(--font-sans)}
     </div>
 
     <div class="mp-block-title">学習を再開</div>
-    <div class="continue-card" onclick="showScreen('learn')">
+    <div class="continue-card" onclick="continueLearning()">
       <div class="cc-glyph"><i class="ti ti-book" aria-hidden="true"></i></div>
       <div class="cc-body">
         <div class="cc-kick">簿記3級 合格コース ・ 1-3</div>
         <h4>仕訳の基礎</h4>
-        <div class="cc-prog"><div class="bar"><div class="fill" style="width:35%"></div></div><span class="pct">35%</span></div>
+        <div class="cc-prog"><div class="bar"><div class="fill" id="cc-fill" style="width:0%"></div></div><span class="pct" id="cc-pct">未開始</span></div>
       </div>
       <i class="ti ti-player-play" style="font-size:22px;color:#185FA5" aria-hidden="true"></i>
     </div>
@@ -874,6 +874,7 @@ function switchToLearn(){
 /* ===== COURSE DATA ===== コンテンツは content/courses.js が単一の真実 */
 const COURSES=(window.COURSES||{});
 let currentCourse='boki3';
+let unitDone={},currentUnit=null;   // 単元の完了状況（key: 'courseId/unitId'）
 function openCourse(key){
   currentCourse=key;
   renderCourse(key);
@@ -908,26 +909,84 @@ function renderCourse(key){
     '<div class="ov-section-title"><i class="ti ti-users" aria-hidden="true"></i>こんな方におすすめ</div><div class="target-list">'+targets+'</div>'+
     '<div class="ov-section-title"><i class="ti ti-route" aria-hidden="true"></i>合格までのロードマップ</div><div class="roadmap"><div class="rm-track">'+phases+examPhase+'</div></div>'+
     '<div class="ov-cta"><div class="txt"><strong>すべて無料で受講できます</strong>今日から始めて、合格を目指しましょう。</div><button class="btn-hero" onclick="switchToLearn()">学習を始める<i class="ti ti-arrow-right" aria-hidden="true"></i></button></div>';
-  renderLearnList(c);
+  renderLearnList(key,c);
   renderQuizList(key,c);
   renderMockList(c);
+  updateCourseProgress(key);
 }
 function statusIcon(s){
   if(s==='done')return '<div class="unit-icon done"><i class="ti ti-check" aria-hidden="true"></i></div>';
   if(s==='active')return '<div class="unit-icon active"><i class="ti ti-player-play" aria-hidden="true"></i></div>';
   return '<div class="unit-icon locked"><i class="ti ti-lock" aria-hidden="true"></i></div>';
 }
-function renderLearnList(c){
+function renderLearnList(key,c){
   const el=document.getElementById('learn-list');if(!el)return;
+  let activeAssigned=false;
   el.innerHTML=(c.curriculum||[]).map(ch=>{
     const units=ch.units.map(u=>{
-      const meta='スライド ・ 約'+u.min+'分'+(u.status==='done'?' ・ 完了':u.status==='active'?' ・ 学習中':'');
-      const clickable=u.status!=='locked';
-      return '<div class="unit-item"'+(clickable?' onclick="showScreen(\'learn\')"':'')+'>'+statusIcon(u.status)+
+      const ukey=key+'/'+u.id;
+      let st;
+      if(unitDone[ukey])st='done';
+      else if(!activeAssigned){st='active';activeAssigned=true;}
+      else st='locked';
+      const meta='スライド ・ 約'+u.min+'分'+(st==='done'?' ・ 完了':st==='active'?' ・ 学習中':'');
+      const onclick=(st!=='locked')?(' onclick="openUnit(\''+key+'\',\''+u.id+'\',\''+u.title+'\',\''+ch.chapter+'\')"'):'';
+      return '<div class="unit-item"'+onclick+'>'+statusIcon(st)+
         '<div class="unit-info"><h4>'+u.id+' '+u.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
     }).join('');
     return '<div class="chapter-label">'+ch.chapter+'</div><div class="unit-list">'+units+'</div>';
   }).join('');
+}
+function courseProgress(key){
+  const c=COURSES[key];if(!c||!c.curriculum)return {done:0,total:0,pct:0};
+  let total=0,done=0;
+  c.curriculum.forEach(ch=>ch.units.forEach(u=>{total++;if(unitDone[key+'/'+u.id])done++;}));
+  return {done:done,total:total,pct:total?Math.round(done/total*100):0};
+}
+function updateCourseProgress(key){
+  const p=courseProgress(key);
+  const C=2*Math.PI*40;
+  const ring=document.getElementById('ring-fill');if(ring)ring.setAttribute('stroke-dashoffset',(C*(1-p.pct/100)).toFixed(1));
+  const pct=document.getElementById('ring-pct');if(pct)pct.textContent=p.pct+'%';
+  const sub=document.getElementById('ring-sub');if(sub)sub.textContent=p.done+' / '+p.total+' 単元';
+  if(key==='boki3'){
+    const f=document.getElementById('home-boki3-fill');if(f)f.style.width=p.pct+'%';
+    const pc=document.getElementById('home-boki3-pct');if(pc)pc.textContent=p.pct?(p.pct+'%'):'未開始';
+    const cf=document.getElementById('cc-fill');if(cf)cf.style.width=p.pct+'%';
+    const cp=document.getElementById('cc-pct');if(cp)cp.textContent=p.pct?(p.pct+'%'):'未開始';
+  }
+}
+function openUnit(key,unitId,title,chapter){
+  currentUnit={courseId:key,unitId:unitId,title:title};
+  const k=document.getElementById('lesson-kicker');if(k)k.textContent=chapter+' ・ 単元 '+unitId;
+  const t=document.getElementById('lesson-title');if(t)t.textContent=title;
+  const done=!!unitDone[key+'/'+unitId];
+  const btn=document.getElementById('lesson-complete');
+  if(btn){btn.disabled=done;btn.innerHTML=done?'<i class="ti ti-circle-check" aria-hidden="true"></i>完了済み':'<i class="ti ti-circle-check" aria-hidden="true"></i>この単元を完了にする';}
+  slideIdx=0;renderSlide();
+  showScreen('learn');
+}
+async function completeUnit(){
+  if(!currentUnit)return;
+  const ukey=currentUnit.courseId+'/'+currentUnit.unitId;
+  unitDone[ukey]=true;
+  const btn=document.getElementById('lesson-complete');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-circle-check" aria-hidden="true"></i>完了しました';}
+  if(window.AUTH&&window.AUTH.user){await window.AUTH.setUnitDone(currentUnit.courseId,currentUnit.unitId);}
+  renderCourse(currentCourse);
+  setTimeout(function(){showScreen('course');},400);
+}
+function continueLearning(){
+  const c=COURSES[currentCourse];
+  if(!c||!c.curriculum){showScreen('learn');return;}
+  for(const ch of c.curriculum){
+    for(const u of ch.units){
+      if(!unitDone[currentCourse+'/'+u.id]){openUnit(currentCourse,u.id,u.title,ch.chapter);return;}
+    }
+  }
+  const lastCh=c.curriculum[c.curriculum.length-1];
+  const lastU=lastCh.units[lastCh.units.length-1];
+  openUnit(currentCourse,lastU.id,lastU.title,lastCh.chapter);
 }
 function renderQuizList(key,c){
   const el=document.getElementById('quiz-list');if(!el)return;
@@ -1216,6 +1275,8 @@ function appTodayStr(){
 function setStat(id,val){const el=document.getElementById(id);if(el)el.textContent=val;}
 function resetUserData(){
   setStat('mp-streak','0');setStat('mp-hours','0');setStat('mp-solved','0');setStat('mp-rate','0');
+  for(const k in unitDone)delete unitDone[k];
+  updateCourseProgress(currentCourse);
 }
 function computeStreak(logRows){
   const has={};
@@ -1231,6 +1292,11 @@ async function refreshUserData(){
   if(!window.AUTH||!window.AUTH.user)return;
   const attempts=await window.AUTH.getAttempts();
   const logRows=await window.AUTH.getStudyLog();
+  /* 単元の完了状況 */
+  const units=await window.AUTH.getUnitProgress();
+  for(const k in unitDone)delete unitDone[k];
+  units.forEach(u=>{if(u.status==='done')unitDone[u.course_id+'/'+u.unit_id]=true;});
+  renderCourse(currentCourse);
   /* マイページ統計 */
   const solved=attempts.reduce((s,a)=>s+(a.total||0),0);
   const rate=attempts.length?Math.round(attempts.reduce((s,a)=>s+(a.score||0),0)/attempts.length):0;
