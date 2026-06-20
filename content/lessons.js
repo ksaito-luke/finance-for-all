@@ -300,6 +300,96 @@
 <text x="236" y="76" text-anchor="middle" font-size="11" fill="#534AB7">未収入金 / 未払金</text></svg>',
         body: '同じ「後払い・後受け」でも、<b>商品かどうか</b>で科目が分かれます。<ul><li>商品 → 売掛金・買掛金</li><li>備品など商品以外 → 未収入金・未払金</li></ul>' },
       { h: 'まとめ', body: '<ul><li>手形は <b>受取手形（資産）</b>と<b>支払手形（負債）</b></li><li>貸し借りは <b>貸付金（資産）</b>と<b>借入金（負債）</b>＋利息</li><li>後払いは<b>商品なら売掛/買掛</b>、商品以外なら未収入金/未払金</li></ul>' }
+    ],
+
+    /* ============ 第3章 3-4 税金と給料の処理 ============ */
+    'boki3/3-4': [
+      { h: '会社が負担する税金＝租税公課',
+        svg: '<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="20" y="34" width="84" height="40" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="62" y="52" text-anchor="middle" font-size="10.5" fill="#854F0B">収入印紙</text><text x="62" y="68" text-anchor="middle" font-size="9.5" fill="#854F0B">固定資産税</text>\
+<text x="120" y="59" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="140" y="34" width="92" height="40" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="186" y="58" text-anchor="middle" font-size="12" fill="#0F6E56" font-weight="500">租税公課（費用）</text></svg>',
+        body: '会社が負担する税金（収入印紙・固定資産税・自動車税など）は<b>租税公課</b>という費用で処理します。<ul><li>例：収入印紙を現金購入 → 借方：租税公課 ／ 貸方：現金</li></ul>' },
+      { h: '給料：預かって、あとで納める',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="14" y="40" width="80" height="42" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="54" y="60" text-anchor="middle" font-size="12" fill="#0F6E56" font-weight="500">給料</text><text x="54" y="75" text-anchor="middle" font-size="9.5" fill="#0F6E56">250,000</text>\
+<text x="104" y="62" text-anchor="middle" font-size="14" fill="#5f5e5a">=</text>\
+<rect x="120" y="40" width="86" height="42" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="163" y="60" text-anchor="middle" font-size="11" fill="#185FA5">現金で支給</text><text x="163" y="75" text-anchor="middle" font-size="9.5" fill="#185FA5">235,000</text>\
+<text x="210" y="62" text-anchor="middle" font-size="14" fill="#5f5e5a">+</text>\
+<rect x="224" y="40" width="90" height="42" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="269" y="58" text-anchor="middle" font-size="10" fill="#854F0B">所得税預り金</text><text x="269" y="73" text-anchor="middle" font-size="9.5" fill="#854F0B">15,000（負債）</text></svg>',
+        body: '給料から天引きした源泉所得税や社会保険料は、会社が一時的に<b>預り金（負債）</b>として預かり、後日まとめて納付します。<ul><li>給料総額を借方、手取りと預り金を貸方に分けて記入</li></ul>' },
+      { h: '消費税（税抜方式）',
+        svg: '<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="14" y="34" width="92" height="40" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="60" y="52" text-anchor="middle" font-size="10.5" fill="#185FA5">仮払消費税</text><text x="60" y="67" text-anchor="middle" font-size="9.5" fill="#185FA5">仕入時に支払</text>\
+<rect x="120" y="34" width="92" height="40" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="166" y="52" text-anchor="middle" font-size="10.5" fill="#854F0B">仮受消費税</text><text x="166" y="67" text-anchor="middle" font-size="9.5" fill="#854F0B">売上時に受取</text>\
+<text x="224" y="59" text-anchor="middle" font-size="14" fill="#5f5e5a">→</text>\
+<rect x="240" y="34" width="74" height="40" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="277" y="58" text-anchor="middle" font-size="10.5" fill="#0F6E56">差額を納付</text></svg>',
+        body: '税抜方式では、支払った消費税は<b>仮払消費税</b>、受け取った消費税は<b>仮受消費税</b>で記録し、決算で<span class="hl">差額を納付</span>します。' },
+      { h: 'まとめ', body: '<ul><li>会社負担の税金は<b>租税公課（費用）</b></li><li>給料の天引き分は<b>預り金（負債）</b>として後日納付</li><li>消費税は仮払・仮受で記録し差額を納付</li></ul>' }
+    ],
+
+    /* ============ 第4章 4-1 決算整理仕訳のまとめ ============ */
+    'boki3/4-1': [
+      { h: '決算整理＝記録を実態に合わせる',
+        svg: '<svg viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="20" y="28" width="84" height="40" rx="9" fill="#F1EFE8" stroke="#888780"/><text x="62" y="46" text-anchor="middle" font-size="11" fill="#444441">期中の記録</text><text x="62" y="61" text-anchor="middle" font-size="9.5" fill="#888780">ざっくり</text>\
+<text x="120" y="52" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="138" y="28" width="84" height="40" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="180" y="52" text-anchor="middle" font-size="11" fill="#854F0B">決算整理</text>\
+<text x="238" y="52" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="256" y="28" width="58" height="40" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="285" y="52" text-anchor="middle" font-size="11" fill="#0F6E56">正しい額</text></svg>',
+        body: '決算で、期中のざっくりした記録を<b>実態に合わせて調整</b>するのが決算整理仕訳です。<ul><li>これを経て正しい財務諸表ができます</li></ul>' },
+      { h: '主な決算整理は5つ',
+        svg: '<svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="10" y="16" width="150" height="32" rx="7" fill="#E6F1FB" stroke="#185FA5"/><text x="85" y="36" text-anchor="middle" font-size="11" fill="#185FA5">① 売上原価の算定</text>\
+<rect x="166" y="16" width="148" height="32" rx="7" fill="#E1F5EE" stroke="#0F6E56"/><text x="240" y="36" text-anchor="middle" font-size="11" fill="#0F6E56">② 貸倒引当金</text>\
+<rect x="10" y="52" width="150" height="32" rx="7" fill="#FAEEDA" stroke="#BA7517"/><text x="85" y="72" text-anchor="middle" font-size="11" fill="#854F0B">③ 減価償却</text>\
+<rect x="166" y="52" width="148" height="32" rx="7" fill="#EEEDFE" stroke="#534AB7"/><text x="240" y="72" text-anchor="middle" font-size="11" fill="#534AB7">④ 経過勘定</text>\
+<rect x="88" y="88" width="148" height="32" rx="7" fill="#F1EFE8" stroke="#888780"/><text x="162" y="108" text-anchor="middle" font-size="11" fill="#444441">⑤ 現金過不足・貯蔵品</text></svg>',
+        body: '<ul><li>① 売上原価の算定 ② 貸倒引当金の設定</li><li>③ 固定資産の減価償却 ④ 費用・収益の前払/前受/未払/未収（経過勘定）</li><li>⑤ 現金過不足の整理・貯蔵品の振替 など</li></ul>' },
+      { h: '売上原価は「しーくり・くりしー」',
+        svg: '<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="16" y="30" width="140" height="44" rx="8" fill="#ffffff" stroke="#888780"/><line x1="86" y1="30" x2="86" y2="74" stroke="#888780"/>\
+<text x="51" y="50" text-anchor="middle" font-size="10.5" fill="#185FA5">仕入</text><text x="121" y="50" text-anchor="middle" font-size="10.5" fill="#BA7517">繰越商品</text>\
+<text x="86" y="24" text-anchor="middle" font-size="9.5" fill="#5f5e5a">期首分</text>\
+<rect x="164" y="30" width="140" height="44" rx="8" fill="#ffffff" stroke="#888780"/><line x1="234" y1="30" x2="234" y2="74" stroke="#888780"/>\
+<text x="199" y="50" text-anchor="middle" font-size="10.5" fill="#185FA5">繰越商品</text><text x="269" y="50" text-anchor="middle" font-size="10.5" fill="#BA7517">仕入</text>\
+<text x="234" y="24" text-anchor="middle" font-size="9.5" fill="#5f5e5a">期末分</text></svg>',
+        body: '売上原価の算定は2本の仕訳。<ul><li>期首：<b>仕入 / 繰越商品</b>（しーくり）</li><li>期末：<b>繰越商品 / 仕入</b>（くりしー）</li><li>結果、仕入勘定が売上原価になります</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>決算整理は記録を<b>実態に合わせる調整</b></li><li>主要5項目（売上原価・貸倒・減価償却・経過勘定・その他）</li><li>売上原価は「しーくり・くりしー」で求める</li></ul>' }
+    ],
+
+    /* ============ 第4章 4-2 精算表の作り方 ============ */
+    'boki3/4-2': [
+      { h: '精算表＝決算を1枚にまとめた表',
+        svg: '<svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="8" y="20" width="304" height="100" rx="6" fill="#ffffff" stroke="#888780"/>\
+<line x1="84" y1="20" x2="84" y2="120" stroke="#d3d1c7"/><line x1="160" y1="20" x2="160" y2="120" stroke="#d3d1c7"/><line x1="236" y1="20" x2="236" y2="120" stroke="#d3d1c7"/>\
+<line x1="8" y1="48" x2="312" y2="48" stroke="#888780"/>\
+<text x="46" y="38" text-anchor="middle" font-size="9.5" fill="#444441">試算表</text>\
+<text x="122" y="38" text-anchor="middle" font-size="9.5" fill="#BA7517">修正記入</text>\
+<text x="198" y="38" text-anchor="middle" font-size="9.5" fill="#0F6E56">損益計算書</text>\
+<text x="274" y="38" text-anchor="middle" font-size="9.5" fill="#185FA5">貸借対照表</text>\
+<text x="46" y="86" text-anchor="middle" font-size="9" fill="#b4b2a9">各勘定</text>\
+<text x="122" y="86" text-anchor="middle" font-size="9" fill="#b4b2a9">決算整理</text>\
+<text x="198" y="86" text-anchor="middle" font-size="9" fill="#b4b2a9">収益・費用</text>\
+<text x="274" y="86" text-anchor="middle" font-size="9" fill="#b4b2a9">資産・負債</text></svg>',
+        body: '精算表は<b>試算表→修正記入→損益計算書→貸借対照表</b>を横に並べ、決算の流れを1枚で見渡せる表です。' },
+      { h: '作る手順',
+        body: '<ul><li>① 試算表欄に各勘定の残高を書く</li><li>② 修正記入欄に決算整理仕訳を書く</li><li>③ 収益・費用は<b>損益計算書欄</b>、資産・負債・純資産は<b>貸借対照表欄</b>へ</li><li>④ 差額が<span class="hl">当期純利益</span>。左右が一致すれば完成</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>精算表は決算を1枚にまとめた表</li><li>修正記入→P/L欄・B/S欄へ振り分ける</li><li>当期純利益で左右が一致する</li></ul>' }
+    ],
+
+    /* ============ 第4章 4-3 伝票会計（3伝票制） ============ */
+    'boki3/4-3': [
+      { h: '伝票＝仕訳の代わりのメモ',
+        body: '取引のたびに仕訳帳に書く代わりに、<b>伝票</b>という小さな用紙に記録する方法です。<ul><li>分担して記入でき、後でまとめて集計できます</li></ul>' },
+      { h: '3伝票制：3種類に分ける',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="10" y="34" width="96" height="48" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="58" y="56" text-anchor="middle" font-size="12" fill="#0F6E56" font-weight="500">入金伝票</text><text x="58" y="72" text-anchor="middle" font-size="9.5" fill="#0F6E56">現金が増える</text>\
+<rect x="112" y="34" width="96" height="48" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="160" y="56" text-anchor="middle" font-size="12" fill="#854F0B" font-weight="500">出金伝票</text><text x="160" y="72" text-anchor="middle" font-size="9.5" fill="#854F0B">現金が減る</text>\
+<rect x="214" y="34" width="96" height="48" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="262" y="56" text-anchor="middle" font-size="12" fill="#185FA5" font-weight="500">振替伝票</text><text x="262" y="72" text-anchor="middle" font-size="9.5" fill="#185FA5">現金が動かない</text></svg>',
+        body: '取引を現金の動きで3種類に分けます。<ul><li><b>入金伝票</b>… 現金が増える取引</li><li><b>出金伝票</b>… 現金が減る取引</li><li><b>振替伝票</b>… 現金が動かない取引</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>伝票は仕訳の代わりの記録用紙</li><li>3伝票制＝<b>入金・出金・振替</b>の3種類</li><li>現金が増える/減る/動かない で使い分ける</li></ul>' }
     ]
 
   };

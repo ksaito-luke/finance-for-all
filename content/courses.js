@@ -49,13 +49,20 @@ window.COURSES = {
       { chapter: '第3章 — いろいろな取引', units: [
         { id: '3-1', title: '商品売買の応用（返品・諸掛）', min: 20, status: 'locked' },
         { id: '3-2', title: '現金と預金', min: 23, status: 'locked' },
-        { id: '3-3', title: '手形と貸し借り', min: 22, status: 'locked' }
+        { id: '3-3', title: '手形と貸し借り', min: 22, status: 'locked' },
+        { id: '3-4', title: '税金と給料の処理', min: 21, status: 'locked' }
+      ]},
+      { chapter: '第4章 — 決算と伝票', units: [
+        { id: '4-1', title: '決算整理仕訳のまとめ', min: 26, status: 'locked' },
+        { id: '4-2', title: '精算表の作り方', min: 24, status: 'locked' },
+        { id: '4-3', title: '伝票会計（3伝票制）', min: 20, status: 'locked' }
       ]}
     ],
     quizzes: [
       { title: '第1章 確認問題', bank: 'boki3_ch1', status: 'done', score: 80 },
       { title: '第2章 確認問題', bank: 'boki3_ch2', status: 'active' },
       { title: '第3章 確認問題', bank: 'boki3_ch3', status: 'active' },
+      { title: '第4章 確認問題', bank: 'boki3_ch4', status: 'active' },
       { title: '仕訳ドリル（ランダム20問）', bank: 'boki3_drill', status: 'active', pick: 20 },
       { title: '仕訳ドリル（ランダム50問）', bank: 'boki3_drill', status: 'active', pick: 50 }
     ],
