@@ -220,6 +220,86 @@
       { h: '利益は純資産を増やす',
         body: '<ul><li>損益計算書で計算した<b>当期純利益</b>は、貸借対照表の<span class="hl">純資産を増やします</span></li><li>こうして2つの表はつながっています</li></ul>' },
       { h: 'まとめ', body: '<ul><li>貸借対照表（B/S）は<b>一定時点の財政状態</b></li><li><b>資産 ＝ 負債 ＋ 純資産</b></li><li>当期純利益は純資産を増やし、P/LとB/Sが連動する</li></ul>' }
+    ],
+
+    /* ============ 第3章 3-1 商品売買の応用（返品・諸掛） ============ */
+    'boki3/3-1': [
+      { h: '返品は「逆の仕訳」で取り消す',
+        svg: '<svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="14" y="30" width="130" height="34" rx="7" fill="#ffffff" stroke="#888780"/>\
+<line x1="79" y1="30" x2="79" y2="64" stroke="#888780"/>\
+<text x="46" y="51" text-anchor="middle" font-size="11" fill="#185FA5">仕入</text>\
+<text x="112" y="51" text-anchor="middle" font-size="11" fill="#BA7517">買掛金</text>\
+<text x="79" y="22" text-anchor="middle" font-size="10" fill="#5f5e5a">① 仕入れたとき</text>\
+<rect x="14" y="84" width="130" height="34" rx="7" fill="#FCEBEB" stroke="#A32D2D"/>\
+<line x1="79" y1="84" x2="79" y2="118" stroke="#A32D2D"/>\
+<text x="46" y="105" text-anchor="middle" font-size="11" fill="#A32D2D">買掛金</text>\
+<text x="112" y="105" text-anchor="middle" font-size="11" fill="#A32D2D">仕入</text>\
+<text x="79" y="78" text-anchor="middle" font-size="10" fill="#A32D2D">② 返品（逆にする）</text>\
+<text x="232" y="62" text-anchor="middle" font-size="12" fill="#5f5e5a">借方と貸方を</text>\
+<text x="232" y="80" text-anchor="middle" font-size="12" fill="#5f5e5a">入れ替えるだけ</text></svg>',
+        body: '返品や値引きは、最初の仕訳の<b>借方・貸方を入れ替えて取り消し</b>ます。<ul><li>仕入を返品 → 借方：買掛金 ／ 貸方：仕入</li><li>売上の返品 → 借方：売上 ／ 貸方：売掛金</li></ul>' },
+      { h: '仕入諸掛は「仕入」に含める',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="40" y="36" width="84" height="42" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="82" y="55" text-anchor="middle" font-size="12" fill="#0F6E56">商品代金</text><text x="82" y="71" text-anchor="middle" font-size="10" fill="#0F6E56">50,000</text>\
+<text x="135" y="62" text-anchor="middle" font-size="18" fill="#5f5e5a">+</text>\
+<rect x="150" y="36" width="78" height="42" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="189" y="55" text-anchor="middle" font-size="12" fill="#854F0B">引取運賃</text><text x="189" y="71" text-anchor="middle" font-size="10" fill="#854F0B">1,000</text>\
+<text x="240" y="62" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="256" y="36" width="58" height="42" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="285" y="55" text-anchor="middle" font-size="11" fill="#185FA5">仕入</text><text x="285" y="71" text-anchor="middle" font-size="10" fill="#185FA5">51,000</text></svg>',
+        body: '商品を仕入れる際にかかった<b>引取運賃（仕入諸掛）</b>は、商品代金に<span class="hl">含めて「仕入」</span>に計上します。<ul><li>例：商品50,000＋運賃1,000 → 仕入 51,000</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>返品・値引きは<b>逆の仕訳</b>で取り消す</li><li>仕入時の運賃などの<b>諸掛は仕入に含める</b></li></ul>' }
+    ],
+
+    /* ============ 第3章 3-2 現金と預金 ============ */
+    'boki3/3-2': [
+      { h: '現金過不足：合わない差を一時的に記録',
+        svg: '<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="20" y="42" width="84" height="40" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="62" y="60" text-anchor="middle" font-size="11" fill="#185FA5">帳簿の残高</text><text x="62" y="76" text-anchor="middle" font-size="10" fill="#185FA5">10,000</text>\
+<text x="116" y="66" text-anchor="middle" font-size="16" fill="#5f5e5a">≠</text>\
+<rect x="128" y="42" width="84" height="40" rx="9" fill="#F1EFE8" stroke="#888780"/><text x="170" y="60" text-anchor="middle" font-size="11" fill="#444441">実際の有高</text><text x="170" y="76" text-anchor="middle" font-size="10" fill="#444441">9,000</text>\
+<text x="224" y="66" text-anchor="middle" font-size="16" fill="#5f5e5a">→</text>\
+<rect x="240" y="42" width="74" height="40" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="277" y="60" text-anchor="middle" font-size="10.5" fill="#854F0B">現金過不足</text><text x="277" y="76" text-anchor="middle" font-size="10" fill="#854F0B">1,000</text></svg>',
+        body: '帳簿と実際の現金が合わないとき、差額を一時的に<b>現金過不足</b>で記録します。<ul><li>原因が分かれば正しい科目へ振り替え</li><li>決算まで不明なら <span class="hl">雑損</span>（不足）／<span class="hl">雑益</span>（過剰）へ</li></ul>' },
+      { h: '小口現金：少額の支払い用の財布',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="24" y="40" width="78" height="40" rx="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="63" y="58" text-anchor="middle" font-size="11" fill="#0F6E56">会計係</text><text x="63" y="73" text-anchor="middle" font-size="9.5" fill="#0F6E56">前渡し</text>\
+<line x1="104" y1="60" x2="138" y2="60" stroke="#888780" stroke-width="2"/><polygon points="140,60 130,55 130,65" fill="#888780"/>\
+<rect x="142" y="40" width="78" height="40" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="181" y="58" text-anchor="middle" font-size="11" fill="#185FA5">用度係</text><text x="181" y="73" text-anchor="middle" font-size="9.5" fill="#185FA5">小口現金</text>\
+<line x1="222" y1="60" x2="256" y2="60" stroke="#888780" stroke-width="2"/><polygon points="258,60 248,55 248,65" fill="#888780"/>\
+<rect x="260" y="40" width="54" height="40" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="287" y="63" text-anchor="middle" font-size="10.5" fill="#854F0B">経費支払</text></svg>',
+        body: '日々の少額支払い用に、一定額を担当者へ前渡しするしくみが<b>小口現金</b>です。<ul><li>使った分を後でまとめて補給（定額資金前渡法）</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>現金が合わない差は<b>現金過不足</b>で一時処理 → 決算で雑損／雑益</li><li><b>小口現金</b>は少額支払い用の前渡し金</li></ul>' }
+    ],
+
+    /* ============ 第3章 3-3 手形と貸し借り ============ */
+    'boki3/3-3': [
+      { h: '手形：受け取る人と支払う人',
+        svg: '<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="20" y="42" width="120" height="44" rx="9" fill="#E6F1FB" stroke="#185FA5"/>\
+<text x="80" y="62" text-anchor="middle" font-size="12" fill="#185FA5" font-weight="500">受取手形</text>\
+<text x="80" y="78" text-anchor="middle" font-size="10" fill="#185FA5">資産（もらう権利）</text>\
+<rect x="180" y="42" width="120" height="44" rx="9" fill="#FAEEDA" stroke="#BA7517"/>\
+<text x="240" y="62" text-anchor="middle" font-size="12" fill="#854F0B" font-weight="500">支払手形</text>\
+<text x="240" y="78" text-anchor="middle" font-size="10" fill="#854F0B">負債（支払う義務）</text>\
+<text x="160" y="36" text-anchor="middle" font-size="10" fill="#5f5e5a">同じ手形を…</text></svg>',
+        body: '約束手形は、受け取る側と支払う側で科目が変わります。<ul><li>受け取った側 → <b>受取手形</b>（資産）</li><li>振り出した側 → <b>支払手形</b>（負債）</li></ul>' },
+      { h: 'お金の貸し借り：貸付金と借入金',
+        svg: '<svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<rect x="18" y="40" width="120" height="44" rx="9" fill="#E6F1FB" stroke="#185FA5"/><text x="78" y="60" text-anchor="middle" font-size="12" fill="#185FA5" font-weight="500">貸付金</text><text x="78" y="76" text-anchor="middle" font-size="10" fill="#185FA5">貸した側＝資産</text>\
+<rect x="182" y="40" width="120" height="44" rx="9" fill="#FAEEDA" stroke="#BA7517"/><text x="242" y="60" text-anchor="middle" font-size="12" fill="#854F0B" font-weight="500">借入金</text><text x="242" y="76" text-anchor="middle" font-size="10" fill="#854F0B">借りた側＝負債</text>\
+<text x="160" y="34" text-anchor="middle" font-size="10" fill="#5f5e5a">利息も発生</text></svg>',
+        body: 'お金を貸すと<b>貸付金</b>（資産）、借りると<b>借入金</b>（負債）。<ul><li>利息は <span class="hl">受取利息</span>（収益）／<span class="hl">支払利息</span>（費用）で処理</li></ul>' },
+      { h: '「商品か否か」で科目が変わる',
+        svg: '<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="'+T+'">\
+<text x="160" y="20" text-anchor="middle" font-size="11" fill="#5f5e5a">代金の後払い・後受け</text>\
+<rect x="18" y="34" width="140" height="70" rx="9" fill="#E1F5EE" stroke="#0F6E56"/>\
+<text x="88" y="56" text-anchor="middle" font-size="11" fill="#0F6E56" font-weight="500">商品の取引</text>\
+<text x="88" y="76" text-anchor="middle" font-size="11" fill="#0F6E56">売掛金 / 買掛金</text>\
+<rect x="166" y="34" width="140" height="70" rx="9" fill="#EEEDFE" stroke="#534AB7"/>\
+<text x="236" y="56" text-anchor="middle" font-size="11" fill="#534AB7" font-weight="500">商品以外の取引</text>\
+<text x="236" y="76" text-anchor="middle" font-size="11" fill="#534AB7">未収入金 / 未払金</text></svg>',
+        body: '同じ「後払い・後受け」でも、<b>商品かどうか</b>で科目が分かれます。<ul><li>商品 → 売掛金・買掛金</li><li>備品など商品以外 → 未収入金・未払金</li></ul>' },
+      { h: 'まとめ', body: '<ul><li>手形は <b>受取手形（資産）</b>と<b>支払手形（負債）</b></li><li>貸し借りは <b>貸付金（資産）</b>と<b>借入金（負債）</b>＋利息</li><li>後払いは<b>商品なら売掛/買掛</b>、商品以外なら未収入金/未払金</li></ul>' }
     ]
 
   };

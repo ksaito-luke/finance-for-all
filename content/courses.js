@@ -35,7 +35,7 @@ window.COURSES = {
       ['todo', '3か月目 ・ 総仕上げ', '問題演習と弱点補強', '過去問演習と模試2回で本番形式に慣れ、合格ラインを安定させます。', ['総合演習 120問', 'check:第2・3回模試'], '']
     ],
     curriculum: [
-      { chapter: '第1章 — 簿記の基枚', units: [
+      { chapter: '第1章 — 簿記の基本', units: [
         { id: '1-1', title: '簿記とは何か', min: 12, status: 'done' },
         { id: '1-2', title: '資産・負債・純資産', min: 18, status: 'done' },
         { id: '1-3', title: '仕訳の基礎', min: 22, status: 'active' },
@@ -45,6 +45,11 @@ window.COURSES = {
         { id: '2-1', title: '試算表の作成', min: 25, status: 'locked' },
         { id: '2-2', title: '損益計算書', min: 19, status: 'locked' },
         { id: '2-3', title: '貸借対照表', min: 21, status: 'locked' }
+      ]},
+      { chapter: '第3章 — いろいろな取引', units: [
+        { id: '3-1', title: '商品売買の応用（返品・諸掛）', min: 20, status: 'locked' },
+        { id: '3-2', title: '現金と預金', min: 23, status: 'locked' },
+        { id: '3-3', title: '手形と貸し借り', min: 22, status: 'locked' }
       ]}
     ],
     quizzes: [
