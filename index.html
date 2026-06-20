@@ -166,15 +166,17 @@ body{padding:24px;font-family:var(--font-sans)}
 .video-cap{position:absolute;bottom:14px;left:16px;font-size:12px;color:#9FE1CB;z-index:1}
 /* ===== SLIDE VIEWER ===== */
 .slides{margin-bottom:1.5rem}
-.slide-stage{background:#04342C;border-radius:var(--border-radius-lg);aspect-ratio:16/9;padding:2rem 2.25rem;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
-.slide-stage::after{content:"";position:absolute;right:-50px;top:-50px;width:160px;height:160px;border-radius:50%;border:24px solid rgba(93,202,165,0.07)}
-.slide-kicker{font-size:12px;font-weight:500;color:#5DCAA5;letter-spacing:0.04em;margin-bottom:0.75rem;position:relative;z-index:1}
-.slide-h{font-size:22px;font-weight:500;color:#fff;line-height:1.4;margin-bottom:1rem;position:relative;z-index:1}
-.slide-body{font-size:15px;color:#E1F5EE;line-height:1.85;position:relative;z-index:1}
+.slide-stage{background:#ffffff;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);min-height:340px;padding:1.6rem 1.8rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.slide-kicker{font-size:12px;font-weight:500;color:#0F6E56;letter-spacing:0.04em;margin-bottom:0.5rem}
+.slide-h{font-size:20px;font-weight:500;color:#1a1a18;line-height:1.4;margin-bottom:0.9rem}
+.slide-fig{display:flex;align-items:center;justify-content:center;margin:0.1rem 0 1rem}
+.slide-fig svg{max-width:100%;height:auto;max-height:190px}
+.slide-body{font-size:14.5px;color:#44443f;line-height:1.85}
 .slide-body ul{margin:0;padding-left:1.2em}
-.slide-body li{margin-bottom:0.4rem}
-.slide-body .hl{color:#5DCAA5;font-weight:500}
-.slide-pageno{position:absolute;bottom:14px;right:18px;font-size:12px;color:#9FE1CB;z-index:1}
+.slide-body li{margin-bottom:0.45rem}
+.slide-body .hl{color:#0F6E56;font-weight:500}
+.slide-body b{font-weight:500;color:#1a1a18}
+.slide-pageno{position:absolute;bottom:12px;right:16px;font-size:12px;color:#9b9a92}
 .slide-bar{display:flex;align-items:center;gap:12px;margin-top:10px}
 .slide-dots{flex:1;display:flex;gap:5px}
 .slide-dot{height:4px;flex:1;background:var(--color-background-secondary);border-radius:2px;transition:background 0.2s}
@@ -587,6 +589,7 @@ body{padding:24px;font-family:var(--font-sans)}
         <div class="slide-stage">
           <div class="slide-kicker" id="slide-kicker">スライド 1</div>
           <div class="slide-h" id="slide-h"></div>
+          <div class="slide-fig" id="slide-fig"></div>
           <div class="slide-body" id="slide-body"></div>
           <div class="slide-pageno" id="slide-pageno">1 / 1</div>
         </div>
@@ -844,6 +847,7 @@ body{padding:24px;font-family:var(--font-sans)}
 <script src="content/config.js"></script>
 <script src="content/auth.js"></script>
 <script src="content/courses.js"></script>
+<script src="content/lessons.js"></script>
 <script src="content/questions.js"></script>
 <script src="content/generate.js"></script>
 <script>
@@ -963,7 +967,7 @@ function openUnit(key,unitId,title,chapter){
   const done=!!unitDone[key+'/'+unitId];
   const btn=document.getElementById('lesson-complete');
   if(btn){btn.disabled=done;btn.innerHTML=done?'<i class="ti ti-circle-check" aria-hidden="true"></i>完了済み':'<i class="ti ti-circle-check" aria-hidden="true"></i>この単元を完了にする';}
-  slideIdx=0;renderSlide();
+  loadDeck(key,unitId);
   showScreen('learn');
 }
 async function completeUnit(){
@@ -1187,28 +1191,28 @@ function fmtElapsed(sec){
   return m+'<small>分</small>'+(s?(' '+s+'<small>秒</small>'):'');
 }
 
-/* ===== SLIDE VIEWER (講義スライド) ===== */
-const LESSON_SLIDES=[
-  {h:'仕訳とは何か', body:'<ul><li>取引を<span class="hl">借方（左）</span>と<span class="hl">貸方（右）</span>に分けて記録する作業</li><li>すべての簿記の出発点となる最重要スキル</li></ul>'},
-  {h:'仕訳の大原則', body:'<ul><li><span class="hl">借方合計 ＝ 貸方合計</span> が常に成立する</li><li>必ず両方に同額を記入する（複式簿記）</li></ul>'},
-  {h:'勘定科目の5分類', body:'<ul><li><span class="hl">資産・負債・純資産</span>（貸借対照表）</li><li><span class="hl">収益・費用</span>（損益計算書）</li></ul>'},
-  {h:'例題で確認', body:'商品 ¥50,000 を現金で仕入れた。<br><br>→ 借方：<span class="hl">仕入</span> 50,000 ／ 貸方：<span class="hl">現金</span> 50,000'},
-  {h:'まとめ', body:'<ul><li>仕訳＝取引を借方・貸方に分解する</li><li>5分類のルールを覚えれば仕訳が組める</li><li>次は実際に問題を解いてみましょう</li></ul>'}
-];
-let slideIdx=0;
+/* ===== SLIDE VIEWER (講義スライド: 内容は content/lessons.js) ===== */
+const LESSON_FALLBACK=[{h:'スライド準備中', body:'この単元のスライドは現在準備中です。'}];
+let currentDeck=LESSON_FALLBACK,slideIdx=0;
+function loadDeck(courseId,unitId){
+  currentDeck=(window.LESSONS&&window.LESSONS[courseId+'/'+unitId])||LESSON_FALLBACK;
+  slideIdx=0;renderSlide();
+}
 function renderSlide(){
-  const s=LESSON_SLIDES[slideIdx];
+  const s=currentDeck[slideIdx]||{};
   document.getElementById('slide-kicker').textContent='スライド '+(slideIdx+1);
-  document.getElementById('slide-h').innerHTML=s.h;
-  document.getElementById('slide-body').innerHTML=s.body;
-  document.getElementById('slide-pageno').textContent=(slideIdx+1)+' / '+LESSON_SLIDES.length;
+  document.getElementById('slide-h').innerHTML=s.h||'';
+  const fig=document.getElementById('slide-fig');
+  fig.innerHTML=s.svg||'';fig.style.display=s.svg?'flex':'none';
+  document.getElementById('slide-body').innerHTML=s.body||'';
+  document.getElementById('slide-pageno').textContent=(slideIdx+1)+' / '+currentDeck.length;
   document.getElementById('slide-prev').disabled=(slideIdx===0);
-  document.getElementById('slide-next').disabled=(slideIdx===LESSON_SLIDES.length-1);
+  document.getElementById('slide-next').disabled=(slideIdx===currentDeck.length-1);
   const dots=document.getElementById('slide-dots');dots.innerHTML='';
-  LESSON_SLIDES.forEach((_,i)=>{const d=document.createElement('div');d.className='slide-dot'+(i<=slideIdx?' on':'');dots.appendChild(d);});
+  currentDeck.forEach((_,i)=>{const d=document.createElement('div');d.className='slide-dot'+(i<=slideIdx?' on':'');dots.appendChild(d);});
 }
 function slideMove(dir){
-  slideIdx=Math.max(0,Math.min(LESSON_SLIDES.length-1,slideIdx+dir));
+  slideIdx=Math.max(0,Math.min(currentDeck.length-1,slideIdx+dir));
   renderSlide();
 }
 renderSlide();
