@@ -820,6 +820,10 @@ body{padding:24px;font-family:var(--font-sans)}
       <div class="free-pill"><i class="ti ti-gift" aria-hidden="true"></i>すべてのコースが無料</div>
       <label class="field-label">お名前（新規登録時）</label>
       <input class="inp" id="login-name" type="text" placeholder="田中 太郎">
+      <label class="field-label">大学 / 企業名（新規登録時）</label>
+      <input class="inp" id="login-org" type="text" placeholder="〇〇大学 / 株式会社〇〇">
+      <label class="field-label">学部 / 所属部署名（新規登録時）</label>
+      <input class="inp" id="login-dept" type="text" placeholder="経済学部 / 経営企画部">
       <label class="field-label">メールアドレス</label>
       <input class="inp" id="login-email" type="email" placeholder="you@example.com">
       <label class="field-label">パスワード</label>
@@ -1163,12 +1167,14 @@ async function doLogin(){
 }
 async function doSignup(){
   const name=document.getElementById('login-name').value.trim();
+  const org=document.getElementById('login-org').value.trim();
+  const dept=document.getElementById('login-dept').value.trim();
   const email=document.getElementById('login-email').value.trim();
   const pw=document.getElementById('login-pw').value;
   if(!window.AUTH.enabled()){showScreen('mypage');return;}
   if(!email||!pw){loginMsg('メールとパスワードを入力してください',false);return;}
   loginMsg('登録中…',true);
-  const {error}=await window.AUTH.signUp(email,pw,name);
+  const {error}=await window.AUTH.signUp(email,pw,{name:name,organization:org,department:dept});
   if(error){loginMsg('登録に失敗しました：'+error.message,false);return;}
   loginMsg('確認メールを送信しました。メール内のリンクから認証してください。',true);
 }

@@ -30,9 +30,15 @@ window.AUTH = (function () {
   function emit() { listeners.forEach(function (fn) { try { fn(api.user); } catch (e) {} }); }
   function need() { if (!sb) { console.info('[auth] Supabase未設定のため保存をスキップしました'); return false; } return true; }
 
-  api.signUp = async function (email, pw, name) {
+  api.signUp = async function (email, pw, profile) {
     if (!need()) return { error: { message: 'Supabaseが未設定です（content/config.js）' } };
-    return await sb.auth.signUp({ email: email, password: pw, options: { data: { display_name: name || '' } } });
+    profile = profile || {};
+    var meta = {
+      display_name: profile.name || '',
+      organization: profile.organization || '',
+      department: profile.department || ''
+    };
+    return await sb.auth.signUp({ email: email, password: pw, options: { data: meta } });
   };
   api.signIn = async function (email, pw) {
     if (!need()) return { error: { message: 'Supabaseが未設定です（content/config.js）' } };

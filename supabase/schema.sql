@@ -8,8 +8,13 @@
 create table if not exists public.profiles (
   id           uuid primary key references auth.users(id) on delete cascade,
   display_name text,
+  organization text,                     -- 大学 / 企業名
+  department   text,                     -- 学部 / 所属部署名
   created_at   timestamptz not null default now()
 );
+-- 既存テーブルにも列を追加（後から実行しても安全）
+alter table public.profiles add column if not exists organization text;
+alter table public.profiles add column if not exists department text;
 
 alter table public.profiles enable row level security;
 
@@ -27,8 +32,13 @@ create policy "本人のプロフィールを作成" on public.profiles
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
-  insert into public.profiles (id, display_name)
-  values (new.id, coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)));
+  insert into public.profiles (id, display_name, organization, department)
+  values (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'display_name', split_part(new.email, '@', 1)),
+    new.raw_user_meta_data->>'organization',
+    new.raw_user_meta_data->>'department'
+  );
   return new;
 end;
 $$;
