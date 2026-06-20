@@ -70,6 +70,34 @@ window.AUTH = (function () {
     }, { onConflict: 'user_id,course_id,unit_id' });
   };
 
+  // --- 読み取り系 ---
+  api.getAttempts = async function () {
+    if (!need() || !api.user) return [];
+    var r = await sb.from('quiz_attempts').select('*').order('created_at', { ascending: true });
+    return r.data || [];
+  };
+  api.getStudyLog = async function () {
+    if (!need() || !api.user) return [];
+    var r = await sb.from('study_log').select('*');
+    return r.data || [];
+  };
+  api.getProfile = async function () {
+    if (!need() || !api.user) return null;
+    var r = await sb.from('profiles').select('*').eq('id', api.user.id).maybeSingle();
+    return r.data || null;
+  };
+
+  // その日の学習分数を加算（dateStr は 'YYYY-MM-DD'）
+  api.logStudy = async function (minutes, dateStr) {
+    if (!need() || !api.user) return;
+    var ex = await sb.from('study_log').select('minutes').eq('user_id', api.user.id).eq('log_date', dateStr).maybeSingle();
+    var total = (ex.data ? ex.data.minutes : 0) + minutes;
+    await sb.from('study_log').upsert({
+      user_id: api.user.id, log_date: dateStr, minutes: total,
+      intensity: (total >= 30 ? 'intense' : 'studied')
+    }, { onConflict: 'user_id,log_date' });
+  };
+
   (async function init() {
     var cfg = window.APP_CONFIG || {};
     if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) {

@@ -697,10 +697,10 @@ body{padding:24px;font-family:var(--font-sans)}
   </div>
   <div class="mp-body">
     <div class="mp-stats">
-      <div class="mp-stat"><div class="ic" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-flame" aria-hidden="true"></i></div><div class="v">12<small style="font-size:12px;font-weight:400">日</small></div><div class="l">連続学習</div></div>
-      <div class="mp-stat"><div class="ic" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-clock-hour-4" aria-hidden="true"></i></div><div class="v">14.2<small style="font-size:12px;font-weight:400">h</small></div><div class="l">総学習時間</div></div>
-      <div class="mp-stat"><div class="ic" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-checkbox" aria-hidden="true"></i></div><div class="v">11</div><div class="l">完了単元</div></div>
-      <div class="mp-stat"><div class="ic" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-target-arrow" aria-hidden="true"></i></div><div class="v">78<small style="font-size:12px;font-weight:400">%</small></div><div class="l">平均正解率</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-flame" aria-hidden="true"></i></div><div class="v"><span id="mp-streak">0</span><small style="font-size:12px;font-weight:400">日</small></div><div class="l">連続学習</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-clock-hour-4" aria-hidden="true"></i></div><div class="v"><span id="mp-hours">0</span><small style="font-size:12px;font-weight:400">h</small></div><div class="l">総学習時間</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-checkbox" aria-hidden="true"></i></div><div class="v" id="mp-solved">0</div><div class="l">解いた問題</div></div>
+      <div class="mp-stat"><div class="ic" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-target-arrow" aria-hidden="true"></i></div><div class="v"><span id="mp-rate">0</span><small style="font-size:12px;font-weight:400">%</small></div><div class="l">平均正答率</div></div>
     </div>
 
     <div class="mp-block-title">学習を再開</div>
@@ -733,7 +733,7 @@ body{padding:24px;font-family:var(--font-sans)}
   <div class="cal-wrap">
     <div class="streak-banner">
       <div class="sb-ic"><i class="ti ti-flame" aria-hidden="true"></i></div>
-      <div><h4>12日連続で学習中です</h4><p>この調子！合格まであと64日です。</p></div>
+      <div><h4 id="streak-banner-h">学習を始めましょう</h4><p id="streak-banner-p">問題を解くと学習記録がここに貯まります。</p></div>
     </div>
 
     <div class="planner">
@@ -1113,7 +1113,13 @@ function finishQuiz(){
   else{badge.style.background='#FAEEDA';badge.style.color='#854F0B';badge.innerHTML='<i class="ti ti-alert-triangle" aria-hidden="true"></i>もう一歩（合格ライン70%）';}
   const retry=document.getElementById('res-retry');
   retry.onclick=function(){if(quizRetry)quizRetry();};
-  if(window.AUTH&&window.AUTH.user){window.AUTH.saveQuizAttempt({bankId:quizBankId,title:quizTitle,score:rate,correct:correct,total:total,elapsed:elapsed});}
+  if(window.AUTH&&window.AUTH.user){
+    (async function(){
+      await window.AUTH.saveQuizAttempt({bankId:quizBankId,title:quizTitle,score:rate,correct:correct,total:total,elapsed:elapsed});
+      await window.AUTH.logStudy(Math.max(1,Math.round(elapsed/60)),appTodayStr());
+      refreshUserData();
+    })();
+  }
   showScreen('result');
 }
 function fmtElapsed(sec){
@@ -1200,7 +1206,55 @@ window.AUTH.onChange(function(user){
   const mpn=document.getElementById('mp-name');if(mpn)mpn.textContent=nm+' さん';
   const mpg=document.getElementById('mp-greet');if(mpg)mpg.textContent=user?'こんにちは。今日も学習を続けましょう。':'ログインすると学習の記録が保存されます。';
   const btn=document.getElementById('mp-auth-btn');if(btn)btn.textContent=user?'ログアウト':'ログイン';
+  if(user)refreshUserData(); else resetUserData();
 });
+
+/* ===== 実データ（マイページ・カレンダー） ===== */
+function appTodayStr(){
+  return TODAY.getFullYear()+'-'+String(TODAY.getMonth()+1).padStart(2,'0')+'-'+String(TODAY.getDate()).padStart(2,'0');
+}
+function setStat(id,val){const el=document.getElementById(id);if(el)el.textContent=val;}
+function resetUserData(){
+  setStat('mp-streak','0');setStat('mp-hours','0');setStat('mp-solved','0');setStat('mp-rate','0');
+}
+function computeStreak(logRows){
+  const has={};
+  logRows.forEach(r=>{has[r.log_date]=true;});
+  let streak=0;const d=new Date(TODAY);
+  for(let i=0;i<400;i++){
+    const key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    if(has[key]){streak++;d.setDate(d.getDate()-1);}else break;
+  }
+  return streak;
+}
+async function refreshUserData(){
+  if(!window.AUTH||!window.AUTH.user)return;
+  const attempts=await window.AUTH.getAttempts();
+  const logRows=await window.AUTH.getStudyLog();
+  /* マイページ統計 */
+  const solved=attempts.reduce((s,a)=>s+(a.total||0),0);
+  const rate=attempts.length?Math.round(attempts.reduce((s,a)=>s+(a.score||0),0)/attempts.length):0;
+  const totalMin=logRows.reduce((s,r)=>s+(r.minutes||0),0);
+  const streak=computeStreak(logRows);
+  setStat('mp-streak',streak);
+  setStat('mp-hours',(totalMin/60).toFixed(1));
+  setStat('mp-solved',solved.toLocaleString());
+  setStat('mp-rate',rate);
+  /* カレンダーの連続学習バナー */
+  const bh=document.getElementById('streak-banner-h'),bp=document.getElementById('streak-banner-p');
+  if(bh&&bp){
+    if(streak>0){bh.textContent=streak+'日連続で学習中です';bp.textContent='この調子！継続が合格への近道です。';}
+    else{bh.textContent='今日から学習を始めましょう';bp.textContent='問題を解くと学習記録がここに貯まります。';}
+  }
+  /* カレンダー：シード(デモ)を消して実ログを反映 */
+  for(const k in studyData){if(!studyData[k]||!studyData[k].planned)delete studyData[k];}
+  logRows.forEach(r=>{
+    const p=r.log_date.split('-');
+    const key=parseInt(p[0],10)+'-'+(parseInt(p[1],10)-1)+'-'+parseInt(p[2],10);
+    if(!studyData[key]||!studyData[key].planned)studyData[key]={type:r.intensity||'studied'};
+  });
+  renderCalendar();
+}
 let sec=7123;
 setInterval(()=>{sec--;if(sec<0)sec=0;const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;const el=document.getElementById('mock-timer');if(el)el.textContent=h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000);
 
