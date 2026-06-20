@@ -13,6 +13,6 @@
  *    service_role キーは絶対にここに置かないでください。
  */
 window.APP_CONFIG = {
-  SUPABASE_URL: '',        // 例: 'https://abcdefgh.supabase.co'
-  SUPABASE_ANON_KEY: ''    // 例: 'eyJhbGciOiJIniIsInR5cCI6...'
+  SUPABASE_URL: 'https://ptruuwldcikccfjxeotb.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0cnV1d2xkY2lrY2Nmanhlb3RiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4OTY5NTgsImV4cCI6MjA5NzQ3Mjk1OH0.Dok9Ufnuma439ruVq0MSDP4y07bylswr0X2MrDNNMyw'
 };
