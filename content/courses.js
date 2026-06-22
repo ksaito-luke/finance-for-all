@@ -35,36 +35,32 @@ window.COURSES = {
       ['todo', '3か月目 ・ 総仕上げ', '問題演習と弱点補強', '過去問演習と模試2回で本番形式に慣れ、合格ラインを安定させます。', ['総合演習 120問', 'check:第2・3回模試'], '']
     ],
     curriculum: [
-      { chapter: '第1章 — 簿記の基本', units: [
+      { chapter: '第1章 — 簿記の基本', quiz: 'boki3_ch1', units: [
         { id: '1-1', title: '簿記とは何か', min: 12, status: 'done' },
         { id: '1-2', title: '資産・負債・純資産', min: 18, status: 'done' },
         { id: '1-3', title: '仕訳の基礎', min: 22, status: 'active' },
         { id: '1-4', title: '勘定科目と転記', min: 20, status: 'locked' }
       ]},
-      { chapter: '第2章 — 決算と財務諸表', units: [
+      { chapter: '第2章 — 決算と財務諸表', quiz: 'boki3_ch2', units: [
         { id: '2-1', title: '試算表の作成', min: 25, status: 'locked' },
         { id: '2-2', title: '損益計算書', min: 19, status: 'locked' },
         { id: '2-3', title: '貸借対照表', min: 21, status: 'locked' }
       ]},
-      { chapter: '第3章 — いろいろな取引', units: [
+      { chapter: '第3章 — いろいろな取引', quiz: 'boki3_ch3', units: [
         { id: '3-1', title: '商品売買の応用（返品・諸掛）', min: 20, status: 'locked' },
         { id: '3-2', title: '現金と預金', min: 23, status: 'locked' },
         { id: '3-3', title: '手形と貸し借り', min: 22, status: 'locked' },
         { id: '3-4', title: '税金と給料の処理', min: 21, status: 'locked' }
       ]},
-      { chapter: '第4章 — 決算と伝票', units: [
+      { chapter: '第4章 — 決算と伝票', quiz: 'boki3_ch4', units: [
         { id: '4-1', title: '決算整理仕訳のまとめ', min: 26, status: 'locked' },
         { id: '4-2', title: '精算表の作り方', min: 24, status: 'locked' },
         { id: '4-3', title: '伝票会計（3伝票制）', min: 20, status: 'locked' }
       ]}
     ],
-    quizzes: [
-      { title: '第1章 確認問題', bank: 'boki3_ch1', status: 'done', score: 80 },
-      { title: '第2章 確認問題', bank: 'boki3_ch2', status: 'active' },
-      { title: '第3章 確認問題', bank: 'boki3_ch3', status: 'active' },
-      { title: '第4章 確認問題', bank: 'boki3_ch4', status: 'active' },
-      { title: '仕訳ドリル（ランダム20問）', bank: 'boki3_drill', status: 'active', pick: 20 },
-      { title: '仕訳ドリル（ランダム50問）', bank: 'boki3_drill', status: 'active', pick: 50 }
+    drills: [
+      { title: '仕訳ドリル（ランダム20問）', bank: 'boki3_drill', pick: 20 },
+      { title: '仕訳ドリル（ランダム50問）', bank: 'boki3_drill', pick: 50 }
     ],
     mocks: [
       { title: '第1回 模擬テスト', bank: 'boki3_mock1', min: 120, status: 'active' },
@@ -100,19 +96,15 @@ window.COURSES = {
       ['todo', '6か月目 ・ 総仕上げ', '本試験レベルの演習', '商工合わせた総合問題と模試で、合格ラインを安定させます。', ['総合演習 160問', 'check:第3回模試'], '']
     ],
     curriculum: [
-      { chapter: '第1章 — 商業簿記の応用', units: [
+      { chapter: '第1章 — 商業簿記の応用', quiz: 'boki2_ch1', units: [
         { id: '1-1', title: '株式会社の純資産', min: 20, status: 'active' },
         { id: '1-2', title: '税効果会計', min: 24, status: 'locked' },
         { id: '1-3', title: '商品売買の応用', min: 18, status: 'locked' }
       ]},
-      { chapter: '第2章 — 工業簿記の基礎', units: [
+      { chapter: '第2章 — 工業簿記の基礎', quiz: 'boki2_ch2', units: [
         { id: '2-1', title: '原価の分類', min: 22, status: 'locked' },
         { id: '2-2', title: '材料費・労務費・経費', min: 26, status: 'locked' }
       ]}
-    ],
-    quizzes: [
-      { title: '第1章 確認問題', bank: 'boki2_ch1', status: 'active' },
-      { title: '第2章 確認問題', bank: 'boki2_ch2', status: 'locked' }
     ],
     mocks: [
       { title: '第1回 模擬テスト', bank: 'boki2_mock1', min: 120, status: 'locked' },
@@ -148,19 +140,15 @@ window.COURSES = {
       ['todo', '4か月目 ・ 総仕上げ', '戦略との統合と演習', 'ケースで戦略と数字を結びつけ、模試で得点を固めます。', ['総合演習 120問', 'check:第3回模試'], '']
     ],
     curriculum: [
-      { chapter: '第1章 — FP&Aと管理会計', units: [
+      { chapter: '第1章 — FP&Aと管理会計', quiz: 'fpa_ch1', units: [
         { id: '1-1', title: 'FP&Aとは何か', min: 16, status: 'active' },
         { id: '1-2', title: '原価とCVP分析', min: 22, status: 'locked' },
         { id: '1-3', title: '予算管理の基礎', min: 20, status: 'locked' }
       ]},
-      { chapter: '第2章 — 企業財務の基礎', units: [
+      { chapter: '第2章 — 企業財務の基礎', quiz: 'fpa_ch2', units: [
         { id: '2-1', title: 'お金の時間価値', min: 21, status: 'locked' },
         { id: '2-2', title: '投資評価（NPV・IRR）', min: 24, status: 'locked' }
       ]}
-    ],
-    quizzes: [
-      { title: '第1章 確認問題', bank: 'fpa_ch1', status: 'active' },
-      { title: '第2章 確認問題', bank: 'fpa_ch2', status: 'locked' }
     ],
     mocks: [
       { title: '第1回 模擬テスト', bank: 'fpa_mock1', min: 120, status: 'locked' },
@@ -197,18 +185,14 @@ window.COURSES = {
       ['todo', '14〜15か月目 ・ 総仕上げ', '本番形式の演習', 'Part1・2の総合演習とエッセイ対策で得点を固めます。', ['総合演習 200問', 'check:総合模試'], '']
     ],
     curriculum: [
-      { chapter: 'Part1 — 財務計画・予算', units: [
+      { chapter: 'Part1 — 財務計画・予算', quiz: 'uscma_ch1', units: [
         { id: '1-1', title: '予算編成プロセス', min: 28, status: 'active' },
         { id: '1-2', title: '予測技法', min: 24, status: 'locked' }
       ]},
-      { chapter: 'Part1 — 業績管理', units: [
+      { chapter: 'Part1 — 業績管理', quiz: 'uscma_ch2', units: [
         { id: '2-1', title: '差異分析', min: 26, status: 'locked' },
         { id: '2-2', title: 'KPIとバランススコアカード', min: 22, status: 'locked' }
       ]}
-    ],
-    quizzes: [
-      { title: 'Part1 前半 確認問題', bank: 'uscma_ch1', status: 'active' },
-      { title: 'Part1 後半 確認問題', bank: 'uscma_ch2', status: 'locked' }
     ],
     mocks: [
       { title: 'Part1 模擬テスト', bank: 'uscma_mock1', min: 240, status: 'locked' },
@@ -244,18 +228,14 @@ window.COURSES = {
       ['todo', '6か月目 ・ 総仕上げ', '本番形式で得点最大化', '時間配分を意識した模試演習で、800点ラインを安定させます。', ['模試演習 2回', 'check:第3回模試'], '']
     ],
     curriculum: [
-      { chapter: '第1章 — 文法と語彙', units: [
+      { chapter: '第1章 — 文法と語彙', quiz: 'toeic_ch1', units: [
         { id: '1-1', title: '品詞と文型', min: 16, status: 'active' },
         { id: '1-2', title: 'ビジネス頻出語彙 1', min: 18, status: 'locked' }
       ]},
-      { chapter: '第2章 — リスニング基礎', units: [
+      { chapter: '第2章 — リスニング基礎', quiz: 'toeic_ch2', units: [
         { id: '2-1', title: 'Part1 写真描写', min: 14, status: 'locked' },
         { id: '2-2', title: 'Part2 応答問題', min: 17, status: 'locked' }
       ]}
-    ],
-    quizzes: [
-      { title: '第1章 確認問題', bank: 'toeic_ch1', status: 'active' },
-      { title: '第2章 確認問題', bank: 'toeic_ch2', status: 'locked' }
     ],
     mocks: [
       { title: '第1回 模擬テスト', bank: 'toeic_mock1', min: 120, status: 'locked' },
