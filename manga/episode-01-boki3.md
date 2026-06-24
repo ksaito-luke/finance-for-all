@@ -5,7 +5,7 @@
 プロンプトは STORY_BIBLE.md のキャラ固定文＋スタイル断片を必ず含める。
 
 共通スタイル（全コマ末尾に付与）：
-`clean modern Japanese manga style, black and white with screentone, single mint-green accent, expressive eyes, clear paneling, professional comic, empty speech bubbles (text added later)`
+`full color anime/manga illustration, clean lineart, soft cel shading, bright theme-park palette with turquoise and warm accents, expressive eyes, professional comic panel, empty speech bubbles (text added later)`
 
 ---
 
