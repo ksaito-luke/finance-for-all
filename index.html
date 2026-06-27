@@ -198,6 +198,28 @@ body{padding:24px;font-family:var(--font-sans)}
 .slide-btn:disabled{opacity:0.4;cursor:default}
 .lesson-content h3{font-size:16px;font-weight:500;margin-bottom:0.65rem;margin-top:1.5rem}
 .lesson-content h3:first-child{margin-top:0}
+/* ===== MANGA READER (webtoon) ===== */
+.manga-wrap{max-width:620px;margin:0 auto;padding:1rem 1rem 3rem}
+.mg-head{padding:0.25rem 0 1rem}
+.mg-ep-title{font-size:18px;font-weight:500;letter-spacing:-0.01em}
+.mg-ep-sub{font-size:12.5px;color:var(--color-text-secondary);margin-top:2px}
+.mg-panel{position:relative;width:100%;margin-bottom:10px;border:2px solid #1a1a18;border-radius:5px;overflow:hidden;background:#fff}
+.mg-panel img{display:block;width:100%;height:auto}
+.mg-ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#7a786f;background:repeating-linear-gradient(45deg,#f3f1ea,#f3f1ea 10px,#eceae1 10px,#eceae1 20px);font-size:12px;line-height:1.6;padding:14px}
+.mg-ph i{font-size:20px;display:block;margin-bottom:6px;opacity:0.6}
+.mg-bubble{position:absolute;max-width:64%;background:#fff;border:1.6px solid #1a1a18;border-radius:16px;padding:8px 12px;font-size:13px;line-height:1.55;color:#1a1a18;z-index:3;box-shadow:0 1px 2px rgba(0,0,0,0.12)}
+.mg-bubble.narration{border-radius:5px;background:rgba(255,255,255,0.94);font-size:12.5px}
+.mg-bubble.speech::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border-right:1.6px solid #1a1a18;border-bottom:1.6px solid #1a1a18;bottom:-7px;left:22px;transform:rotate(45deg)}
+.mg-p-tl{top:10px;left:10px}.mg-p-tr{top:10px;right:10px}.mg-p-bl{bottom:16px;left:10px}.mg-p-br{bottom:16px;right:10px}
+.mg-p-ct{left:50%;transform:translateX(-50%);bottom:14px;text-align:center}
+.mg-cap{background:rgba(26,26,24,0.82);color:#fff;font-size:12px;line-height:1.5;padding:7px 11px}
+.mg-end{text-align:center;color:var(--color-text-secondary);font-size:13px;padding:1.5rem 0 0.5rem}
+.story-card{background:#04342C;border-radius:var(--border-radius-lg);padding:0.9rem 1.1rem;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:0.75rem;transition:opacity 0.15s}
+.story-card:hover{opacity:0.93}
+.story-card .sc-ic{width:38px;height:38px;border-radius:10px;background:rgba(93,202,165,0.16);color:#5DCAA5;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.story-card .sc-body h4{font-size:13.5px;font-weight:500;color:#fff}
+.story-card .sc-body p{font-size:11.5px;color:#9FE1CB;margin-top:1px}
+.story-card .sc-arrow{margin-left:auto;color:#5DCAA5;font-size:18px}
 .lesson-content p{font-size:14px;line-height:1.85;color:var(--color-text-secondary);margin-bottom:0.65rem}
 .def-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem 1.15rem;margin:1.15rem 0;font-size:13.5px;line-height:1.75;border-left:3px solid #0F6E56}
 .ex-box{background:#E1F5EE;border-radius:var(--border-radius-lg);padding:1.15rem;margin:1.15rem 0}
@@ -997,6 +1019,20 @@ body{padding:24px;font-family:var(--font-sans)}
   </div>
 </div>
 
+<!-- 漫画リーダー（縦読み） -->
+<div id="screen-manga" class="screen">
+  <div class="manga-wrap">
+    <div class="breadcrumb" onclick="showScreen('course')" style="margin-bottom:0.5rem"><i class="ti ti-arrow-left" aria-hidden="true"></i>コースに戻る</div>
+    <div class="mg-head">
+      <div class="mg-ep-title" id="mg-ep-title">ストーリー</div>
+      <div class="mg-ep-sub" id="mg-ep-sub"></div>
+    </div>
+    <div id="manga-pages"></div>
+    <div class="mg-end" id="mg-end">― つづく ―</div>
+    <div style="text-align:center;margin-top:1.25rem"><button class="btn-primary" onclick="switchToLearn();showScreen('course')">学習を始める<i class="ti ti-arrow-right" aria-hidden="true"></i></button></div>
+  </div>
+</div>
+
 </div>
 </div>
 
@@ -1004,6 +1040,7 @@ body{padding:24px;font-family:var(--font-sans)}
 <script src="content/auth.js"></script>
 <script src="content/courses.js"></script>
 <script src="content/lessons.js"></script>
+<script src="content/manga.js"></script>
 <script src="content/questions.js"></script>
 <script src="content/generate.js"></script>
 <script>
@@ -1104,7 +1141,12 @@ function statusIcon(s){
 function renderLearnList(key,c){
   const el=document.getElementById('learn-list');if(!el)return;
   let activeAssigned=false;
+  let chNo=0;
   el.innerHTML=(c.curriculum||[]).map(ch=>{
+    chNo++;
+    const storyId=key+'/'+chNo;
+    const story=(window.MANGA&&window.MANGA[storyId]);
+    const storyCard=story?('<div class="story-card" onclick="openManga(\''+storyId+'\')"><div class="sc-ic"><i class="ti ti-book" aria-hidden="true"></i></div><div class="sc-body"><h4>'+story.title+'</h4><p>まんがで読む — '+ch.chapter.replace(/^第.+? — /,'')+'</p></div><i class="ti ti-chevron-right sc-arrow" aria-hidden="true"></i></div>'):'';
     const units=ch.units.map(u=>{
       const ukey=key+'/'+u.id;
       let st;
@@ -1116,7 +1158,7 @@ function renderLearnList(key,c){
       return '<div class="unit-item"'+onclick+'>'+statusIcon(st)+
         '<div class="unit-info"><h4>'+u.id+' '+u.title+'</h4><p>'+meta+'</p></div><i class="ti ti-chevron-right unit-arrow" aria-hidden="true"></i></div>';
     }).join('');
-    return '<div class="chapter-label">'+ch.chapter+'</div><div class="unit-list">'+units+'</div>';
+    return '<div class="chapter-label">'+ch.chapter+'</div>'+storyCard+'<div class="unit-list">'+units+'</div>';
   }).join('');
 }
 function courseProgress(key){
@@ -1157,6 +1199,27 @@ async function completeUnit(){
   if(window.AUTH&&window.AUTH.user){await window.AUTH.setUnitDone(currentUnit.courseId,currentUnit.unitId);}
   renderCourse(currentCourse);
   setTimeout(function(){showScreen('course');},400);
+}
+function openManga(storyId){
+  const story=(window.MANGA&&window.MANGA[storyId]);
+  if(!story)return;
+  document.getElementById('mg-ep-title').textContent=story.title||'ストーリー';
+  document.getElementById('mg-ep-sub').textContent=story.sub||'';
+  const wrap=document.getElementById('manga-pages');
+  wrap.innerHTML=(story.panels||[]).map(mangaPanelHTML).join('');
+  showScreen('manga');
+}
+function mangaPanelHTML(p){
+  const ratio=p.ratio||'4/3';
+  let inner;
+  if(p.img){ inner='<img src="'+p.img+'" alt="'+(p.alt||'')+'">'; }
+  else{ inner='<div class="mg-ph" style="aspect-ratio:'+ratio+'"><div><i class="ti ti-photo" aria-hidden="true"></i>'+(p.alt||'作画予定')+'<br><span style="opacity:0.7">（作画予定コマ）</span></div></div>'; }
+  const bubbles=(p.bubbles||[]).map(b=>{
+    const cls=(b.type==='narration')?'narration':'speech';
+    return '<div class="mg-bubble '+cls+' mg-p-'+(b.pos||'tr')+'">'+b.text+'</div>';
+  }).join('');
+  const cap=p.caption?('<div class="mg-cap">'+p.caption+'</div>'):'';
+  return '<div class="mg-panel">'+inner+bubbles+cap+'</div>';
 }
 function continueLearning(){
   const c=COURSES[currentCourse];
