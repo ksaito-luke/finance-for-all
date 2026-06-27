@@ -22,7 +22,7 @@ window.MANGA = {
     sub: 'バックヤード会計部 ・ 簿記3級 第1章',
     panels: [
       { img: 'manga/boki3/ep01/panel-01.png', alt: '開園初日の朝、ゲート前で気合いを入れる さくら', ratio: '9/16',
-        bubbles: [{ text: '配属先は会計部…でも、初日、頑張るぞー！', pos: 'tr', type: 'speech' }],
+        bubbles: [{ text: '配属先は会計部…でも、初日、頑張るぞー！', x: 40, y: 30, w: 175, tail: 'bl', type: 'speech' }],
         caption: 'ドリーム・ハーバー・パーク、開園初日。' },
       { img: null, alt: 'オフィスのモニターにチケット売上がぐんぐん増えていく。目を丸くする さくら', ratio: '4/3',
         bubbles: [{ text: 'お金がどんどん動いてる…！', pos: 'tl', type: 'speech' }] },

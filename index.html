@@ -16,6 +16,9 @@
 <!-- favicon（ロゴをSVGで埋め込み） -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%2304342C'/%3E%3Crect x='15' y='38' width='8' height='12' rx='4' fill='%235DCAA5'/%3E%3Crect x='28' y='30' width='8' height='20' rx='4' fill='%239FE1CB'/%3E%3Crect x='41' y='20' width='8' height='30' rx='4' fill='%23fff'/%3E%3Ccircle cx='19' cy='26' r='5' fill='%235DCAA5'/%3E%3Ccircle cx='32' cy='20' r='5' fill='%239FE1CB'/%3E%3Ccircle cx='45' cy='13' r='5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
@@ -207,11 +210,20 @@ body{padding:24px;font-family:var(--font-sans)}
 .mg-panel img{display:block;width:100%;height:auto}
 .mg-ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#7a786f;background:repeating-linear-gradient(45deg,#f3f1ea,#f3f1ea 10px,#eceae1 10px,#eceae1 20px);font-size:12px;line-height:1.6;padding:14px}
 .mg-ph i{font-size:20px;display:block;margin-bottom:6px;opacity:0.6}
-.mg-bubble{position:absolute;max-width:64%;background:#fff;border:1.6px solid #1a1a18;border-radius:16px;padding:8px 12px;font-size:13px;line-height:1.55;color:#1a1a18;z-index:3;box-shadow:0 1px 2px rgba(0,0,0,0.12)}
-.mg-bubble.narration{border-radius:5px;background:rgba(255,255,255,0.94);font-size:12.5px}
-.mg-bubble.speech::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border-right:1.6px solid #1a1a18;border-bottom:1.6px solid #1a1a18;bottom:-7px;left:22px;transform:rotate(45deg)}
-.mg-p-tl{top:10px;left:10px}.mg-p-tr{top:10px;right:10px}.mg-p-bl{bottom:16px;left:10px}.mg-p-br{bottom:16px;right:10px}
-.mg-p-ct{left:50%;transform:translateX(-50%);bottom:14px;text-align:center}
+.mg-bubble{position:absolute;max-width:60%;background:#fff;border:2.5px solid #1a1a18;border-radius:50%/42%;padding:11px 16px;font-size:14.5px;line-height:1.5;color:#1a1a18;z-index:3;box-shadow:2px 3px 0 rgba(0,0,0,0.13);font-family:'Zen Maru Gothic',var(--font-sans);font-weight:500;text-align:center;letter-spacing:0.01em}
+.mg-bubble.narration{border-radius:4px;border-width:1.5px;background:rgba(255,255,255,0.95);font-family:var(--font-sans);font-weight:400;font-size:12.5px;text-align:left;box-shadow:none;max-width:52%}
+/* しっぽ（話者方向） 二重の三角で枠線を再現 */
+.mg-bubble.speech::before,.mg-bubble.speech::after{content:"";position:absolute;width:0;height:0;border:13px solid transparent}
+.mg-bubble.tail-bl::before{bottom:-22px;left:24px;border-top-color:#1a1a18}
+.mg-bubble.tail-bl::after{bottom:-17px;left:27px;border-top-color:#fff}
+.mg-bubble.tail-br::before{bottom:-22px;right:24px;border-top-color:#1a1a18}
+.mg-bubble.tail-br::after{bottom:-17px;right:27px;border-top-color:#fff}
+.mg-bubble.tail-tl::before{top:-22px;left:24px;border-bottom-color:#1a1a18}
+.mg-bubble.tail-tl::after{top:-17px;left:27px;border-bottom-color:#fff}
+.mg-bubble.tail-tr::before{top:-22px;right:24px;border-bottom-color:#1a1a18}
+.mg-bubble.tail-tr::after{top:-17px;right:27px;border-bottom-color:#fff}
+.mg-p-tl{top:6%;left:6%}.mg-p-tr{top:6%;right:6%}.mg-p-bl{bottom:10%;left:6%}.mg-p-br{bottom:10%;right:6%}
+.mg-p-ct{left:50%;transform:translateX(-50%);bottom:8%}
 .mg-cap{background:rgba(26,26,24,0.82);color:#fff;font-size:12px;line-height:1.5;padding:7px 11px}
 .mg-end{text-align:center;color:var(--color-text-secondary);font-size:13px;padding:1.5rem 0 0.5rem}
 .story-card{background:#04342C;border-radius:var(--border-radius-lg);padding:0.9rem 1.1rem;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:0.75rem;transition:opacity 0.15s}
@@ -1216,7 +1228,13 @@ function mangaPanelHTML(p){
   else{ inner='<div class="mg-ph" style="aspect-ratio:'+ratio+'"><div><i class="ti ti-photo" aria-hidden="true"></i>'+(p.alt||'作画予定')+'<br><span style="opacity:0.7">（作画予定コマ）</span></div></div>'; }
   const bubbles=(p.bubbles||[]).map(b=>{
     const cls=(b.type==='narration')?'narration':'speech';
-    return '<div class="mg-bubble '+cls+' mg-p-'+(b.pos||'tr')+'">'+b.text+'</div>';
+    let style='';
+    if(b.x!=null)style+='left:'+b.x+'%;';
+    if(b.y!=null)style+='top:'+b.y+'%;';
+    if(b.w!=null)style+='max-width:'+b.w+'px;';
+    const tail=(cls==='speech'&&b.tail)?(' tail-'+b.tail):'';
+    const posClass=(b.x==null&&b.y==null)?(' mg-p-'+(b.pos||'tr')):'';
+    return '<div class="mg-bubble '+cls+posClass+tail+'" style="'+style+'">'+b.text+'</div>';
   }).join('');
   const cap=p.caption?('<div class="mg-cap">'+p.caption+'</div>'):'';
   return '<div class="mg-panel">'+inner+bubbles+cap+'</div>';
