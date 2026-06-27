@@ -21,7 +21,7 @@ window.MANGA = {
     title: '第1話「はじめての仕訳」',
     sub: 'バックヤード会計部 ・ 簿記3級 第1章',
     panels: [
-      { img: null, alt: '開園初日の朝、ゲート前で気合いを入れる さくら。背景で楽が陽気に呼び込み', ratio: '16/9',
+      { img: 'manga/boki3/ep01/panel-01.png', alt: '開園初日の朝、ゲート前で気合いを入れる さくら', ratio: '9/16',
         bubbles: [{ text: '配属先は会計部…でも、初日、頑張るぞー！', pos: 'tr', type: 'speech' }],
         caption: 'ドリーム・ハーバー・パーク、開園初日。' },
       { img: null, alt: 'オフィスのモニターにチケット売上がぐんぐん増えていく。目を丸くする さくら', ratio: '4/3',
