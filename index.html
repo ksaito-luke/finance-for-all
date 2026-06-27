@@ -210,18 +210,28 @@ body{padding:24px;font-family:var(--font-sans)}
 .mg-panel img{display:block;width:100%;height:auto}
 .mg-ph{display:flex;align-items:center;justify-content:center;text-align:center;color:#7a786f;background:repeating-linear-gradient(45deg,#f3f1ea,#f3f1ea 10px,#eceae1 10px,#eceae1 20px);font-size:12px;line-height:1.6;padding:14px}
 .mg-ph i{font-size:20px;display:block;margin-bottom:6px;opacity:0.6}
-.mg-bubble{position:absolute;max-width:60%;background:#fff;border:2.5px solid #1a1a18;border-radius:50%/42%;padding:11px 16px;font-size:14.5px;line-height:1.5;color:#1a1a18;z-index:3;box-shadow:2px 3px 0 rgba(0,0,0,0.13);font-family:'Zen Maru Gothic',var(--font-sans);font-weight:500;text-align:center;letter-spacing:0.01em}
-.mg-bubble.narration{border-radius:4px;border-width:1.5px;background:rgba(255,255,255,0.95);font-family:var(--font-sans);font-weight:400;font-size:12.5px;text-align:left;box-shadow:none;max-width:52%}
-/* しっぽ（話者方向） 二重の三角で枠線を再現 */
-.mg-bubble.speech::before,.mg-bubble.speech::after{content:"";position:absolute;width:0;height:0;border:13px solid transparent}
-.mg-bubble.tail-bl::before{bottom:-22px;left:24px;border-top-color:#1a1a18}
-.mg-bubble.tail-bl::after{bottom:-17px;left:27px;border-top-color:#fff}
-.mg-bubble.tail-br::before{bottom:-22px;right:24px;border-top-color:#1a1a18}
-.mg-bubble.tail-br::after{bottom:-17px;right:27px;border-top-color:#fff}
-.mg-bubble.tail-tl::before{top:-22px;left:24px;border-bottom-color:#1a1a18}
-.mg-bubble.tail-tl::after{top:-17px;left:27px;border-bottom-color:#fff}
-.mg-bubble.tail-tr::before{top:-22px;right:24px;border-bottom-color:#1a1a18}
-.mg-bubble.tail-tr::after{top:-17px;right:27px;border-bottom-color:#fff}
+.mg-bubble{position:absolute;z-index:3;color:#1a1a18;font-family:'Zen Maru Gothic',var(--font-sans);font-weight:500;line-height:1.45;letter-spacing:0.01em}
+/* 通常のセリフ（楕円＋しっぽ） */
+.mg-bubble.speech{max-width:58%;background:#fff;border:2.5px solid #1a1a18;border-radius:50%/42%;padding:11px 16px;font-size:14.5px;text-align:center;box-shadow:2px 3px 0 rgba(0,0,0,0.13)}
+/* ナレーション（角ボックス） */
+.mg-bubble.narration{max-width:52%;background:rgba(255,255,255,0.96);border:1.5px solid #1a1a18;border-radius:3px;padding:8px 11px;font-size:12.5px;font-family:var(--font-sans);font-weight:400;text-align:left}
+/* 思考（やわらかい雲形） */
+.mg-bubble.thought{max-width:54%;background:#fff;border:2px solid #1a1a18;border-radius:46% 54% 52% 48%/52% 46% 54% 48%;padding:11px 16px;font-size:14px;text-align:center;box-shadow:2px 3px 0 rgba(0,0,0,0.1)}
+/* 叫び・強い感情（ギザギザのフキダシ） */
+.mg-bubble.shout{max-width:60%;background:#1a1a18;padding:3px;clip-path:polygon(50% 0,60% 16%,75% 7%,71% 25%,92% 24%,78% 40%,100% 50%,80% 58%,93% 78%,68% 70%,63% 96%,50% 76%,37% 96%,32% 70%,7% 78%,20% 58%,0 50%,22% 40%,8% 24%,29% 25%,25% 7%,40% 16%)}
+.mg-bubble.shout .shout-in{display:block;background:#fff;clip-path:polygon(50% 0,60% 16%,75% 7%,71% 25%,92% 24%,78% 40%,100% 50%,80% 58%,93% 78%,68% 70%,63% 96%,50% 76%,37% 96%,32% 70%,7% 78%,20% 58%,0 50%,22% 40%,8% 24%,29% 25%,25% 7%,40% 16%);padding:20px 24px;font-weight:700;font-size:16px;text-align:center;color:#1a1a18}
+/* 縦書き（ナレーション/セリフ） */
+.mg-bubble.vertical{writing-mode:vertical-rl;text-orientation:upright;text-align:start;max-height:74%}
+/* しっぽ（speechのみ） 二重三角で枠線を再現 */
+.mg-bubble.speech.tail-bl::before,.mg-bubble.speech.tail-br::before,.mg-bubble.speech.tail-tl::before,.mg-bubble.speech.tail-tr::before,.mg-bubble.speech.tail-bl::after,.mg-bubble.speech.tail-br::after,.mg-bubble.speech.tail-tl::after,.mg-bubble.speech.tail-tr::after{content:"";position:absolute;width:0;height:0;border:13px solid transparent}
+.mg-bubble.tail-bl::before{bottom:-22px;left:22px;border-top-color:#1a1a18}
+.mg-bubble.tail-bl::after{bottom:-17px;left:25px;border-top-color:#fff}
+.mg-bubble.tail-br::before{bottom:-22px;right:22px;border-top-color:#1a1a18}
+.mg-bubble.tail-br::after{bottom:-17px;right:25px;border-top-color:#fff}
+.mg-bubble.tail-tl::before{top:-22px;left:22px;border-bottom-color:#1a1a18}
+.mg-bubble.tail-tl::after{top:-17px;left:25px;border-bottom-color:#fff}
+.mg-bubble.tail-tr::before{top:-22px;right:22px;border-bottom-color:#1a1a18}
+.mg-bubble.tail-tr::after{top:-17px;right:25px;border-bottom-color:#fff}
 .mg-p-tl{top:6%;left:6%}.mg-p-tr{top:6%;right:6%}.mg-p-bl{bottom:10%;left:6%}.mg-p-br{bottom:10%;right:6%}
 .mg-p-ct{left:50%;transform:translateX(-50%);bottom:8%}
 .mg-cap{background:rgba(26,26,24,0.82);color:#fff;font-size:12px;line-height:1.5;padding:7px 11px}
@@ -1227,14 +1237,16 @@ function mangaPanelHTML(p){
   if(p.img){ inner='<img src="'+p.img+'" alt="'+(p.alt||'')+'">'; }
   else{ inner='<div class="mg-ph" style="aspect-ratio:'+ratio+'"><div><i class="ti ti-photo" aria-hidden="true"></i>'+(p.alt||'作画予定')+'<br><span style="opacity:0.7">（作画予定コマ）</span></div></div>'; }
   const bubbles=(p.bubbles||[]).map(b=>{
-    const cls=(b.type==='narration')?'narration':'speech';
+    const type=b.type||'speech';
+    let cls=type+(b.vertical?' vertical':'');
     let style='';
     if(b.x!=null)style+='left:'+b.x+'%;';
     if(b.y!=null)style+='top:'+b.y+'%;';
-    if(b.w!=null)style+='max-width:'+b.w+'px;';
-    const tail=(cls==='speech'&&b.tail)?(' tail-'+b.tail):'';
+    if(b.w!=null&&!b.vertical)style+='max-width:'+b.w+'px;';
+    const tail=(type==='speech'&&b.tail)?(' tail-'+b.tail):'';
     const posClass=(b.x==null&&b.y==null)?(' mg-p-'+(b.pos||'tr')):'';
-    return '<div class="mg-bubble '+cls+posClass+tail+'" style="'+style+'">'+b.text+'</div>';
+    const inner=(type==='shout')?('<span class="shout-in">'+b.text+'</span>'):b.text;
+    return '<div class="mg-bubble '+cls+posClass+tail+'" style="'+style+'">'+inner+'</div>';
   }).join('');
   const cap=p.caption?('<div class="mg-cap">'+p.caption+'</div>'):'';
   return '<div class="mg-panel">'+inner+bubbles+cap+'</div>';
