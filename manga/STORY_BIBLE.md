@@ -1,81 +1,88 @@
-# Finance for All 漫画 — ストーリー設定書（Story Bible）
+# Finance for All 公式漫画 ストーリーバイブル（作品版）
 
-学習の動機づけを物語で支える公式漫画の「正典」。AI作画（ComfyUI＋キャラLoRA / NijiJourney等）で
-**キャラの一貫性**を保つための基準。新しい話を描くときは必ずこの設定に従う。
+ジャンル：**お仕事 × ほのぼの成長 × コメディ × 恋愛（ほんのり）**
+読者：簿記をこれから学ぶ学生・若手社会人。「自分ごと」として共感し、続きが読みたくなる物語に。
 
-> 絵柄の到達目標：**フルカラーのアニメ／漫画イラスト**（Gensparkで作成した見本準拠）。
-> 縦スクロール（ウェブトゥーン）でも見開きでも組めるよう構図する。
+> 本作は「簿記を説明する漫画」ではなく、**新卒の女性が一人のビジネスパーソンとして成長していく物語**。
+> 各話は〈人生ドラマ(A面)〉と〈仕事の問題を学びで解決(B面)〉の二層で進み、学びは“説明”ではなく**物語の解決手段**として登場する。
 
-## 作品情報
-- タイトル：**「ようこそ！バックヤード会計部」〜テーマパークで学ぶ簿記3級〜**（コースごとにサブタイトル可変）
-- 舞台：テーマパーク **「ドリーム・ハーバー・パーク」** の運営会社、その裏方 **「バックヤード会計部」**。
-- 主題：新卒の主人公が運営の現場を通して **簿記 → 英語 → FP&A → USCMA** と数字の力を身につける成長譚。
+---
 
-## 主要キャラクター（AI作画用・固定設定）
-作画時は下の英語ディスクリプタをそのままコピーして一貫性を保つ。**フルカラー**前提。
+## ログライン
+数字が大の苦手な新卒・月島さくらが、テーマパークの裏方「バックヤード会計部」に配属され、
+仕事のトラブル・先輩への淡い恋・親友や家族との日々を通して、
+簿記からファイナンスまでを身につけ、“数字で人を笑顔にできる人”へ成長していく。
 
-### 月島さくら（つきしま さくら）— 主人公 / 22歳 / 新卒
-- 性格：明るく前向き、数字は苦手だが負けず嫌い。読者の分身（つまずき役）。
-- 固定ビジュアル：
-  `Sakura: 22yo Japanese woman, fluffy wavy chin-length bob in warm orange-brown hair, large amber eyes, small slim build, turquoise theme-park staff jacket with a small star emblem over a white T-shirt, staff name tag, very expressive cheerful face, anime style`
+## 舞台
+テーマパーク **「ドリーム・ハーバー・パーク」** 運営会社、その裏方 **「バックヤード会計部」**。
+華やかな表舞台（アトラクション・ショー）と、それを数字で支える裏方の対比が舞台装置。
 
-### 財前蓮（ざいぜん れん）— 先輩 / 28歳 / 会計部の指導役
-- 性格：冷静で面倒見が良い。比喩がうまく、やさしく核心を言語化する（解説役）。
-- 固定ビジュアル：
-  `Ren: 28yo Japanese man, neat short black hair, thin silver-framed glasses, light blue dress shirt, calm gentle smile, tall and slim, anime style`
+## 主要キャラクター
+（※カッコ内英語は AI作画用の固定ビジュアル。毎回コピーして一貫性を保つ）
 
-### 日比野楽（ひびの がく）— ムードメーカー先輩 / 25歳 / ショー運営
-- 性格：陽気で勢い担当。現場目線で物語にテンポを与える。
-- 固定ビジュアル：
-  `Gaku: 25yo Japanese man, spiky brown hair, energetic big grin, colorful patchwork theme-park crew uniform (red, yellow, blue, green panels), lively dynamic pose, anime style`
+### 月島さくら（つきしま さくら）／主人公・22歳・新卒
+- 明るく前向き、人なつっこい。数字は苦手で逃げ腰だが、根は負けず嫌いで情に厚い。
+- 夢は「人を笑顔にする仕事」。本当はショー運営志望だったが会計部に配属され戸惑う所から始まる。
+- `Sakura: 22yo Japanese woman, fluffy wavy chin-length bob in warm orange-brown hair, large amber eyes, slim petite build, turquoise theme-park staff jacket with a small star emblem over a white T-shirt, name tag, very expressive cheerful face, anime style`
 
-### ケイタ — 電卓のマスコット
-- 役割：難しい用語をひと言で言い換える“相棒”。コメディ＆補足役。
-- 固定ビジュアル：
-  `Keita: a cute mascot shaped like a walking calculator, rounded body with number buttons on the belly, simple smiling face, tiny theme-park staff cap, chibi proportions, anime style`
+### 財前蓮（ざいぜん れん）／先輩・28歳・会計部のエース 〈恋愛軸〉
+- 冷静・聡明・面倒見が良い。難しい数字を一言で言語化する。少し天然で甘いものに弱い。
+- さくらの憧れ→淡い恋の相手。距離が少しずつ縮むスロー恋愛。本人は鈍感。
+- `Ren: 28yo Japanese man, neat short black hair, thin silver-framed glasses, light blue dress shirt, calm gentle smile, tall slim, anime style`
 
-### 鶴見部長（つるみ）— バックヤード会計部 部長 / 50歳
-- 役割：FP&Aや経営判断の場面で登場する頼れる上司。
-- 固定ビジュアル：
-  `Bucho Tsurumi: 50yo Japanese man, broad build, short gray hair, mustache, rolled-up white shirt sleeves, confident expression, anime style`
+### 日比野楽（ひびの がく）／同期・25歳・ショー運営 〈コメディ＆恋の三角〉
+- 陽気で勢い担当。さくらの良き相棒でツッコまれ役。実はさくらが気になっている（が空回り）。
+- 現場目線で物語にテンポと笑いを与える。
+- `Gaku: 25yo Japanese man, spiky brown hair, energetic big grin, colorful patchwork theme-park crew uniform (red yellow blue green), lively dynamic pose, anime style`
 
-## 共通アートスタイル（プロンプト断片）
-全コマの末尾に付与：
-`full color anime/manga illustration, clean lineart, soft cel shading, bright theme-park palette with turquoise and warm accents, expressive eyes, professional comic panel, high detail`
-- **セリフは画像に描かせない**（文字化け回避）。生成時は**空の吹き出し or 余白**にして、文字は後工程（Web/Pillow）で乗せる＝修正・多言語化が容易。
+### ケイタ／電卓のマスコット・相棒 〈コメディ＆かみ砕き解説〉
+- さくらにだけ見える（？）電卓の妖精。難語を「つまり〇〇ってこと！」と茶化しつつ要点を出す。ボケ役。
+- `Keita: a cute mascot shaped like a walking calculator, rounded body with number buttons on the belly, simple smiling face, tiny theme-park staff cap, chibi, anime style`
 
-## キャラLoRA用 三面図（ターンアラウンド）プロンプト
-LoRA学習データを作るため、各キャラで「同一衣装・無地背景・全身」の参照画像を量産→選別する。
+### 鶴見部長（つるみ）／会計部 部長・50歳
+- 豪快だが鋭い。要所で背中を押す。FP&A・経営判断回のキーパーソン。
+- `Bucho Tsurumi: 50yo Japanese man, broad build, short gray hair, mustache, rolled-up white shirt sleeves, confident, anime style`
 
-### さくら（例。他キャラも同形式で）
-1. 正面：`Sakura [固定ビジュアル], full body, T-pose neutral, front view, plain light gray background, character reference sheet, full color, clean lineart`
-2. 横：`...full body, side profile view, plain light gray background...`
-3. 後ろ：`...full body, back view, plain light gray background...`
-4. 表情集：`Sakura [固定ビジュアル], expression sheet, happy / surprised / troubled / determined, plain background, full color`
-- これらを10〜20枚生成→破綻のない良品を選別→LoRA学習に投入（手順は COMFYUI_SETUP.md）。
-- 同様に 蓮・楽・ケイタ・部長 のシートも作る（最低でも さくら＋蓮＋楽 の3体）。
+### 高梨ゆい（たかなし ゆい）／親友・22歳・別業界（広告代理店） 〈日常・本音〉
+- 大学からの親友。歯に衣着せぬ性格でさくらの恋を茶化し、悩みを受け止める。夜の電話・週末カフェ回の相手。
+- `Yui: 22yo Japanese woman, long straight black hair, stylish casual office wear, confident teasing smile, anime style`
 
-## 候補モデル（チェックポイント）※商用ライセンス要確認
-フルカラー・アニメ漫画系で評価が高い系統（Civitai / Hugging Face で入手）：
-- **Illustrious-XL 系**（高品質・キャラ表現に強い）
-- **Pony Diffusion XL 系**（指示追従・ポーズに強い）
-- **Animagine XL 4.0**（アニメ全般・安定）
-- **NoobAI-XL 系**（最新・表現幅）
-補助：IP-Adapter（顔寄せ）、ControlNet（ポーズ/構図）、漫画線画用LoRA。
-> いずれも**ライセンス（商用可否・クレジット要否）を必ず確認**して採用する。
+### 月島美和子（みわこ）／さくらの母・実家 〈家庭・原点〉
+- 田舎の実家から時々電話。素朴な言葉でさくらを支える。帰省回で“働く意味”を思い出させる。
+- `Miwako: warm 50s Japanese mother, short bob with a few gray strands, apron, gentle smile, anime style`
 
-## エピソード構成（学習アークと対応）
-| 話 | 対応コース | 舞台/きっかけ | 学ぶ核心 |
+## トーン & 描き方の指針
+- 基本は**あたたかく前向き**。困りごと→ケイタのボケ→蓮の一言で解決、の小気味よいリズム。
+- 恋愛は**ほんのり・じれったい**程度（赤面・すれ違い・ドキッ）。過度にしない。
+- 各話に**感情の山**を1つ（悔しさ・嬉しさ・しみじみ）。簿記はその感情の“理由”に効かせる。
+- 下ネタ・差別・過度な煽りは無し。誰もが安心して読める。
+
+## エピソードの黄金パターン（毎話これで作る）
+1. **つかみ**：さくらの日常・感情（家庭/友人/恋/仕事の悩み）
+2. **事件**：仕事でトラブル発生（数字が合わない・損しそう 等）
+3. **空回り**：さくらが我流で失敗、ケイタがボケる
+4. **学び**：蓮（or 部長）が核心を一言→その回の簿記論点で解決
+5. **実演**：具体例で「できた！」（ここが学習の山場）
+6. **余韻**：私生活に戻り、小さな成長や恋の進展で引く → 次回へ
+
+## シーズン構成（成長と学びの対応）
+| 章 | 対応資格 | 成長テーマ | 物語の軸（例） |
 |---|---|---|---|
-| 第1話 | 簿記3級 | バックヤード会計部に臨時配属／チケット売上の記録 | 仕訳（借方・貸方） |
-| 第2話 | 簿記2級 | グッズショップの原価・在庫 | 工業簿記・原価計算 |
-| 第3話 | FP&A検定 | 新アトラクションへの投資判断 | 予測・計画・投資評価 |
-| 第4話 | TOEIC800 | 海外ゲスト・海外パーク連携 | ビジネス英語の壁 |
-| 第5話 | USCMA | 経営会議で意思決定を任される | グローバル財務・管理会計の統合 |
+| 第1部 | 簿記3級 | 「数字こわい」を越える | 配属の戸惑い／蓮との出会い／初めての仕訳 |
+| 第2部 | 簿記2級 | 現場の数字を読む | グッズ・原価／同期との競争と友情 |
+| 第3部 | FP&A検定 | 数字で未来を描く | 新アトラクション投資／部長に任される |
+| 第4部 | TOEIC800 | 世界とつながる | 海外ゲスト・海外パーク連携／語学の壁 |
+| 第5部 | USCMA | 経営を動かす | 経営会議で意思決定／集大成 |
 
-各話はさらに「章の冒頭ミニエピソード」に分割し、`content/lessons.js` の各章先頭に挿入する。
+各部はさらに「章の冒頭ミニエピソード（数ページ）」に分割し、学習章と対応させる。
+
+## 制作方針（②の方針＝Gensparkでフルページ生成）
+- **作画：Genspark の AI Image Agent（無料）で“フルページ”を生成**（コマ割り・吹き出し・セリフ込み）。
+- **脚本：本バイブルに沿って、ページ単位のネーム（`manga/episode-XX.md`）を用意**（コマ構成・セリフ・ナレーション・SFX・感情・画面指示）。
+- **一貫性**：同じ会話＋キャラ確定画像を参照。1ページ4〜6コマで安定。
+- **品質管理**：生成後に文字校正（誤字・会計用語）→誤りは再生成。
+- **サイト表示**：完成ページ画像を縦読みリーダーで表示（後乗せ吹き出しは任意の補助として残す）。
 
 ## ルール
-- 著作権：既存作品の絵柄・キャラの模倣やトレースは禁止。本設定のオリジナルキャラのみ。実在テーマパークの固有要素は使わない。
-- 表現：誰もが安心して読めるトーン。差別・過度な煽りは避ける。
-- 学習との整合：物語の山場＝その章で学ぶ論点、になるよう設計する。
+- 既存作品の絵柄・キャラ・実在テーマパークの固有要素の模倣は禁止。完全オリジナル。
+- 学習との整合：物語の山場＝その章の学習論点。会計処理は正確に。
