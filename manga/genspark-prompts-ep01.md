@@ -1,64 +1,55 @@
-# Genspark「AI Image Agent」用プロンプト — 第1話（簿記3級 第1章）
+# Genspark コピペ用プロンプト集 — 第1章「わたしの居場所」全12ページ
 
-方針：**1コマ＝1枚絵・文字なし**で生成（クレジット無制限のImage Agentを使う）。
-コマ割りと吹き出しはサイトの漫画リーダーが担当するので、**セリフは描かせない**。
+使い方：Gensparkの**同じ会話**（さくらを生成した会話）で、下の各ページのテキストを**1つずつ貼って生成**。
+1ページ完成したら次を貼る（前が終わってから次へ）。できたら**1→12の順でダウンロード**。
+※ P1・P2はすでに生成済み。必要なら貼り直しでOK。文字化けが出たコマがあれば、そのページだけ再生成。
 
-使い方：
-1. 下の「キャラ参照」を先に生成し、**気に入った1枚をキャラ確定画像として保存**。以後は毎回それを参照添付。
-2. 各コマのプロンプトを生成 → 画像を `manga/boki3/ep01/panel-01.webp …` で保存。
-3. `content/manga.js` の該当パネルの `img: null` を保存先パスに置き換える（セリフはそのままオーバーレイ表示）。
-
-共通の語尾（毎回つける）：
-`full color anime/manga illustration, clean lineart, soft cel shading, bright theme-park palette, expressive eyes, NO TEXT, no speech bubble text, leave empty space for a speech bubble, single panel`
+各プロンプトは1行（改行で送信されるため）。冒頭の【共通】は毎回含めています。
 
 ---
 
-## キャラ参照（最初に1枚ずつ確定させる）
-- **さくら**：`character reference sheet, a cheerful 22yo Japanese woman, fluffy wavy chin-length bob in warm orange-brown hair, large amber eyes, slim small build, turquoise theme-park staff jacket with a small star emblem over a white T-shirt, staff name tag, front view, plain background, full color anime style`
-- **蓮（先輩）**：`character reference, calm 28yo Japanese man, neat short black hair, thin silver-framed glasses, light blue dress shirt, gentle smile, tall slim, plain background, full color anime style`
-- **楽（ムードメーカー）**：`character reference, energetic 25yo Japanese man, spiky brown hair, big grin, colorful patchwork theme-park crew uniform (red yellow blue green), dynamic pose, plain background, full color anime style`
-- **ケイタ（電卓マスコット）**：`character reference, a cute mascot shaped like a walking calculator, rounded body with number buttons, simple smiling face, tiny staff cap, chibi, plain background, full color anime style`
+【共通】前と同じキャラで一貫（さくら＝オレンジのゆるふわボブ・大きな琥珀色の瞳・ティールのスタッフジャケット／月島＝黒髪短髪・銀縁眼鏡・水色シャツ・落ち着いた青年／鶴見部長＝白髪短髪・口ひげ・50代・恰幅／美咲先輩＝低めポニーテール・親しみやすい女性／ケイタ＝電卓のマスコット）。縦読み漫画ページを1枚、コマ枠で区切る、フルカラーのアニメ漫画調、きれいな線画、日本語のセリフ/ナレーションを正確に、文字化け無し、透かし無し。
 
 ---
 
-## 各コマのプロンプト（※参照画像を添付して生成）
+## P1
+【共通】 コマ1（大）夕暮れのテーマパーク全景と観覧車、縦書きナレーション「わたしの“好き”は、いつもこの場所にあった」。コマ2 5歳くらいの幼いさくら（同一人物の幼い姿）が父に手を引かれ目を輝かせて入園。コマ3 父（パーク制服の30〜40代男性）が娘を肩車、フキダシ「パパのお仕事、ここなの！？すごい！」。コマ4 年間パスポートを大事に握る幼いさくら、縦書きナレーション「父は、この夢の国で働く人だった」。
 
-**panel-01（16:9）** 開園初日の朝・ゲート前
-`Sakura standing in front of a grand theme-park entrance gate at bright morning, determined cheerful pose, Gaku waving energetically in the background, wide shot, [共通の語尾]`
+## P2
+【共通】 コマ1 小学生のさくら（同一人物の少女期）がショーに見入って拍手、満面の笑み。コマ2 帰り道、父と手をつなぐさくら、フキダシ「わたしね、大きくなったら、ここで働く人になる！」。コマ3 父がやさしく笑ってフキダシ「ほう。何をするんだ？」。コマ4 さくら（決意顔）フキダシ「いろんな人を、しあわせにする人！」、縦書きナレーション「それが、わたしの夢になった」。
 
-**panel-02（4:3）** モニターに売上が増えていく
-`Sakura in an office, eyes wide with surprise, looking at a big monitor showing rising sales numbers, medium shot, [共通の語尾]`
+## P3
+【共通】 コマ1 高校生のさくら、初めてのアルバイトでお土産店（MD）の制服に緊張。コマ2 品出しとレジ、親子のお客さんに笑顔で「ありがとう！」と見送る。コマ3 休憩室で先輩・後輩・社員と笑い合う、ナレーション「人の“楽しい思い出”に関われるのが、こんなに嬉しいなんて」。コマ4（大）大学生に成長したさくら、縦書きナレーション「高1から大4まで7年。いつしかこのパークが、わたしの居場所になっていた」。
 
-**panel-03（4:3）** ノート前で固まる
-`Sakura sitting at a desk holding a pen, frozen and troubled with a sweat drop, an open notebook in front of her, medium shot, [共通の語尾]`
+## P4
+【共通】 コマ1 スーツ姿のさくらが何枚もの不採用通知に落ち込む。コマ2 内定通知を見て息をのむ、フキダシ「……うそ」。コマ3 涙を浮かべてガッツポーズ、フキダシ「受かった……このパークの、社員に……！」。コマ4（大）桜の舞う入社式へ向かうさくら、縦書きナレーション「この春、わたしはついに“運営する側”の一員になった」。
 
-**panel-04（4:3）** ケイタ登場・驚き
-`Keita the calculator mascot popping up on the desk with a cheerful pose, Sakura leaning back startled, comedic, medium shot, [共通の語尾]`
+## P5
+【共通】 コマ1 新人研修会場、たくさんの新卒、さくら「いよいよ社員としての一日目！」。コマ2 スクリーンに部署名（アトラクション運営／MD／フード／整備／建築）、さくら「アルバイトの頃は知らなかった…こんなに部署が」。コマ3 さらに部署名（経理／FP&A／マーケティング／法務／人事／総務）、さくら（圧倒）「ぜんぶ合わさって、やっとパークが動いてるんだ」。コマ4（大）パーク全景に各部署の人々のシルエット、縦書きナレーション「テーマパークの運営は、ひとつの“街”を動かすのと同じ」、さくら「この一員になれたこと、誇りに思う。頑張らなきゃ！」。
 
-**panel-05（16:9）** ケイタが借方/貸方の札でドヤ顔
-`Keita the calculator mascot holding two signs (left and right), proud confident pose, on a desk, simple office background, [共通の語尾]`
+## P6
+【共通】 コマ1 配属発表前の廊下、同期の桃井結衣（明るい女性）がさくらをつつく、フキダシ「ねえさくら、どこ配属だと思う？」。コマ2 さくら「うーん…現場がいいな。お客さんの笑顔が直接見える場所」。コマ3 結衣「あんたは7年もお土産屋にいたんだから、ぜったいMDでしょ」、さくら「そうだといいなぁ」。コマ4 二人で笑い合う、期待にふくらむさくらの横顔。
 
-**panel-06（4:3）** 蓮登場
-`Ren adjusting his glasses with a calm gentle smile, entering the office, medium shot, [共通の語尾]`
+## P7
+【共通】 コマ1 担当者が配属票を渡す、フキダシ「春川さくらさん、頑張ってくださいね」。コマ2 票を見たさくらの顔が固まる、小さめフキダシ「…経理部？」。コマ3 さくらがきょとんからのギザギザ叫び「経理部って、なに！？それって…美味しいの！？」。コマ4 担当者「では皆さん、それぞれの配属先へ。研修は以上！」、ざわめく同期の中ひとり取り残されるさくら。
 
-**panel-07（16:9）** ホワイトボードのT字勘定アップ
-`close-up of a whiteboard with a hand-drawn T-account, left column and right column clearly divided, a hand holding a marker, clean, [共通の語尾]`  ※左右の中の数字「現金1,000 / 売上1,000」は後から文字オーバーレイ可
+## P8
+【共通】 コマ1 廊下でうつむくさくら、心の声フキダシ「現場が良かったのに…なんで経理？」。コマ2 心の声フキダシ「わたしのどこを見て…“辞めない”って思われた？人気のない部署なのかな…」。コマ3 さくらが両手で頬をパチンと叩いて顔を上げる、SFX「パンッ」。コマ4 さくら（前向きな笑顔・握り拳）フキダシ「くよくよしても始まらない。現場で7年、たくさんのお客さんを笑顔にしてきた。経理の人だって、まとめて幸せにしてやる！」。
 
-**panel-08（4:3）** ケイタ知ったかぶり×さくらジト目
-`Keita the mascot striking a know-it-all pose, Sakura beside him with half-lidded skeptical eyes, comedic, medium shot, [共通の語尾]`
+## P9
+【共通】 コマ1 経理部の扉の前で深呼吸、SFX「ガチャ」。コマ2 さくら（元気に一礼）フキダシ「本日より経理部に配属になりました、春川さくらです！よろしくお願いします！」。コマ3 美咲先輩がにっこり迎える、フキダシ「さくらさんだね、待ってたよ。もうすぐ部長が戻るから座って待っててね」。コマ4 静かな室内でPCを打つ音だけ、さくら（不安・心の声）フキダシ「こんな静かなところで、わたしやっていけるのかな…」。
 
-**panel-09（16:9）** 楽がドタバタ乱入
-`Gaku bursting into the office in a panic waving his arms, Sakura and Ren reacting with surprise, lively comedic scene, wide shot, [共通の語尾]`
+## P10
+【共通】 コマ1 鶴見部長が戻る、フキダシ「君が春川さくらさんか。新卒で経理に来るのは君ひとりなんだ」。コマ2 部長「でも先輩がいるから大丈夫。…現場に行きたかったよね。経理で、ちょっと残念だよね」、図星でうつむくさくら。コマ3 部長（やさしく）「でも経理には経理の面白さがある。会社のお金の流れが分かるのは、すごく大切なことなんだ」。コマ4 部長「ひとりひとりの“きちっとした仕事”が、最後はお客さんの笑顔につながってる。君なら、それが一番よく分かるよね」。コマ5 さくらがじんわり微笑む、フキダシ「…はい！一緒に、頑張らせてください」。
 
-**panel-10（4:3）** さくら書けて笑顔
-`Sakura smiling brightly with a sense of accomplishment, pointing at her notebook, medium shot, [共通の語尾]`
+## P11
+【共通】 コマ1 部長「君の指導員は月島君に。――月島くん、さくらさんよろしくね」。コマ2 月島が穏やかに会釈、さくら（ドキッ・心の声）フキダシ「(やさしそうな人…)」。コマ3 月島が席へ案内、フキダシ「改めまして月島です。中途でこの経理部に来て5年。何でも聞いてね」。コマ4 月島（少し真面目）「ただ経理はみんな忙しい。一度聞いたことは二度聞かないように。手元にメモを置いて、聞いたことは必ず書き留める癖を」、さくら「は、はい！」とメモ帳をぎゅっ。
 
-**panel-11（16:9）** 引き・きらめき
-`Sakura clenching her fist with sparkling determined eyes, bright uplifting background, Keita and Gaku smiling beside her, group shot, [共通の語尾]`
+## P12
+【共通】 コマ1 月島がふと振り返る、フキダシ「ところで春川さん、“簿記”とか勉強したことある？」。コマ2 さくらがきょとん、フキダシ「ぼ……簿記？」。コマ3 さくらのメモ帳の影から電卓マスコットのケイタがこっそり顔をのぞかせる（読者にだけ見える）。コマ4（大）窓の外に広がるパーク、縦書きナレーション「数字が大の苦手だったさくらの、はじめての“簿記”の物語が始まる。― 第1章へ」。
 
 ---
 
-## メモ
-- 複数キャラのコマ（01, 09, 11）は崩れやすい。数回生成して良いものを選ぶ。難しければ単体生成して構図を選ぶ。
-- 生成画像に文字が入ってしまったら、その回は破棄して再生成（「NO TEXT」を強調）。
-- 仕上がりトーンが決まったら、第2〜4話分も同形式で用意します。
+## 仕上げ
+- 12枚できたら**1→12の順でダウンロード**（ファイル名は何でもOK）。
+- 「ダウンロードした」と教えていただければ、私が `manga/boki3/ep01/page-01〜12` に取り込み、リーダーをフルページ表示にして本番反映します。
